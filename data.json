@@ -1,0 +1,130 @@
+{
+  "ok": true,
+  "generatedAt": 1793521059174,
+  "lastCheckAt": 1793516885022,
+  "nextCheckAt": 1793517485022,
+  "watch": {
+    "repos": [
+      "oceanbase/seekdb",
+      "oceanbase/powercontext",
+      "oceanbase/oceanbase",
+      "oceanbase/ob-mldr-test",
+      "oceanbase/powerrag"
+    ],
+    "orgs": [
+      "oceanbase"
+    ],
+    "users": [
+      "hnwyllmm",
+      "PsiACE"
+    ]
+  },
+  "repos": [
+    {
+      "name": "oceanbase/seekdb",
+      "url": "https://github.com/oceanbase/seekdb",
+      "branchCount": 75,
+      "tagCount": 8,
+      "branches": [
+        {
+          "name": "2025-final-competition",
+          "sha": "12cd8fd431b11759f485bf8cd4e9477c548cbcb1",
+          "url": "https://github.com/oceanbase/seekdb/tree/2025-final-competition"
+        },
+        {
+          "name": "2026-competition",
+          "sha": "5bce9e06d1281347ad61344e4b01fab9158c58a2",
+          "url": "https://github.com/oceanbase/seekdb/tree/2026-competition"
+        },
+        {
+          "name": "harness/issue/2026052000116213423",
+          "sha": "fe5df4468b5b0a92fc955295d429806ff3b718e8",
+          "url": "https://github.com/oceanbase/seekdb/tree/harness/issue/2026052000116213423"
+        }
+      ]
+    },
+    {
+      "name": "oceanbase/powercontext",
+      "url": "https://github.com/oceanbase/powercontext",
+      "branchCount": 57,
+      "tagCount": 33,
+      "branches": [
+        {
+          "name": "2026-competition",
+          "sha": "dab240063bfcfa7917898dc44da4baadb3747bd0",
+          "url": "https://github.com/oceanbase/powercontext/tree/2026-competition"
+        },
+        {
+          "name": "2026-competition-ecosystem",
+          "sha": "d647275c308e09b7b623f322a26f5c4e85734fb0",
+          "url": "https://github.com/oceanbase/powercontext/tree/2026-competition-ecosystem"
+        },
+        {
+          "name": "demo-2026",
+          "sha": "0bac963f1e92e0ea570d4ee7a3b9d7dad4546bb2",
+          "url": "https://github.com/oceanbase/powercontext/tree/demo-2026"
+        },
+        {
+          "name": "vldb_2026",
+          "sha": "a8378e8ea325dd7ad6b139f4fe049f7a52671603",
+          "url": "https://github.com/oceanbase/powercontext/tree/vldb_2026"
+        }
+      ]
+    },
+    {
+      "name": "oceanbase/oceanbase",
+      "url": "https://github.com/oceanbase/oceanbase",
+      "branchCount": 29,
+      "tagCount": 108,
+      "branches": [
+        {
+          "name": "2024-final-competition",
+          "sha": "d76c1fcad7de96739f12ceb412b0ee48753791d7",
+          "url": "https://github.com/oceanbase/oceanbase/tree/2024-final-competition"
+        },
+        {
+          "name": "2024-oceanbase-competition",
+          "sha": "fb38c3159e185cdb36c62eb5c03b4a112feae18c",
+          "url": "https://github.com/oceanbase/oceanbase/tree/2024-oceanbase-competition"
+        },
+        {
+          "name": "2025-oceanbase-competition",
+          "sha": "e08f3b99878862f6f7e9ba3886eaa0f07bdd1c3c",
+          "url": "https://github.com/oceanbase/oceanbase/tree/2025-oceanbase-competition"
+        },
+        {
+          "name": "vldbss-2025",
+          "sha": "77a4ca90d40ec0511f4b249394aabdfccc197563",
+          "url": "https://github.com/oceanbase/oceanbase/tree/vldbss-2025"
+        }
+      ]
+    },
+    {
+      "name": "oceanbase/ob-mldr-test",
+      "url": "https://github.com/oceanbase/ob-mldr-test",
+      "branchCount": 4,
+      "tagCount": 0,
+      "branches": [
+        {
+          "name": "2025-oceanbase-competition",
+          "sha": "68bb96611ea7e33a82820ab1d66455886da615ca",
+          "url": "https://github.com/oceanbase/ob-mldr-test/tree/2025-oceanbase-competition"
+        }
+      ]
+    },
+    {
+      "name": "oceanbase/powerrag",
+      "url": "https://github.com/oceanbase/powerrag",
+      "branchCount": 1,
+      "tagCount": 4,
+      "branches": []
+    }
+  ],
+  "events": [],
+  "clones": [],
+  "stats": {
+    "events": 0,
+    "strong": 0,
+    "repos": 5
+  }
+}

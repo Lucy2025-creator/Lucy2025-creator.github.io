@@ -197,8 +197,9 @@ a{color:inherit}
 .chapters .mini{flex-basis:100%}
 
 </style>
+<meta name="robots" content="noindex,nofollow">
 </head>
-<body>
+<body><script>try{var _t=JSON.parse(localStorage.getItem("dfquiz_gate_v1"));if(_t&&_t.h&&(_t.o||!_t.e||Date.now()<=_t.e)){}else{document.body.classList.add("gate-lock")}}catch(e){document.body.classList.add("gate-lock")}</script>
 <div class="app">
   <!-- ===== 侧栏 ===== -->
   <aside class="rail" id="rail">
@@ -910,5 +911,251 @@ window.__BANK__ = {"chapters":["绪论 担当复兴大任 成就时代新人","�
 })();
 
 </script>
+<script>/* __GATE_BEGIN__ */
+/* ==========================================================================
+   德法题库 · 验证码门禁（静态站版本）
+   设计要点：
+   1. 页面正文默认隐藏（body.gate-lock .app{display:none}），必须先过门禁；
+   2. 验证码只存 SHA-256 前 16 位的哈希，源码里看不到明文码；
+   3. 验证通过后把凭证写入 localStorage（缓存），有效期 N 天，主人码永久；
+   4. 若配置了 CFG.api（Cloudflare Worker），则改为服务端一次性核销，
+      未配置时退化为本机校验（软门槛，挡随手转发，挡不住手改源码的人）。
+   ========================================================================== */
+(function () {
+  var CFG = {"salt": "df2026-gate-0713", "owner": "256dc5db7645fe66", "codes": ["6d03f2be5fa0f975", "7c9002d97789eed4", "caeab6ce63225a11", "5abb31be3d7208e2", "2dcd5e8b6643f15b", "75d3a95c5a1a2978", "dffa36a4f1b06910", "ad82e7dd51bb16bb", "982d6770f266b993", "380ff90682ef687d", "b6adeeb9aaad6efe", "d782f893bad92f00", "5e9584e60896576b", "9356c7ed820e00ff", "29a613a388b592ba", "29bd7e3f8172f8ac", "00895286f30eda29", "19c3b1bfe5869d3a", "bbf7177970abf821", "832bdc693b4f4e1d", "fdcf9f883692e1e9", "baaa4395cb2d83b6", "988649bbf0989c78", "73b2be657f36a234", "af94e5b929ee4bea", "f552032c05227650", "3c69163843272d35", "cc0d52cc5e3bbb00", "be5f0c28327199d7", "396c51f256da2b0d", "22c6190f9081e24e", "7f57b7e5e7589118", "ec4ce9a09f6c663d", "7bc3792ba6b15486", "365e92494add73c1", "c3b3021020a73a72", "e4ba81a7b6c4ea5f", "90e681f327c872dc", "d47c70c7eb752c22", "492f19a8752a56d5", "8c2bed735393cd9d", "a629ac5f31290114", "b97a4a7addadb588", "c69eee5885ce1d0b", "c625b9009ede79c4", "952993f25d5d68c2", "3b8cc297954c62c7", "e77f45feea1e9e9d", "e29a7fe2ad784f15", "655534eb5c1b922a", "a237d05e2230f53c", "a3718acf1f243d4f", "489781d8830bad6a", "dcb7a38ca9c3b11d", "02db65da899ab4de", "0ce66accdc231814", "1715d5a742d9638b", "c42f5d8e5b888cc9", "d4916f50f3853baf", "004bf52c265222f5"], "days": 180, "api": ""};
+  var KEY_TOK = 'dfquiz_gate_v1';
+  var KEY_USED = 'dfquiz_used_v1';
+  var OVERLAY_ID = 'gate-overlay';
+
+  /* ---------- SHA-256（纯 JS，file:// 下也能用） ---------- */
+  var K = [
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+  ];
+  var H0 = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+
+  function utf8Bytes(str) {
+    var out = [], i, c, c2, cp;
+    for (i = 0; i < str.length; i++) {
+      c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+      else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+        c2 = str.charCodeAt(++i);
+        cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
+        out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  function sha256Hex(ascii) {
+    var bytes = utf8Bytes(String(ascii)), i, j;
+    var byteLen = bytes.length;
+    var bitLenHi = Math.floor((byteLen * 8) / 4294967296);
+    var bitLenLo = (byteLen * 8) >>> 0;
+    bytes.push(0x80);
+    while (bytes.length % 64 !== 56) bytes.push(0);
+    bytes.push((bitLenHi >>> 24) & 0xff, (bitLenHi >>> 16) & 0xff, (bitLenHi >>> 8) & 0xff, bitLenHi & 0xff);
+    bytes.push((bitLenLo >>> 24) & 0xff, (bitLenLo >>> 16) & 0xff, (bitLenLo >>> 8) & 0xff, bitLenLo & 0xff);
+
+    var H = H0.slice(), w = new Array(64);
+    for (j = 0; j < bytes.length; j += 64) {
+      for (i = 0; i < 16; i++) {
+        w[i] = ((bytes[j + i * 4] << 24) | (bytes[j + i * 4 + 1] << 16) | (bytes[j + i * 4 + 2] << 8) | bytes[j + i * 4 + 3]) >>> 0;
+      }
+      for (i = 16; i < 64; i++) {
+        var s0 = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >>> 3);
+        var s1 = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >>> 10);
+        w[i] = (w[i - 16] + s0 + w[i - 7] + s1) >>> 0;
+      }
+      var a = H[0], b = H[1], c = H[2], d = H[3], e = H[4], f = H[5], g = H[6], hh = H[7];
+      for (i = 0; i < 64; i++) {
+        var S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+        var ch = (e & f) ^ (~e & g);
+        var t1 = (hh + S1 + ch + K[i] + w[i]) >>> 0;
+        var S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+        var maj = (a & b) ^ (a & c) ^ (b & c);
+        var t2 = (S0 + maj) >>> 0;
+        hh = g; g = f; f = e; e = (d + t1) >>> 0;
+        d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+      }
+      H[0] = (H[0] + a) >>> 0; H[1] = (H[1] + b) >>> 0; H[2] = (H[2] + c) >>> 0; H[3] = (H[3] + d) >>> 0;
+      H[4] = (H[4] + e) >>> 0; H[5] = (H[5] + f) >>> 0; H[6] = (H[6] + g) >>> 0; H[7] = (H[7] + hh) >>> 0;
+    }
+    var out = '';
+    for (i = 0; i < 8; i++) out += ('00000000' + H[i].toString(16)).slice(-8);
+    return out;
+  }
+  function rotr(x, n) { return ((x >>> n) | (x << (32 - n))) >>> 0; }
+
+  /* ---------- 基础工具 ---------- */
+  function norm(s) { return String(s || '').toUpperCase().replace(/[^0-9A-Z]/g, ''); }
+  function read(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v === null ? d : v; } catch (e) { return d; } }
+  function write(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function fmtCode(s) {
+    s = norm(s).slice(0, 12);
+    if (s.length <= 2) return s;
+    var tail = s.slice(2);
+    return 'DF-' + (tail.length > 4 ? tail.slice(0, 4) + '-' + tail.slice(4) : tail);
+  }
+
+  /* ---------- 凭证 ---------- */
+  function tokenOK() {
+    var t = read(KEY_TOK, null);
+    if (!t || !t.h) return false;
+    if (!t.o && t.e && Date.now() > t.e) return false;
+    return true;
+  }
+
+  /* ---------- 门禁 UI ---------- */
+  var CSS = [
+    'body.gate-lock .app{display:none !important}',
+    'body.gate-lock{overflow:hidden}',
+    '#gate-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;',
+    'background:radial-gradient(120% 120% at 20% 0%,#F8F5EC 0%,#EFEDE5 45%,#E6E1D3 100%);',
+    'font-family:var(--sans,"Noto Sans SC",system-ui,sans-serif);color:var(--ink,#16211E);padding:24px}',
+    '#gate-overlay .gcard{width:min(430px,100%);background:var(--surface,#FCFAF3);border:1px solid var(--line,#DDD8C9);',
+    'border-radius:18px;box-shadow:0 2px 4px rgba(22,33,30,.05),0 24px 60px rgba(22,33,30,.12);padding:34px 30px 26px}',
+    '#gate-overlay .gbrand{font-family:var(--serif,"Noto Serif SC",serif);font-size:13px;letter-spacing:.12em;color:var(--muted,#77837C);',
+    'text-align:center;margin-bottom:18px}',
+    '#gate-overlay h2{font-family:var(--serif,"Noto Serif SC",serif);font-size:22px;line-height:1.35;margin:0 0 10px;text-align:center;font-weight:600}',
+    '#gate-overlay .gsub{font-size:13px;line-height:1.7;color:var(--ink-2,#3F4C46);text-align:center;margin:0 0 22px}',
+    '#gate-overlay input{width:100%;box-sizing:border-box;padding:14px 16px;font-size:17px;letter-spacing:.06em;text-align:center;',
+    'font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line,#DDD8C9);border-radius:12px;',
+    'background:#fff;color:var(--ink,#16211E);outline:none}',
+    '#gate-overlay input:focus{border-color:var(--green,#1E5A47);box-shadow:0 0 0 3px rgba(30,90,71,.12)}',
+    '#gate-overlay button{width:100%;margin-top:12px;padding:13px;font-size:15px;font-weight:600;color:#fff;background:var(--green,#1E5A47);',
+    'border:0;border-radius:12px;cursor:pointer;font-family:inherit;transition:filter .15s}',
+    '#gate-overlay button:hover{filter:brightness(1.07)}',
+    '#gate-overlay button:disabled{opacity:.65;cursor:default}',
+    '#gate-overlay .gmsg{min-height:20px;margin-top:12px;font-size:13px;line-height:1.6;text-align:center;color:var(--red,#A03A2A)}',
+    '#gate-overlay .gmsg.ok{color:var(--green,#1E5A47)}',
+    '#gate-overlay .gfoot{margin-top:16px;padding-top:14px;border-top:1px solid var(--line,#DDD8C9);font-size:12px;line-height:1.7;',
+    'color:var(--muted,#77837C);text-align:center}'
+  ].join('');
+
+  function inject() {
+    var st = document.createElement('style');
+    st.textContent = CSS;
+    document.head.appendChild(st);
+
+    var wrap = document.createElement('div');
+    wrap.id = OVERLAY_ID;
+    wrap.innerHTML =
+      '<div class="gcard">' +
+      '<div class="gbrand">2026 秋 · 思想道德与法治</div>' +
+      '<h2>输入验证码开始练习</h2>' +
+      '<p class="gsub">本页面为课程内部题库，验证码一次发放、仅限本人使用。<br>通过后会在本机留下凭证，下次打开无需重复输入。</p>' +
+      '<form id="gate-form" autocomplete="off">' +
+      '<input id="gate-input" type="text" inputmode="latin" placeholder="DF-XXXX-XXXX" spellcheck="false" autocomplete="off" maxlength="15">' +
+      '<button id="gate-btn" type="submit">进入题库</button>' +
+      '</form>' +
+      '<div id="gate-msg" class="gmsg"></div>' +
+      '<div class="gfoot">验证码由出题人统一发放 · 遇到问题请联系发放人</div>' +
+      '</div>';
+    document.body.appendChild(wrap);
+  }
+
+  function setMsg(text, ok) {
+    var el = document.getElementById('gate-msg');
+    if (!el) return;
+    el.textContent = text || '';
+    el.className = 'gmsg' + (ok ? ' ok' : '');
+  }
+
+  function unlock() {
+    var ov = document.getElementById(OVERLAY_ID);
+    if (ov) ov.remove();
+    document.body.classList.remove('gate-lock');
+  }
+
+  function saveToken(hash, isOwner) {
+    write(KEY_TOK, {
+      h: hash,
+      o: isOwner ? 1 : 0,
+      at: Date.now(),
+      e: isOwner ? 0 : Date.now() + (CFG.days || 180) * 86400000
+    });
+  }
+
+  function markUsed(hash) {
+    var used = read(KEY_USED, []);
+    if (used.indexOf(hash) === -1) { used.push(hash); write(KEY_USED, used); }
+  }
+
+  function remoteCheck(hash, code) {
+    if (!CFG.api) return Promise.resolve({ ok: true, local: true });
+    return fetch(CFG.api, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: norm(code), hash: hash })
+    }).then(function (r) {
+      return r.json().then(function (j) { return { ok: !!j.ok, msg: j.msg || '', remote: true }; });
+    });
+  }
+
+  function submit(code) {
+    var n = norm(code);
+    if (n.length < 8) { setMsg('验证码格式不正确，应为 DF-XXXX-XXXX'); return; }
+    var hash = sha256Hex(CFG.salt + n).slice(0, 16);
+    var isOwner = hash === CFG.owner;
+    var known = CFG.codes.indexOf(hash) !== -1;
+    // 配置了远程核销时以服务端为准，本地码表可以留空
+    if (!isOwner && !known && !CFG.api) { setMsg('验证码无效，请核对字符（注意 0/O、1/I 易混）'); return; }
+
+    var btn = document.getElementById('gate-btn');
+    btn.disabled = true;
+    setMsg('正在校验…', true);
+
+    remoteCheck(hash, n).then(function (res) {
+      if (!res.ok) throw new Error(res.msg || '该验证码已被使用或已失效');
+      if (!isOwner && !res.local) {
+        var used = read(KEY_USED, []);
+        if (used.indexOf(hash) !== -1) throw new Error('该验证码已在本机使用过');
+        markUsed(hash);
+      }
+      saveToken(hash, isOwner);
+      setMsg('验证通过，正在进入…', true);
+      setTimeout(unlock, 260);
+    }).catch(function (err) {
+      setMsg(err && err.message ? err.message : '校验失败，请稍后再试');
+      btn.disabled = false;
+    });
+  }
+
+  function boot() {
+    if (tokenOK()) { document.body.classList.remove('gate-lock'); return; }
+    document.body.classList.add('gate-lock');
+    inject();
+    var input = document.getElementById('gate-input');
+    var form = document.getElementById('gate-form');
+    input.addEventListener('input', function () {
+      var pos = input.selectionStart;
+      input.value = fmtCode(input.value);
+      try { input.setSelectionRange(pos, pos); } catch (e) {}
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submit(input.value);
+    });
+    setTimeout(function () { try { input.focus(); } catch (e) {} }, 60);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+  window.__gateSha256 = sha256Hex;   // 便于离线自测
+})();
+
+/* __GATE_END__ */</script>
 </body>
 </html>

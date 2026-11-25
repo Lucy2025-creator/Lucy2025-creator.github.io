@@ -203,16 +203,26 @@
   }
 
   function post(body) {
+    var ctl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
     return fetch(API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-admin-key': state.key },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      signal: ctl ? ctl.signal : undefined
     }).then(function (r) {
       return r.json().then(function (j) {
         if (r.status === 401) throw new Error('管理密钥不正确');
         if (!j.ok) throw new Error(j.msg || '操作失败');
         return j;
       });
+    }).then(function (j) {
+      if (timer) clearTimeout(timer);
+      return j;
+    }, function (err) {
+      if (timer) clearTimeout(timer);
+      if (err && err.name === 'AbortError') throw new Error('连不上核销服务（20 秒超时），换个网络再试');
+      throw err;
     });
   }
 
@@ -316,8 +326,16 @@
       $('#out-pass').value = j.pass;
       $('#passbox').classList.add('on');
       toast('已签发，复制给他就行');
-    }).catch(function (e) { toast(e.message); })
+    }).catch(function (e) {
+      toast(e.message);
+      $('#out-pass').value = '签发失败：' + e.message;
+      $('#passbox').classList.add('on');
+    })
       .then(function () { $('#btn-sign').disabled = false; });
+  });
+
+  $('#in-dev').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); $('#btn-sign').click(); }
   });
 
   $('#btn-copy-pass').addEventListener('click', function () {

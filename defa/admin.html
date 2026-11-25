@@ -23,8 +23,10 @@
   .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;
     box-shadow:0 2px 4px rgba(22,33,30,.04),0 18px 44px rgba(22,33,30,.08);padding:20px;margin-bottom:18px}
   label{font-size:13px;color:var(--ink-2);display:block;margin-bottom:6px}
-  input[type=text],input[type=password],input[type=number]{width:100%;padding:11px 13px;font-size:15px;border:1px solid var(--line);
+  input[type=text],input[type=password],input[type=number],select,textarea{width:100%;padding:11px 13px;font-size:15px;border:1px solid var(--line);
     border-radius:10px;background:#fff;color:var(--ink);outline:none;font-family:inherit}
+  textarea{min-height:70px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;word-break:break-all;line-height:1.5}
+  select{appearance:none;cursor:pointer}
   input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(30,90,71,.12)}
   button{padding:11px 18px;font-size:14px;font-weight:600;border:0;border-radius:10px;cursor:pointer;
     background:var(--green);color:#fff;font-family:inherit;transition:filter .15s}
@@ -115,6 +117,37 @@
         <div class="row" style="margin-top:12px">
           <button class="small" id="btn-copy-new">复制全部</button>
           <button class="small ghost" id="btn-dl-new">下载 txt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="align-items:flex-end">
+        <div style="flex:1;min-width:200px">
+          <label style="font-family:var(--serif);font-size:16px;color:var(--ink)">离线通行证 · 给网络打不开校验服务的同学</label>
+          <div class="hint" style="margin-top:4px">同学在门禁页点「网络受限？」看到本机设备码，发给你；你在这里签发，他粘回去即可离线进入。</div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div style="width:190px">
+          <label for="in-dev">学生设备码</label>
+          <input type="text" id="in-dev" placeholder="AB12-CD34" spellcheck="false" style="text-transform:uppercase">
+        </div>
+        <div style="width:130px">
+          <label for="in-days">有效期</label>
+          <select id="in-days">
+            <option value="30">30 天</option>
+            <option value="90">90 天</option>
+            <option value="0">永久有效</option>
+          </select>
+        </div>
+        <button id="btn-sign">签发通行证</button>
+      </div>
+      <div class="newbox" id="passbox">
+        <h3>通行证（整串发给同学，他粘贴到门禁页）</h3>
+        <textarea id="out-pass" readonly></textarea>
+        <div class="row" style="margin-top:10px">
+          <button class="small" id="btn-copy-pass">复制通行证</button>
         </div>
       </div>
     </div>
@@ -272,6 +305,24 @@
       return load();
     }).catch(function (e) { toast(e.message); })
       .then(function () { $('#btn-gen').disabled = false; });
+  });
+
+  $('#btn-sign').addEventListener('click', function () {
+    var dev = $('#in-dev').value.trim();
+    var days = parseInt($('#in-days').value, 10);
+    if (!dev) { toast('先填学生的设备码'); return; }
+    $('#btn-sign').disabled = true;
+    post({ action: 'sign', dev: dev, days: isNaN(days) ? 0 : days }).then(function (j) {
+      $('#out-pass').value = j.pass;
+      $('#passbox').classList.add('on');
+      toast('已签发，复制给他就行');
+    }).catch(function (e) { toast(e.message); })
+      .then(function () { $('#btn-sign').disabled = false; });
+  });
+
+  $('#btn-copy-pass').addEventListener('click', function () {
+    if (!$('#out-pass').value) { toast('还没签发'); return; }
+    copyText($('#out-pass').value);
   });
 
   function copyText(txt) {

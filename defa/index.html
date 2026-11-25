@@ -922,7 +922,7 @@ window.__BANK__ = {"chapters":["绪论 担当复兴大任 成就时代新人","�
       未配置时退化为本机校验（软门槛，挡随手转发，挡不住手改源码的人）。
    ========================================================================== */
 (function () {
-  var CFG = {"salt": "df2026-gate-0713", "owner": "256dc5db7645fe66", "codes": ["6d03f2be5fa0f975", "7c9002d97789eed4", "caeab6ce63225a11", "5abb31be3d7208e2", "2dcd5e8b6643f15b", "75d3a95c5a1a2978", "dffa36a4f1b06910", "ad82e7dd51bb16bb", "982d6770f266b993", "380ff90682ef687d", "b6adeeb9aaad6efe", "d782f893bad92f00", "5e9584e60896576b", "9356c7ed820e00ff", "29a613a388b592ba", "29bd7e3f8172f8ac", "00895286f30eda29", "19c3b1bfe5869d3a", "bbf7177970abf821", "832bdc693b4f4e1d", "fdcf9f883692e1e9", "baaa4395cb2d83b6", "988649bbf0989c78", "73b2be657f36a234", "af94e5b929ee4bea", "f552032c05227650", "3c69163843272d35", "cc0d52cc5e3bbb00", "be5f0c28327199d7", "396c51f256da2b0d", "22c6190f9081e24e", "7f57b7e5e7589118", "ec4ce9a09f6c663d", "7bc3792ba6b15486", "365e92494add73c1", "c3b3021020a73a72", "e4ba81a7b6c4ea5f", "90e681f327c872dc", "d47c70c7eb752c22", "492f19a8752a56d5", "8c2bed735393cd9d", "a629ac5f31290114", "b97a4a7addadb588", "c69eee5885ce1d0b", "c625b9009ede79c4", "952993f25d5d68c2", "3b8cc297954c62c7", "e77f45feea1e9e9d", "e29a7fe2ad784f15", "655534eb5c1b922a", "a237d05e2230f53c", "a3718acf1f243d4f", "489781d8830bad6a", "dcb7a38ca9c3b11d", "02db65da899ab4de", "0ce66accdc231814", "1715d5a742d9638b", "c42f5d8e5b888cc9", "d4916f50f3853baf", "004bf52c265222f5"], "days": 180, "api": ""};
+  var CFG = {"salt": "df2026-gate-0713", "owner": "256dc5db7645fe66", "codes": ["990fbd6493a7dd89", "1cd58f5c8bafa76a", "7a0d1fe61851984b", "35bd0eb34003ca95", "99b93e39362f5b59", "f2599b2e2947130e", "324d1dd13a678398", "b5fa14a68c5a555e", "d5741899e296048d", "1888adaab76e50f8", "9f8c8e9f7cf69327", "4545f8a463f68663", "c5aa45365ac48095", "4037fa457298edb9", "21eab171bd4d26dd", "2ac27d394026a848", "312c7dae1624790f", "2ae1eab2dd11aa36", "729221bc1b396f8d", "4a282e65317b601a", "e457d757fcdcc194", "8fdb358a65b10649", "f7e94d4467026ee1", "6dca45b8adc11ea5", "0926756b83649d95", "d32699bbf7ec034b", "2eb44b3b634d63b2", "1fcf796a5fccc064", "3129aa87ce91532b", "fa286595b8fc5cdf", "61f1be283b910e36", "a31a40c20a76acef", "26d3e000c7770980", "420cae0b40e8329b", "492671e78c9048e0", "9597a0b2bef60241", "56002211e1e9d8d1", "abd6977cb1e6f07d", "af62a9d1f24aa0a2", "11080438e8f14df7", "191ce211b6d4dabc", "d5724a1715b05761", "e72970ec56e6dc59", "1f6498b73dbfcce6", "f7f287fa46ece79e", "ab1a52785e503c3a", "0221155a006bc9ba", "ecb3109cc4d82ab6", "02d6e7b44dcb62fe", "480005de807bffcb", "a1dfee35373b791f", "515cc3f2ded10735", "e5cbabe1a43b1014", "5a2d4af57de0712a", "b50988484c2d73db", "f51f84c304bc4006", "162bf2cfdc80aa25", "7540d8742eab0d97", "4f8950402219f694", "b9435a765511a052"], "days": 180, "api": ""};
   var KEY_TOK = 'dfquiz_gate_v1';
   var KEY_USED = 'dfquiz_used_v1';
   var OVERLAY_ID = 'gate-overlay';
@@ -1000,10 +1000,11 @@ window.__BANK__ = {"chapters":["绪论 担当复兴大任 成就时代新人","�
   function read(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v === null ? d : v; } catch (e) { return d; } }
   function write(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   function fmtCode(s) {
-    s = norm(s).slice(0, 12);
+    s = norm(s).slice(0, 14);
     if (s.length <= 2) return s;
-    var tail = s.slice(2);
-    return 'DF-' + (tail.length > 4 ? tail.slice(0, 4) + '-' + tail.slice(4) : tail);
+    var tail = s.slice(2), parts = [];
+    for (var i = 0; i < tail.length; i += 4) parts.push(tail.slice(i, i + 4));
+    return 'DF-' + parts.join('-');
   }
 
   /* ---------- 凭证 ---------- */
@@ -1054,7 +1055,7 @@ window.__BANK__ = {"chapters":["绪论 担当复兴大任 成就时代新人","�
       '<h2>输入验证码开始练习</h2>' +
       '<p class="gsub">本页面为课程内部题库，验证码一次发放、仅限本人使用。<br>通过后会在本机留下凭证，下次打开无需重复输入。</p>' +
       '<form id="gate-form" autocomplete="off">' +
-      '<input id="gate-input" type="text" inputmode="latin" placeholder="DF-XXXX-XXXX" spellcheck="false" autocomplete="off" maxlength="15">' +
+      '<input id="gate-input" type="text" inputmode="latin" placeholder="DF-XXXX-XXXX-XXXX" spellcheck="false" autocomplete="off" maxlength="19">' +
       '<button id="gate-btn" type="submit">进入题库</button>' +
       '</form>' +
       '<div id="gate-msg" class="gmsg"></div>' +
@@ -1103,12 +1104,20 @@ window.__BANK__ = {"chapters":["绪论 担当复兴大任 成就时代新人","�
 
   function submit(code) {
     var n = norm(code);
-    if (n.length < 8) { setMsg('验证码格式不正确，应为 DF-XXXX-XXXX'); return; }
+    if (n.length < 8) { setMsg('验证码格式不正确，应为 DF-XXXX-XXXX-XXXX'); return; }
     var hash = sha256Hex(CFG.salt + n).slice(0, 16);
     var isOwner = hash === CFG.owner;
     var known = CFG.codes.indexOf(hash) !== -1;
     // 配置了远程核销时以服务端为准，本地码表可以留空
     if (!isOwner && !known && !CFG.api) { setMsg('验证码无效，请核对字符（注意 0/O、1/I 易混）'); return; }
+
+    // 主人码本地直接放行，不依赖网络
+    if (isOwner) {
+      saveToken(hash, true);
+      setMsg('验证通过，正在进入…', true);
+      setTimeout(unlock, 200);
+      return;
+    }
 
     var btn = document.getElementById('gate-btn');
     btn.disabled = true;

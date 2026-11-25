@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>德法题库 · 验证码管理台</title>
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#F6F3EA; --surface:#FCFAF3; --ink:#16211E; --ink-2:#3F4C46; --muted:#77837C;
+    --line:#DDD8C9; --green:#1E5A47; --red:#A03A2A; --amber:#B07A22;
+    --serif:"Noto Serif SC",Songti SC,serif;
+    --sans:"Noto Sans SC",system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(120% 100% at 15% 0,#FAF7EE 0,#F2EEE3 55%,#E9E4D6 100%);
+    color:var(--ink);font-family:var(--sans);min-height:100vh;padding:32px 20px 64px}
+  .wrap{max-width:1000px;margin:0 auto}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  h1{font-family:var(--serif);font-size:24px;font-weight:600;margin:0;letter-spacing:.02em}
+  .sub{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 2px 4px rgba(22,33,30,.04),0 18px 44px rgba(22,33,30,.08);padding:20px;margin-bottom:18px}
+  label{font-size:13px;color:var(--ink-2);display:block;margin-bottom:6px}
+  input[type=text],input[type=password],input[type=number]{width:100%;padding:11px 13px;font-size:15px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;color:var(--ink);outline:none;font-family:inherit}
+  input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(30,90,71,.12)}
+  button{padding:11px 18px;font-size:14px;font-weight:600;border:0;border-radius:10px;cursor:pointer;
+    background:var(--green);color:#fff;font-family:inherit;transition:filter .15s}
+  button:hover{filter:brightness(1.08)}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-2)}
+  button.danger{background:transparent;border:1px solid #E2C9C2;color:var(--red)}
+  button.small{padding:6px 11px;font-size:12px}
+  button:disabled{opacity:.55;cursor:default}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .grow{flex:1;min-width:180px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:18px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .stat b{display:block;font-family:var(--serif);font-size:26px;line-height:1.1;margin-top:4px}
+  .stat span{font-size:12px;color:var(--muted);letter-spacing:.08em}
+  .tabs{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap}
+  .tab{padding:7px 14px;font-size:13px;border-radius:999px;border:1px solid var(--line);background:transparent;
+    cursor:pointer;color:var(--ink-2)}
+  .tab.on{background:var(--green);border-color:var(--green);color:#fff}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{text-align:left;font-weight:500;color:var(--muted);font-size:12px;letter-spacing:.06em;
+    padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 10px;border-bottom:1px solid #ECE7DA;vertical-align:middle}
+  td.code{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;font-size:14px}
+  .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;white-space:nowrap}
+  .badge.free{background:#E7F0EA;color:var(--green)}
+  .badge.used{background:#F3E7E4;color:var(--red)}
+  .badge.legacy{background:#F4EEDD;color:var(--amber)}
+  .opts{display:flex;gap:6px;justify-content:flex-end}
+  .empty{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+  .newbox{background:#F3F7F1;border:1px dashed #BFD5C4;border-radius:12px;padding:14px;margin-top:14px;display:none}
+  .newbox.on{display:block}
+  .newbox h3{margin:0 0 10px;font-family:var(--serif);font-size:15px;font-weight:600}
+  .newcodes{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#fff;border:1px solid var(--line);
+    border-radius:8px;padding:6px 10px;letter-spacing:.05em}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:#16211E;color:#fff;
+    padding:10px 18px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.25s}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  .hint{font-size:12px;color:var(--muted);line-height:1.7;margin-top:10px}
+  .lock{display:grid;gap:12px;max-width:420px}
+  @media(max-width:640px){ td.code{font-size:12px} .opts{flex-direction:column} th:nth-child(3),td:nth-child(3){display:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>验证码管理台</h1>
+      <div class="sub">德法题库 · 一次性验证码 · 云端核销<br>每个码只允许一台设备首次使用；管理操作需要密钥。</div>
+    </div>
+    <div><button class="ghost small" id="btn-logout">清除本机密钥</button></div>
+  </header>
+
+  <!-- ===== 视图：输入管理密钥 ===== -->
+  <section class="card" id="view-lock">
+    <label for="in-key">管理密钥</label>
+    <div class="lock">
+      <input type="password" id="in-key" placeholder="adm_…" autocomplete="off" spellcheck="false">
+      <button id="btn-unlock">连接核销服务</button>
+    </div>
+    <div class="hint">密钥只存在这台电脑的 localStorage 里，不会写进网页。忘了密钥看本地 <code>_build/admin_key.txt</code>。</div>
+  </section>
+
+  <!-- ===== 视图：管理台 ===== -->
+  <section id="view-app" style="display:none">
+    <div class="stats">
+      <div class="stat"><span>码总量</span><b id="s-total">—</b></div>
+      <div class="stat"><span>可用</span><b id="s-free">—</b></div>
+      <div class="stat"><span>已使用</span><b id="s-used">—</b></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div style="width:130px">
+          <label for="in-count">生成数量</label>
+          <input type="number" id="in-count" value="5" min="1" max="200">
+        </div>
+        <button id="btn-gen">生成新码</button>
+        <button class="ghost" id="btn-refresh">刷新状态</button>
+        <div class="grow">
+          <label for="in-search">搜索码</label>
+          <input type="text" id="in-search" placeholder="输入码片段，如 N75K">
+        </div>
+      </div>
+      <div class="newbox" id="newbox">
+        <h3>刚生成的码（关掉就找不回来了，先复制）</h3>
+        <div class="newcodes" id="newcodes"></div>
+        <div class="row" style="margin-top:12px">
+          <button class="small" id="btn-copy-new">复制全部</button>
+          <button class="small ghost" id="btn-dl-new">下载 txt</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tabs" id="tabs">
+        <div class="tab on" data-f="all">全部</div>
+        <div class="tab" data-f="free">可用</div>
+        <div class="tab" data-f="used">已使用</div>
+        <div class="tab" data-f="legacy">内联老码</div>
+      </div>
+      <table>
+        <thead><tr><th>验证码</th><th>状态</th><th>使用时间</th><th style="text-align:right">操作</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="empty" style="display:none">没有匹配的码</div>
+      <div class="hint">删除会同时抹掉使用记录：可用码删掉就作废；已使用的码删掉后那个码还能再用一次（等于重置）。</div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  var API = 'https://defa-gate.wulei2757678400.workers.dev/admin';
+  var KEY_STORE = 'dfquiz_admin_key';
+  var state = { key: '', rows: [], filter: 'all', q: '', newCodes: [] };
+
+  var $ = function (s) { return document.querySelector(s); };
+
+  function toast(msg) {
+    var t = $('#toast'); t.textContent = msg; t.classList.add('on');
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('on'); }, 2200);
+  }
+  function fmt(code) {
+    var n = String(code || '').toUpperCase().replace(/[^0-9A-Z]/g, '');
+    if (!/^DF/.test(n) || n.indexOf('内联') !== -1) return code;
+    var tail = n.slice(2), parts = [];
+    for (var i = 0; i < tail.length; i += 4) parts.push(tail.slice(i, i + 4));
+    return 'DF-' + parts.join('-');
+  }
+  function dt(iso) {
+    if (!iso || iso === 1) return '—';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '—';
+    var p = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function post(body) {
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': state.key },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (r.status === 401) throw new Error('管理密钥不正确');
+        if (!j.ok) throw new Error(j.msg || '操作失败');
+        return j;
+      });
+    });
+  }
+
+  function render() {
+    var rows = state.rows.filter(function (r) {
+      if (state.filter === 'free' && (r.usedAt || r.legacy)) return false;
+      if (state.filter === 'used' && !r.usedAt) return false;
+      if (state.filter === 'legacy' && !r.legacy) return false;
+      return true;
+    });
+    if (state.q) {
+      var q = state.q.toUpperCase().replace(/[^0-9A-Z]/g, '');
+      rows = rows.filter(function (r) {
+        var c = String(r.code || '').toUpperCase().replace(/[^0-9A-Z]/g, '');
+        return c.indexOf(q) !== -1 || (r.hash || '').indexOf(q.toLowerCase()) !== -1;
+      });
+    }
+    // 可用在前
+    rows.sort(function (a, b) { return (a.usedAt ? 1 : 0) - (b.usedAt ? 1 : 0); });
+
+    var tb = $('#tbody');
+    tb.innerHTML = rows.map(function (r) {
+      var badge = r.legacy
+        ? '<span class="badge legacy">内联码</span>'
+        : (r.usedAt ? '<span class="badge used">已使用</span>' : '<span class="badge free">可用</span>');
+      var del = r.legacy ? '' : '<button class="small danger" data-del="' + esc(r.key) + '" data-hash="' + esc(r.hash) + '">删除</button>';
+      return '<tr>' +
+        '<td class="code">' + esc(fmt(r.code)) + '</td>' +
+        '<td>' + badge + '</td>' +
+        '<td style="color:var(--muted);font-size:12px">' + dt(r.usedAt) + '</td>' +
+        '<td><div class="opts">' +
+        '<button class="small ghost" data-copy="' + esc(fmt(r.code)) + '">复制</button>' + del +
+        '</div></td></tr>';
+    }).join('');
+    $('#empty').style.display = rows.length ? 'none' : 'block';
+
+    var free = 0, used = 0;
+    state.rows.forEach(function (r) { if (r.usedAt) used++; else free++; });
+    $('#s-total').textContent = state.rows.length;
+    $('#s-free').textContent = free;
+    $('#s-used').textContent = used;
+  }
+
+  function load() {
+    return post({ action: 'list' }).then(function (j) {
+      state.rows = j.rows || [];
+      render();
+    });
+  }
+
+  function unlock(key) {
+    if (!key) { toast('请输入管理密钥'); return; }
+    state.key = key;
+    $('#btn-unlock').disabled = true;
+    post({ action: 'list' }).then(function (j) {
+      localStorage.setItem(KEY_STORE, key);
+      state.rows = j.rows || [];
+      $('#view-lock').style.display = 'none';
+      $('#view-app').style.display = '';
+      render();
+      toast('已连接，共 ' + state.rows.length + ' 个码');
+    }).catch(function (e) {
+      toast(e.message || '连接失败');
+      state.key = '';
+    }).then(function () { $('#btn-unlock').disabled = false; });
+  }
+
+  $('#btn-unlock').addEventListener('click', function () { unlock($('#in-key').value.trim()); });
+  $('#in-key').addEventListener('keydown', function (e) { if (e.key === 'Enter') unlock($('#in-key').value.trim()); });
+  $('#btn-logout').addEventListener('click', function () {
+    localStorage.removeItem(KEY_STORE); state.key = ''; state.rows = [];
+    $('#view-app').style.display = 'none'; $('#view-lock').style.display = ''; $('#in-key').value = '';
+    toast('已清除本机密钥');
+  });
+
+  $('#btn-refresh').addEventListener('click', function () {
+    load().then(function () { toast('已刷新'); }).catch(function (e) { toast(e.message); });
+  });
+
+  $('#btn-gen').addEventListener('click', function () {
+    var n = parseInt($('#in-count').value, 10) || 5;
+    if (n < 1 || n > 200) { toast('数量范围 1–200'); return; }
+    $('#btn-gen').disabled = true;
+    post({ action: 'gen', count: n }).then(function (j) {
+      state.newCodes = (j.codes || []).map(fmt);
+      var box = $('#newbox');
+      box.classList.add('on');
+      $('#newcodes').innerHTML = state.newCodes.map(function (c) { return '<span class="tag">' + esc(c) + '</span>'; }).join('');
+      toast('已生成 ' + state.newCodes.length + ' 个码');
+      return load();
+    }).catch(function (e) { toast(e.message); })
+      .then(function () { $('#btn-gen').disabled = false; });
+  });
+
+  function copyText(txt) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(txt).then(function () { toast('已复制'); }, function () { toast('复制失败，请手动选中'); });
+    }
+    var ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast('已复制'); } catch (e) { toast('复制失败'); }
+    document.body.removeChild(ta);
+  }
+
+  $('#btn-copy-new').addEventListener('click', function () {
+    if (!state.newCodes.length) { toast('还没有新生成的码'); return; }
+    copyText(state.newCodes.join('\n'));
+  });
+
+  $('#btn-dl-new').addEventListener('click', function () {
+    if (!state.newCodes.length) { toast('还没有新生成的码'); return; }
+    var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
+    var name = '德法题库验证码_' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '.txt';
+    var blob = new Blob(['# 思想道德与法治 · 期末题库｜一次性验证码\n# 每个码只允许一台设备首次使用\n\n' + state.newCodes.join('\n') + '\n'], { type: 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name; a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
+    toast('已下载 ' + name);
+  });
+
+  $('#in-search').addEventListener('input', function (e) { state.q = e.target.value.trim(); render(); });
+
+  $('#tabs').addEventListener('click', function (e) {
+    var t = e.target.closest('.tab'); if (!t) return;
+    state.filter = t.dataset.f;
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (x) { x.classList.toggle('on', x === t); });
+    render();
+  });
+
+  $('#tbody').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.copy) { copyText(b.dataset.copy); return; }
+    if (b.dataset.del !== undefined) {
+      if (!confirm('删除后该码立即作废（若已使用，删除等于重置一次）。继续？')) return;
+      post({ action: 'del', key: b.dataset.del, hash: b.dataset.hash }).then(function () {
+        toast('已删除'); return load();
+      }).catch(function (err) { toast(err.message); });
+    }
+  });
+
+  var saved = localStorage.getItem(KEY_STORE);
+  if (saved) { unlock(saved); }
+})();
+</script>
+</body>
+</html>

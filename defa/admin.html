@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>德法题库 · 验证码管理台</title>
+<title>学习台 · 验证码管理台</title>
 <link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
 <style>
@@ -74,8 +74,8 @@
 <div class="wrap">
   <header>
     <div>
-      <h1>验证码管理台</h1>
-      <div class="sub">德法题库 · 一次性验证码 · 云端核销<br>每个码只允许一台设备首次使用；管理操作需要密钥。</div>
+      <h1>学习台 · 验证码管理台</h1>
+      <div class="sub">数学 / 英语 / 德法共用 · 一次性验证码 · 云端核销<br>每个码只允许一台设备首次使用；管理操作需要密钥。</div>
     </div>
     <div><button class="ghost small" id="btn-logout">清除本机密钥</button></div>
   </header>
@@ -361,8 +361,8 @@
   $('#btn-dl-new').addEventListener('click', function () {
     if (!state.newCodes.length) { toast('还没有新生成的码'); return; }
     var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
-    var name = '德法题库验证码_' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '.txt';
-    var blob = new Blob(['# 思想道德与法治 · 期末题库｜一次性验证码\n# 每个码只允许一台设备首次使用\n\n' + state.newCodes.join('\n') + '\n'], { type: 'text/plain;charset=utf-8' });
+    var name = '学习台验证码_' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '.txt';
+    var blob = new Blob(['# 学习台 · 数学/英语/德法｜一次性验证码\n# 每个码只允许一台设备首次使用\n\n' + state.newCodes.join('\n') + '\n'], { type: 'text/plain;charset=utf-8' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob); a.download = name; a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);

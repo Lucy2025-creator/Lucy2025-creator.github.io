@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>思想道德与法治 · 2026 期末题库</title>
+<meta name="description" content="德法课全题库在线练习：单选、多选、判断、材料分析，含错项解析与艾宾浩斯复习计划。">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --paper:#EFEDE5; --surface:#FCFAF3; --surface-2:#F6F3EA;
+  --ink:#16211E; --ink-2:#3F4C46; --muted:#77837C;
+  --green:#1E5A47; --green-soft:#E3EDE6; --red:#A03A2A; --red-soft:#F4E4DF;
+  --gold:#A9822F; --line:#DDD8C9; --shadow:0 1px 2px rgba(22,33,30,.06),0 12px 28px rgba(22,33,30,.06);
+  --serif:"Noto Serif SC","Songti SC",Georgia,"Times New Roman",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+
+/* ===== 布局 ===== */
+.app{display:grid;grid-template-columns:296px minmax(0,1fr);min-height:100vh}
+.rail{background:var(--surface);border-right:1px solid var(--line);padding:22px 20px 40px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.main{min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.wrap{width:min(880px,100%);margin:0 auto;padding:28px 24px 120px}
+
+/* ===== 侧栏 ===== */
+.brand{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.brand h1{font-family:var(--serif);font-size:19px;font-weight:700;margin:0;letter-spacing:.02em}
+.brand .tag{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.sub{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.6}
+
+.today{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:18px}
+.today-top{display:flex;align-items:center;gap:14px}
+.ring{position:relative;width:64px;height:64px;flex:none}
+.ring svg{width:64px;height:64px}
+.ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;font-weight:700;color:var(--green)}
+.today-nums{font-size:12px;color:var(--ink-2);line-height:1.9}
+.today-nums b{font-family:var(--serif);font-size:15px;color:var(--ink)}
+.today .streak{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:9px}
+.streak .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+.nav-title{font-size:11px;letter-spacing:.16em;color:var(--muted);margin:20px 0 8px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:0;padding:7px 9px;border-radius:8px;font-size:13px;color:var(--ink-2)}
+.nav button:hover{background:var(--surface-2)}
+.nav button.on{background:var(--green);color:#fff}
+.nav button.on .cnt{color:rgba(255,255,255,.75)}
+.nav .cnt{margin-left:auto;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chapters button{padding:9px}
+.chapters .mini{display:block;height:3px;background:var(--line);border-radius:2px;margin-top:5px;overflow:hidden}
+.chapters .mini i{display:block;height:3px;background:var(--green);border-radius:2px;width:0}
+.chapters button.on .mini{background:rgba(255,255,255,.25)}
+.chapters button.on .mini i{background:#fff}
+
+.rail-foot{margin-top:22px;font-size:11px;color:var(--muted);line-height:1.8;border-top:1px solid var(--line);padding-top:14px}
+.rail-foot button{background:none;border:0;color:var(--green);padding:0;text-decoration:underline;font-size:11px}
+
+/* ===== 顶栏 ===== */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(239,237,229,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{width:min(880px,100%);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:12px}
+.mode-pill{font-size:12px;background:var(--surface);border:1px solid var(--line);padding:5px 10px;border-radius:99px;color:var(--ink-2)}
+.topbar .sp{flex:1}
+.tb-btn{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 11px;font-size:12px}
+.tb-btn:hover{border-color:var(--green);color:var(--green)}
+.tb-btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+.only-mobile{display:none}
+
+/* ===== 题目卡 ===== */
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:26px 26px 22px;position:relative}
+.qmeta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted);letter-spacing:.06em;margin-bottom:14px}
+.qmeta .chip{background:var(--green-soft);color:var(--green);padding:2px 8px;border-radius:4px;letter-spacing:.08em}
+.qmeta .chip.j{background:#EFE8D6;color:#7A5F1C}
+.qmeta .chip.m{background:#E6E8F0;color:#3E4A6B}
+.qmeta .chip.e{background:#F0E2DC;color:#8A4432}
+.qmeta .no{font-family:var(--serif);font-size:13px;color:var(--ink)}
+.stem{font-family:var(--serif);font-size:19px;line-height:1.85;margin:0 0 18px;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;transition:border-color .12s,background .12s,transform .08s}
+.opt:hover{border-color:#B9C7BD;background:#fff}
+.opt .key{flex:none;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:#fff;border:1px solid var(--line);color:var(--ink-2);margin-top:1px}
+.opt .txt{flex:1;font-size:15px;line-height:1.65;color:var(--ink)}
+.opt.sel{border-color:var(--green);background:#fff;box-shadow:inset 0 0 0 1px var(--green)}
+.opt.sel .key{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.right{border-color:var(--green);background:#F1F7F1}
+.opt.right .key{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.wrong{border-color:var(--red);background:var(--red-soft)}
+.opt.wrong .key{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.missed{border-style:dashed;border-color:var(--green)}
+.opt.missed .key{border-color:var(--green);color:var(--green)}
+.opt .flag{margin-left:auto;font-size:11px;color:var(--muted);white-space:nowrap;align-self:center}
+
+.truefalse{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
+.tf{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:22px 10px;font-family:var(--serif);font-size:20px;letter-spacing:.1em}
+.tf:hover{border-color:var(--green)}
+.tf.sel{border-color:var(--green);background:#fff;box-shadow:inset 0 0 0 1px var(--green);color:var(--green)}
+.tf.right{border-color:var(--green);background:#F1F7F1;color:var(--green)}
+.tf.wrong{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+
+.verdict{margin-top:18px;border-radius:10px;padding:12px 14px;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.verdict.ok{background:var(--green-soft);border:1px solid #C7DACC;color:#14483A}
+.verdict.no{background:var(--red-soft);border:1px solid #E3C6BE;color:#7C2C1F}
+.verdict .mark{font-family:var(--serif);font-weight:700;font-size:16px}
+.verdict .body{flex:1}
+.verdict .ans{font-family:var(--serif);letter-spacing:.12em;font-weight:700}
+
+.analysis{margin-top:12px;border-top:1px dashed var(--line);padding-top:14px;font-size:14px;color:var(--ink-2);white-space:pre-wrap}
+.analysis .lab{display:inline-block;font-size:11px;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.analysis .exp{background:var(--surface-2);border-left:3px solid var(--gold);padding:10px 12px;border-radius:0 8px 8px 0;margin-top:8px;line-height:1.75}
+.keypoints{margin-top:14px;border-top:1px dashed var(--line);padding-top:14px}
+.keypoints .lab{font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.keypoints ul{margin:8px 0 0;padding-left:18px}
+.keypoints li{margin-bottom:7px;font-size:14px;line-height:1.7;color:var(--ink-2)}
+.selfcheck{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface-2);border-radius:9px;padding:9px 16px;font-size:14px}
+.btn:hover{border-color:var(--green);color:var(--green)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+.btn.primary:hover{background:#17493A;color:#fff}
+.btn.primary:disabled{background:#9DB3A7;border-color:#9DB3A7;cursor:not-allowed}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 11px;font-size:12px}
+
+/* ===== 底部作答栏 ===== */
+.dock{position:sticky;bottom:0;background:rgba(252,250,243,.96);border-top:1px solid var(--line);backdrop-filter:blur(8px);z-index:18}
+.dock-in{width:min(880px,100%);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:10px}
+.dock .prog{flex:1;font-size:12px;color:var(--muted)}
+.dock .prog .bar{height:4px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}
+.dock .prog .bar i{display:block;height:4px;background:var(--green);width:0}
+.tools{display:flex;gap:6px}
+.icon-btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.icon-btn:hover{border-color:var(--green);color:var(--green)}
+.icon-btn.on{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+
+/* ===== 答题卡抽屉 ===== */
+.sheet-mask{position:fixed;inset:0;background:rgba(22,33,30,.32);opacity:0;pointer-events:none;transition:opacity .18s;z-index:40}
+.sheet{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--surface);z-index:41;transform:translateX(102%);transition:transform .22s ease;display:flex;flex-direction:column}
+.sheet-mask.on{opacity:1;pointer-events:auto}
+.sheet.on{transform:none}
+.sheet-head{padding:18px 20px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+.sheet-head h3{font-family:var(--serif);font-size:16px;margin:0}
+.sheet-body{overflow-y:auto;padding:16px 20px 30px}
+.sheet-legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin-bottom:14px;flex-wrap:wrap}
+.sheet-legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:7px}
+.grid button{aspect-ratio:1;border-radius:7px;border:1px solid var(--line);background:var(--surface-2);font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.grid button.done{background:var(--green-soft);border-color:#BBD2C1;color:#17503E}
+.grid button.bad{background:var(--red-soft);border-color:#E2C3BA;color:var(--red)}
+.grid button.cur{outline:2px solid var(--green);outline-offset:1px}
+
+/* ===== 统计视图 ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:22px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat .k{font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.stat .v{font-family:var(--serif);font-size:26px;font-weight:700;margin-top:4px}
+.stat .s{font-size:11px;color:var(--muted);margin-top:2px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.panel h3{font-family:var(--serif);font-size:15px;margin:0 0 14px;font-weight:700}
+.rowbar{display:grid;grid-template-columns:96px 1fr 52px;gap:10px;align-items:center;font-size:12px;color:var(--ink-2);margin-bottom:9px}
+.rowbar .t{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+.rowbar .t i{display:block;height:100%;background:var(--green)}
+.rowbar .n{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.stages{display:flex;gap:4px;flex-wrap:wrap}
+.stage-chip{flex:1;min-width:90px;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center}
+.stage-chip b{display:block;font-family:var(--serif);font-size:18px}
+.stage-chip span{font-size:10px;color:var(--muted)}
+.plan-table{width:100%;border-collapse:collapse;font-size:12px}
+.plan-table th,.plan-table td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}
+.plan-table th{color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.06em}
+.plan-table td.n{font-variant-numeric:tabular-nums}
+
+.note{font-size:12px;color:var(--muted);line-height:1.8;background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
+
+/* 空态 */
+.empty{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:48px 24px;text-align:center}
+.empty h2{font-family:var(--serif);font-size:20px;margin:0 0 8px}
+.empty p{color:var(--muted);font-size:13px;margin:0 0 18px}
+
+@media (max-width:900px){
+  .app{grid-template-columns:1fr}
+  .rail{position:fixed;left:0;top:0;height:100%;width:290px;z-index:45;transform:translateX(-102%);transition:transform .22s}
+  .rail.on{transform:none}
+  .wrap{padding:20px 16px 120px}
+  .topbar-in{padding:10px 14px}
+  .only-mobile{display:inline-flex}
+  .stem{font-size:17px}
+  .qcard{padding:20px 16px}
+  .dock-in{padding:10px 14px}
+}
+
+.nav button:disabled,.icon-btn:disabled{opacity:.35;cursor:not-allowed}
+.chapters button{flex-wrap:wrap}
+.chapters button > span:first-child{flex:1;text-align:left}
+.chapters .mini{flex-basis:100%}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ===== 侧栏 ===== -->
+  <aside class="rail" id="rail">
+    <div class="brand"><h1>思想道德与法治</h1><span class="tag">2026 秋</span></div>
+    <p class="sub">全题库 · 702 题 · 单选 / 多选 / 判断 / 材料<br>按艾宾浩斯曲线排程，12 月 31 日前掌握</p>
+
+    <div class="today">
+      <div class="today-top">
+        <div class="ring">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#DDD8C9" stroke-width="5"></circle>
+          <circle id="ringArc" cx="32" cy="32" r="26" fill="none" stroke="#1E5A47" stroke-width="5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 32 32)"></circle></svg>
+          <div class="pct" id="ringPct">0%</div>
+        </div>
+        <div class="today-nums" id="todayNums"></div>
+      </div>
+      <div class="streak" id="streak"></div>
+    </div>
+
+    <div class="nav-title">练习模式</div>
+    <div class="nav">
+      <button data-mode="plan" onclick="App.switchMode('plan')"><span>今日计划</span><span class="cnt" id="dueCnt">0</span></button>
+      <button data-mode="free" onclick="App.switchMode('free')"><span>自由练习</span></button>
+      <button data-mode="review" onclick="App.switchMode('review')"><span>到期复习</span></button>
+      <button data-mode="wrong" onclick="App.switchMode('wrong')"><span>错题重练</span><span class="cnt" id="wrongCnt">0</span></button>
+      <button data-mode="fav" onclick="App.switchMode('fav')"><span>我的收藏</span><span class="cnt" id="favCnt">0</span></button>
+      <button onclick="App.showStats()"><span>学习统计</span></button>
+    </div>
+
+    <div class="nav-title">题型</div>
+    <div class="nav">
+      <button data-type="all" onclick="App.filterType('all')"><span>全部题型</span></button>
+      <button data-type="s" onclick="App.filterType('s')"><span>单项选择</span><span class="cnt">296</span></button>
+      <button data-type="m" onclick="App.filterType('m')"><span>多项选择</span><span class="cnt">231</span></button>
+      <button data-type="j" onclick="App.filterType('j')"><span>判断</span><span class="cnt">166</span></button>
+      <button data-type="e" onclick="App.filterType('e')"><span>材料分析</span><span class="cnt">9</span></button>
+    </div>
+
+    <div class="nav-title">章节</div>
+    <div class="nav chapters" id="chapters"></div>
+
+    <div class="rail-foot">
+      进度自动保存在本机浏览器。<br>
+      <button onclick="App.exportData()">导出学习进度</button> ｜ <button onclick="App.resetAll()">清空记录</button>
+    </div>
+  </aside>
+
+  <!-- ===== 主区 ===== -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-in">
+        <button class="tb-btn only-mobile" onclick="App.toggleRail()">章节</button>
+        <span class="mode-pill" id="modePill">今日计划</span>
+        <span class="sp"></span>
+        <button class="tb-btn" id="btnAuto" onclick="App.toggleAuto()">自动下一题</button>
+        <button class="tb-btn" onclick="App.openSheet()">答题卡</button>
+      </div>
+    </div>
+
+    <div id="practiceView">
+      <div class="wrap"><div id="qbox"></div></div>
+      <div class="dock">
+        <div class="dock-in">
+          <div class="prog" id="dockProg"></div>
+          <div class="tools">
+            <button class="icon-btn" id="btnPrev" onclick="App.prev()" title="上一题">←</button>
+            <button class="icon-btn" id="btnFav" onclick="App.toggleFav()" title="收藏">☆</button>
+            <button class="btn primary" id="btnSubmit" onclick="App.submit()" style="display:none">提交答案</button>
+            <button class="btn" id="btnSelf" onclick="App.showKey()" style="display:none">看要点</button>
+            <button class="btn primary" id="btnNext" onclick="App.next()">下一题</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="statsView" style="display:none">
+      <div class="wrap">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px">
+          <h2 style="font-family:var(--serif);font-size:22px;margin:0">学习统计</h2>
+          <button class="btn small" onclick="App.goPractice()">← 返回练习</button>
+        </div>
+        <div id="statsBox"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 答题卡抽屉 ===== -->
+<div class="sheet-mask" id="sheetMask" onclick="App.closeSheet()"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-head"><h3>答题卡</h3><span style="flex:1"></span><button class="icon-btn" onclick="App.closeSheet()">✕</button></div>
+  <div class="sheet-body">
+    <div class="sheet-legend">
+      <span><i style="background:#E3EDE6;border:1px solid #BBD2C1"></i>已作答</span>
+      <span><i style="background:#F4E4DF;border:1px solid #E2C3BA"></i>答错</span>
+      <span><i style="background:#F6F3EA;border:1px solid #DDD8C9"></i>未作答</span>
+      <span><i style="background:#fff;outline:2px solid #1E5A47"></i>当前</span>
+    </div>
+    <div class="grid" id="sheetGrid"></div>
+  </div>
+</div>
+
+<div id="toast" style="position:fixed;left:50%;bottom:84px;transform:translate(-50%,12px);background:#16211E;color:#fff;font-size:13px;padding:8px 16px;border-radius:99px;opacity:0;pointer-events:none;transition:.2s;z-index:60"></div>
+<style>#toast.on{opacity:1;transform:translate(-50%,0)}</style>
+
+<script>
+window.__BANK__ = {"chapters":["绪论 担当复兴大任 成就时代新人","第一章 领悟人生真谛 把握人生方向","第二章 追求远大理想 坚定崇高信念","第三章 继承优良传统 弘扬中国精神","第四章 明确价值要求 践行价值准则","第五章 遵守道德规范 锤炼道德品格","第六章 学习法治思想 提升法治素养"],"items":[{"ch":0,"t":"s","n":1,"stem":"以下哪一项是理解当前历史方位的关键词？（ ）","o":["新思想","新时代","新格局","新举措"],"a":"B"},{"ch":0,"t":"s","n":2,"stem":"大学新生进入大学后面临的首要问题是","o":["尽快适应大学生活","争取经济独立","参加社团活动","参加社会实践"],"a":"A"},{"ch":0,"t":"s","n":3,"stem":"学习“思想道德与法治”，一定要坚持（ ）。","o":["泛泛而学","学用脱离","不求甚解","学以致用"],"a":"D"},{"ch":0,"t":"s","n":4,"stem":"自主学习是一种( )的学习。","o":["被动","他律","创新","能动"],"a":"D"},{"ch":0,"t":"s","n":5,"stem":"“独学而无友，则孤陋而寡闻。”这句话反应的是( )学习理念。","o":["终身","全面","自主","合作"],"a":"D"},{"ch":0,"t":"s","n":6,"stem":"“少而好学，如日出之阳;壮而好学，如日中之光;老而好学，如秉烛之明。”这句话强调了( )学习理念。","o":["全面","终身","自主","合作"],"a":"B"},{"ch":0,"t":"s","n":7,"stem":"青年________是决定人生价值的最大砝码。","o":["担当","责任","理想","行动"],"a":"A"},{"ch":0,"t":"s","n":8,"stem":"( )应该成为走在时代前列的奋进者、开拓者、奉献者。","o":["大学生","青少年","群众","中共党员"],"a":"A"},{"ch":0,"t":"s","n":9,"stem":"依据新时代中国特色社会主义发展的战略安排，2035 年我们的目标是( )。","o":["基本实现社会主义现代化","全面建成小康社会","把我国建成富强、民主、文明、和谐、美丽的社会主义现代化强国","让人民生活更加殷实"],"a":"A"},{"ch":0,"t":"s","n":10,"stem":"依据新时代中国特色社会主义发展的战略安排，21世纪中叶我们的目标是( ) 。","o":["全面建成小康社会","基本实现社会主义现代化","把我国建成富强民主文明和谐美丽的社会主义现代化强国","人民生活更为宽裕，中等收入群体比例明显提高，城乡区域显著缩小，基本公共服务均等化基本实现"],"a":"C"},{"ch":0,"t":"s","n":11,"stem":"( )是民族复兴伟大进程的见证者和参与者，也是社会主义事业的生力军。","o":["当代大学生","人民","中国共产党员","知识分子"],"a":"A"},{"ch":0,"t":"s","n":12,"stem":"关于“崇高的理想信念”，下列表述错误的是( )。","o":["崇高的理想信念，会导致精神上的“软骨病”","崇高的理想信念决定我们的方向和立场，也决定我们的精神","崇高的理想信念直接关系着人生目标的选择、人生价值的实现","崇高的理想信念是事业和人生的灯塔"],"a":"A"},{"ch":0,"t":"s","n":13,"stem":"( )应该成为中国特色社会主义事业的合格建设者和可靠接班人。","o":["大学生","青少年","群众","中共党员"],"a":"A"},{"ch":0,"t":"s","n":14,"stem":"站在新时代的起点，我们比历史上任何时期都更接近( )的目标。","o":["实现社会主义现代化","全面小康社会建成","中华民族伟大复兴","把我国建设成为社会主义现代化强国"],"a":"C"},{"ch":0,"t":"s","n":15,"stem":"“学如弓弩，才如箭镞，识以领之，方能中鹄。”这句话强调大学生应具备：","o":["有理想","有本领","有担当","有责任"],"a":"B"},{"ch":0,"t":"s","n":16,"stem":"新时代大学生素质和本领的强弱，直接影响着( )的进程。","o":["民族复兴","改革开放","全面小康社会建成","社会主义现代化"],"a":"A"},{"ch":0,"t":"s","n":17,"stem":"大学生应把( )作为首要任务。","o":["创新","学习","实践","事业"],"a":"B"},{"ch":0,"t":"s","n":18,"stem":"我们所处的新时代，是( )。","o":["改革开放新时代","民族复兴新时代","中国特色社会主义新时代","全面建成小康社会新时代"],"a":"C"},{"ch":0,"t":"s","n":19,"stem":"在法律为思想道德提供制度保障过程中，( )可以将思想道德有机融入法律体系，使法律具有鲜明道德导向，让法治成为良法善治。","o":["科学立法和民主立法","严格执法和公正司法","全民普法和全民守法","全民敬法和全民守法"],"a":"A"},{"ch":0,"t":"s","n":20,"stem":"在法律为思想道德提供制度保障过程中，( )有利于维护社会公平正义，弘扬真善美、打击假恶丑，使思想道德要求在实践中得到切实遵循。","o":["全民敬法和全民守法","科学立法和民主立法","全民普法和全民守法","严格执法和公正司法"],"a":"D"},{"ch":0,"t":"s","n":21,"stem":"在法律为思想道德提供制度保障过程中，( )有助于增强人们信守法律的思想道德水平，引导人们自觉履行法定义务、家庭责任、社会责任。","o":["全民普法和全民守法","严格执法和公正司法","科学立法和民主立法","全民敬法和全民守法"],"a":"A"},{"ch":0,"t":"s","n":22,"stem":"( )是指人们通过学习法律知识、理解法律本质、运用法治思维、依法维护权利与依法履行义务的素质、修养和能力。","o":["法治素养","人文素质","思想道德素质","审美素养"],"a":"A"},{"ch":0,"t":"s","n":23,"stem":"( )是人们的思想观念、政治立场、价值取向、道德情操和行为习惯等方面品质和能力的综合体现，反映着一个人的思想境界和道德风貌，是促进个体健康成长、社会发展进步的重要保障。","o":["人文素质","思想道德素质","法治素养","审美素养"],"a":"B"},{"ch":0,"t":"s","n":24,"stem":"在实现民族复兴梦想的伟大征程中，青年不懈追求的梦想始终与振兴中华的责任担当紧密相连，( )，青年一代响应党的号召，在新中国的广阔天地忘我劳动、艰苦创业。","o":["社会主义建设时期","革命战争时期","改革开放时期","建设社会主义现代化时期"],"a":"A"},{"ch":0,"t":"s","n":25,"stem":"( )为法律的制定、发展和完善提供价值准则，是社会主义法律正当性和合理性的重要基础。","o":["经济基础","思想道德","上层建筑","社会存在"],"a":"B"},{"ch":0,"t":"s","n":26,"stem":"在实现民族复兴梦想的伟大征程中，青年不懈追求的梦想始终与振兴中华的责任担当紧密相连，( ),青年一代满怀革命理想，为争取民族独立、人民解放冲锋陷阵、抛洒热血。","o":["革命战争时期","社会主义建设时期","改革开放时期","建设社会主义现代化时期"],"a":"A"},{"ch":0,"t":"s","n":27,"stem":"( )阶段，是人生发展的重要时期，是世界观、人生观、价值观形成的关键时期。","o":["大学","中小学","职业","服务社会"],"a":"A"},{"ch":0,"t":"s","n":28,"stem":"( )是我们理解当前所处历史方位的关键词。","o":["新时期","新时代","新使命","新事业"],"a":"B"},{"ch":0,"t":"s","n":29,"stem":"( )，意味着近代以来久经磨难的中华民族迎来了从站起来、富起来到强起来的伟大飞跃，迎来了实现中华民族伟大复兴的光明前景。","o":["中华民族伟大复兴","改革开放全面深化","全面小康社会的建成","中国特色社会主义进入新时代"],"a":"D"},{"ch":0,"t":"s","n":30,"stem":"( )，意味着科学社会主义在21世纪的中国焕发出强大生机活力，在世界上高高举起了中国特色社会主义伟大旗帜。","o":["中国特色社会主义进入新时代","全面小康社会的建成","改革开放全面深化","中华民族伟大复兴"],"a":"A"},{"ch":0,"t":"s","n":31,"stem":"( )，意味着中国特色社会主义道路、理论、制度、文化不断发展，拓展了发展中国家走向现代化的途径，给世界上那些既希望加快发展又希望保持自身独立性的国家和民族提供了全新选择，为解决人类问题贡献了中国智慧和中国方案。","o":["中国特色社会主义进入新时代","改革开放全面深化","全面小康社会的建成","中华民族伟大复兴"],"a":"A"},{"ch":0,"t":"s","n":32,"stem":"( )通过对思想道德的基本原则予以确认，为思想道德建设提供国家强制力保障。","o":["上层建筑","经济基础","法律","社会存在"],"a":"C"},{"ch":0,"t":"s","n":33,"stem":"下列关于思想道德和法律的关系的论述错误的是（ ）","o":["现代社会法律完全可以脱离道德而独立发挥作用","思想道德所体现的价值观念为法律提供了道义基础","法律的实施为思想道德建设提供了制度保障","二者都是协调人际关系、维护社会秩序的重要手段"],"a":"A"},{"ch":0,"t":"s","n":34,"stem":"青年一代有理想有本领有（ ），国家就有前途，民族就有希望。","o":["担当","素质","理想","情怀"],"a":"A"},{"ch":0,"t":"s","n":35,"stem":"( )为法律提供思想指引和价值基础。","o":["经济基础","思想道德","上层建筑","社会存在"],"a":"B"},{"ch":0,"t":"s","n":36,"stem":"“才者，德之资也;德者，才之帅也”这句话说的是( )。","o":["才与智的关系","才与美的关系","才与德的关系","德与智的关系"],"a":"C"},{"ch":0,"t":"m","n":1,"stem":"与中学相比，大学生活发生的显著变化有( )","o":["学习要求的变化","生活环境的变化","社会活动的变化","身体外貌的变化"],"a":"ABC","e":"D项：身体外貌变化不属于教材概括的大学生活三大变化（学习要求、生活环境、社会活动）。"},{"ch":0,"t":"m","n":2,"stem":"大学阶段学习的主要特点( )","o":["广泛猎取相关知识","掌握科学学习方法","培养自主学习能力","进行发明创造"],"a":"ABC","e":"D项：本科阶段学习以打基础、掌握方法为主，“进行发明创造”不是大学阶段学习的主要特点。"},{"ch":0,"t":"m","n":3,"stem":"做一个有理想有本领有担当的时代新人，就要( ).","o":["有崇高的理想信念，牢记使命，自信自励。","有高强的本领才干，勤奋学习，全面发展。","有天下兴亡、匹夫有责的担当精神，讲求奉献，实干进取。","有志存高远、脚踏实地、用做时代弄潮儿的精神。"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":0,"t":"m","n":4,"stem":"学习“思想道德与法治”这门课程，有助于大学生( )。","o":["领悟人生真谛，坚定理想信念，践行社会主义核心价值观，做新时代的忠诚爱国者和改革创新的生力军","形成正确的道德认知，积极投身道德实践，做到明大德、守公德、严私德","全面把握社会主义法律的本质、运行和体系，理解中国特色社会主义法治体系和法治道路的精髓，增进法治意识，养成法治思维","更好行使法律权利、履行法律义务，做到尊法学法守法用法，从而具备优秀的思想道德素质和法治素养","有助于把大学生培养成为有理想有本领有担当的时代新人"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":0,"t":"m","n":5,"stem":"关于“中国梦”，下列表述正确的是( )。","o":["中国梦是历史的、现实的，也是未来的","中国梦凝结着无数仁人志士的不懈努力，承载着全体中华儿女的共同向往，昭示着国家富强 、民族振兴、人民幸福的美好前景","中国梦是国家的、民族的，也是每一个中国人的","全面小康社会的建成，标志着中国梦的实现","昭示着国家富强、民族振兴、人民幸福的美好前景"],"a":"ABCE","e":"D项：全面建成小康社会只是阶段性目标，不等于中国梦实现；中国梦是实现中华民族伟大复兴。"},{"ch":0,"t":"m","n":6,"stem":"“思想道德与法治” 课针对大学生成长过程中面临的思想道德与法治问题，开展马克思主义的（ ）教育，帮助大学生成长为时代新人","o":["人生观","价值观","道德观","法治观"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":0,"t":"m","n":7,"stem":"思想道德与法律共同作用于哪些方面？（ ）","o":["调节思想行为","协调人际关系","维护社会秩序","推动经济发展"],"a":"ABC","e":"D项：教材表述为调节思想行为、协调人际关系、维护社会秩序三点，“推动经济发展”不属于其中。"},{"ch":0,"t":"m","n":8,"stem":"关于思想道德与法律的关系，下列表述正确的是( )。","o":["思想道德为法律提供思想指引和价值基础","思想道德为法律的制定、发展和完善提供价值准则，是社会主义法律正当性和合理性的重要基础","思想道德调整社会关系的范围和方式更加广泛灵活，可以弥补法律调整的短板，与法律一道共同促进良好社会秩序的形成","法律通过对思想道德的基本原则予以确认，为思想道德建设提供国家强制力保障","思想道德与法律都是调节人们思想行为、协调人际关系、维护社会秩序的重要手段"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":0,"t":"m","n":9,"stem":"思想道德素质是人们的（ ）等方面素质和能力的综合反映，反映着一个人的思想境界和道德风貌。","o":["思想观念","政治立场","价值取向","道德情操","行为习惯"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":0,"t":"m","n":10,"stem":"作为实现中华民族伟大复兴的生力军，大学生的担当精神体现为( )。","o":["奉献祖国","奉献人民","尽心尽力","勇于担责"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":0,"t":"m","n":11,"stem":"大学生要有作为中华儿女的骄傲和自豪，必须坚定中国特色社会主义的( )。","o":["道路自信","理论自信","制度自信","文化自信","体制自信"],"a":"ABCD","e":"E项：中国特色社会主义自信是道路、理论、制度、文化“四个自信”，没有“体制自信”这一提法。"},{"ch":0,"t":"m","n":12,"stem":"关于当代大学生与新时代的关系，下列表述正确的是( )。","o":["新时代为大学生成长成才、勤学报国提供了广阔的舞台和无限的机遇","在新时代的中国，经济建设主战场、文化发展大舞台、社会建设新领域、科技创新最前沿、基层实践大熔炉，都是当代大学生贡献，聪明才智、书写青春篇章的热土福地，中华民族伟大复兴终将在广大青年的接力奋斗中变为现实","当代大学生是中国特色社会主义新时代的建设者，同时也是受益者","当代大学生是民族复兴伟大进程的见证者和参与者，也是社会主义事业的生力军","当代大学生是走在时代前列的奋进者、开拓者、奉献者"],"a":"ABD","e":"C项：教材强调大学生是新时代的见证者、参与者、生力军，“建设者同时是受益者”不是原文表述；E项讲的是对青年的号召，不是“大学生与新时代关系”的表述。"},{"ch":0,"t":"m","n":13,"stem":"做有理想有本领有担当的时代新人，必须具备良好的( )。","o":["思想道德素质","人文素质","法治素养","审美素养","政治素养"],"a":"AC","e":"B、D、E项：时代新人必备的是思想道德素质和法治素养，人文素质、审美素养、政治素养不属于题干所指两项。"},{"ch":0,"t":"m","n":14,"stem":"关于中国特色社会主义新时代，下列表述正确的是( )。","o":["这个新时代，是承前启后、继往开来、在新的历史条件下继续夺取中国特色社会主义伟大胜利的时代","科学社会主义在21世纪的中国焕发出强大生机活力，在世界上高高举起了中国特色社会主义伟大旗帜","这个新时代，是全体中华儿女勠力同心、奋力实现中华民族伟大复兴中国梦的时代","这个新时代，是我国日益走近世界舞台中央、不断为人类作出更大贡献的时代","这个新时代，是全国各族人民 团结奋斗、不断创造美好生活"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":0,"t":"m","n":15,"stem":"中国特色社会主义进入新时代，意味着( )。","o":["近代以来久经磨难的中华民族迎来了从站起来、富起来到强起来的伟大飞跃，迎来了实现中华民族伟大复兴的光明前景","科学社会主义在21世纪的中国焕发出强大生机活力，在世界上高高举起了中国特色社会主义伟大旗帜","中国特色社会主义道路、理论、制度、文化不断发展，拓展了发展中国家走向现代化的途径，给世界上那些既希望加快发展又希望保持自身独立性的国家和民族提供了全新选择，为解决人类问题贡献了中国智慧和中国方案","中国进入了决胜全面建成小康社会的关键时期","我们比历史上任何时期都更接近中华民族伟大复兴的目标"],"a":"ABC","e":"D项：决胜全面建成小康社会是已完成的阶段性任务，不属于“三个意味着”；E项是正确的形势判断，但不属于“意味着”的三层内涵。"},{"ch":0,"t":"m","n":16,"stem":"中国特色社会主义进入新时代，意味着","o":["近代以来久经磨难的中华民族迎来了从站起来、富起来到强起来的伟大飞跃，迎来了实现 中华民族伟大复兴的光明前景。","科学社会主义在21世纪的中国焕发出强大生机活力，在世界上高高举起了中国特色社会主义伟大旗帜。","中国特色社会主义道路、理论、制度、文化不断发展，拓展了发展中国家走向现代化的途 径，给世界上那些既希望加快发展又希望保持自身独立性的国家和民族提供了全新选择，为解决人类问题贡献了中国智慧和中国方案。","我国即将在政治、经济、科技、文化等各领域全方位高超欧美发达国家，成为最具世界影响力的超级大国。"],"a":"ABC","e":"D项：中国坚持和平发展道路，不追求“全方位超越欧美、成为超级大国”，该表述错误。"},{"ch":0,"t":"m","n":17,"stem":"下列人生课题需要大学生去观察、思索、选择、实践的有( )。","o":["怎样处理好理想与现实、个人与集体、竞争与合作、权利与义务、自由与纪律、友谊与爱情、学习与工作等方面的关系","做什么样的人","怎样的生活才有意义","怎样的人生追求才有价值","怎样享受生活"],"a":"ABCD","e":"E项：“怎样享受生活”带有享乐取向，不属于教材所列需要观察思索的人生课题。"},{"ch":0,"t":"m","n":18,"stem":"思想道德和法律都是( )的手段。","o":["调节人们思想行为","提高自身素质","协调人际关系","维护社会秩序","约束人们行为"],"a":"ACD","e":"B、E项：思想道德与法律共同的作用是调节思想行为、协调人际关系、维护社会秩序，“提高自身素质”“约束人们行为”不是教材的三点表述。"},{"ch":0,"t":"m","n":19,"stem":"经过五四运动洗礼，越来越多中国先进分子集合在马克思主义旗帜下，1921年中国共产党宣告正式成立，中国历史掀开了崭新的一页。以史为鉴，新时代大学生要成为担当民族复兴大任的时代新人，需要做到( )。","o":["立大志","明大德","担大任","成大才","挣大钱"],"a":"ABCD","e":"E项：“挣大钱”是功利化目标，与“立大志、明大德、成大才、担大任”的要求相悖。"},{"ch":0,"t":"m","n":20,"stem":"作为担当民族复兴大任的时代新人，大学生应该以( )为根本要求。","o":["有理想","有本领","有文化","有担当","有情调"],"a":"ABD","e":"C、E项：时代新人的根本要求是“有理想、有本领、有担当”，“有文化”“有情调”不在其中。"},{"ch":0,"t":"m","n":21,"stem":"大学阶段学习的重要特点是（ ）","o":["涉猎相关知识","掌握科学的学习方法","培养自主学习能力","培养独立思考能力","培养分析问题、解决问题的能力"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":0,"t":"j","n":1,"stem":"“思想道德与法治”课的逻辑主线是科学文化知识。","a":"F"},{"ch":0,"t":"j","n":2,"stem":"“思想道德与法治”针对大学生成长过程中面临的思想道德和法律问题，开展马克思主义的世界观、人生观、价值观、道德观、法治观教育， 引导大学生提高思想道德素质和法治素养。","a":"T"},{"ch":0,"t":"j","n":3,"stem":"《思想道德与法治》是一门融思想性、 政治性、科学性、理论性、实践性于一体的思想政治理论课。","a":"T"},{"ch":0,"t":"j","n":4,"stem":"人的本质是一切社会关系的总和。","a":"T"},{"ch":0,"t":"j","n":5,"stem":"思想道德素质是促进个体健康成长、社会发展进步的重要保障。","a":"T"},{"ch":0,"t":"j","n":6,"stem":"法治素养对于保证人们尊崇法治、遵守法律具有重要的意义。","a":"T"},{"ch":0,"t":"j","n":7,"stem":"健全的法律不需要转化为人们内心自觉就能真正为人们所遵行。","a":"F"},{"ch":0,"t":"j","n":8,"stem":"我们所处的新时代，是中国特色社会主义新时代。","a":"T"},{"ch":0,"t":"j","n":9,"stem":"中国特色社会主义是党带领人民历经千辛万苦找到的实现中国梦的正确道路。","a":"T"},{"ch":0,"t":"j","n":10,"stem":"思想道德和法律都具有规范社会行为、调节社会关系、维护社会秩序的作用，在国家治理中都有地位和功能。","a":"T"},{"ch":0,"t":"j","n":11,"stem":"大学生应树立“梦想从学习开始，事业靠梦想成就”的观念。","a":"F"},{"ch":1,"t":"s","n":1,"stem":"下列关于人生观和世界观之间关系的说法，正确的是（ ）。","o":["人生观是世界观的一部分，用世界观去观察和对待人生问题，就形成了人生观","对世界发展规律的正确认识要建立在对人生意义的正确理解上","具有唯物主义世界观，人生观一定是正确的","人生观决定世界观"],"a":"A"},{"ch":1,"t":"s","n":2,"stem":"实现人生价值的根本途径是（ ）。","o":["选择正确的人生价值目标","自觉提高自我的主体意识","树立为人民服务的思想","进行积极的创造性的实践活动"],"a":"D"},{"ch":1,"t":"s","n":3,"stem":"人们通过生活实践形成的对人生问题的一种稳定的心理倾向和精神状态是（ ）。","o":["人生观","人生目的","人生态度","人生价值"],"a":"C"},{"ch":1,"t":"s","n":4,"stem":"人生价值的根本内容是以（ ）的关系为实际内容的人与人之间的价值关系。","o":["贡献与索取","索取与享受","劳动与创造","自我与他人"],"a":"A"},{"ch":1,"t":"s","n":5,"stem":"下列人生目的中，属于高尚的人生目的的是（ ）。","o":["拜金主义","为人民大众求解放谋幸福","国家主义和自由主义","享乐主义"],"a":"B"},{"ch":1,"t":"s","n":6,"stem":"人的自我价值是指（ ）。","o":["将自我价值与社会价值相结合","个人实践对社会和他人的积极意义","个人通过劳动创造为社会和个人做积极贡献","个人实践对自身发展的积极意义"],"a":"D"},{"ch":1,"t":"s","n":7,"stem":"毛泽东青年时立志要“以天下为己任”，周恩来在南开中学读书时提出“为中华之崛起而读书”，这些事例告诉我们（ ）。","o":["人生目的决定选择什么样的人生价值标准","人生目的决定持什么样的人生态度","人生目的决定走什么样的人生道路","人生目的决定保持什么样的人生精神状态"],"a":"C"},{"ch":1,"t":"s","n":8,"stem":"培养积极进取的人生态度，最鲜明的表现是（ ）。","o":["能够用乐观的心态看待世界","正确对待不同人生境遇的考验","对人生观做出了明确的选择","不怕人生道路上的困难和挫折"],"a":"B"},{"ch":1,"t":"s","n":9,"stem":"培根曾经说过，奇迹多是在厄运中出现的。这句话告诉我们（ ）。","o":["人生中到处都是逆境","逆境对人生是一种磨练","只有厄运才能创造出奇迹","顺境也需要磨练意志"],"a":"B"},{"ch":1,"t":"s","n":10,"stem":"在人生的旅途中，有的人旗开得胜，有的人屡屡败北；有的人顺顺当当，有的人一波三折。即使同一个人，在一生中也会经历顺境和逆境的交替。对于逆境，正确的人生态度是（ ）。","o":["玩世不恭，虚度光阴","怨天尤人，自暴自弃","大胆正视，积极应对","居安思危，自制自励"],"a":"C"},{"ch":1,"t":"s","n":11,"stem":"马克思说：“在选择职业时，我们应该遵循的主要指针是人类的幸福和我们自身的完美。不应认为，这两种利益是对立的、互相冲突的。”这意味着（ ）。","o":["为人类造福才能实现人的自我价值","社会价值和自我价值之间不存在矛盾","人的社会价值和自我价值是统一的","为人类造福才能提高人的自身素质"],"a":"C"},{"ch":1,"t":"s","n":12,"stem":"被称为是人生价值真正的源头活水、又是实现人生价值的必由之路的是（ ）。","o":["确立科学的理想信念","努力自我提升","明确核心价值体系的要求","社会实践"],"a":"D"},{"ch":1,"t":"s","n":13,"stem":"关于人生价值的评价方法，下面表述错误的是（ ） ？","o":["以社会价值的实现为唯一评价方法","要坚持能力有大小与贡献须尽力相统一","要坚持物质贡献与精神贡献相统一","要坚持完善自身与贡献社会相统一"],"a":"A"},{"ch":1,"t":"s","n":14,"stem":"关于得失观的理解，下面表述错误的是（ ）。","o":["失去只会带来痛苦","不要拘泥于个人利益的得失","不要惧怕一时得失","不要满足于一时得失"],"a":"A"},{"ch":1,"t":"s","n":15,"stem":"全国劳动模范徐虎说过：“你不奉献，我不奉献，谁来奉献？你也索取，我也索取，向谁索取？”这句话的意思是，社会需要每个人的奉献，只有有奉献才能有索取。这种观点认为，人生价值的本质在于（ ） 。","o":["个人需要的最大满足","个人的社会存在","个人对社会的责任和贡献","社会对个人的尊重和满足"],"a":"C"},{"ch":1,"t":"s","n":16,"stem":"衡量一个人的人生价值，最重要的就是看一个人（ ）。","o":["从社会和他人那里得到的尊重和满足","树立什么样的人生目的","以什么样的人生态度指引人生道路","对国家、社会和他人所做的贡献"],"a":"D"},{"ch":1,"t":"s","n":17,"stem":"马克思中学毕业时即表示要“为人类福利而劳动”，毛泽东青年时期便立志“以天下为己任”，周恩来在南开读书时就决心“为中华崛起而读书”。这充分表现了革命领袖志存高远，在年轻时就（ ）。","o":["形成了利己主义的人生观","形成了享乐主义的人生观","形成了极端个人主义的人生观","确立了崇高的人生目的"],"a":"D"},{"ch":1,"t":"s","n":18,"stem":"人生态度主要表明 （ ）。","o":["人为什么活着","人应当怎样对待生活","世界的本原是什么","什么样的人生才有意义"],"a":"B"},{"ch":1,"t":"s","n":19,"stem":"“人固有一死，或重于泰山，或轻于鸿毛”，说的是（ ） 的问题。","o":["人生目的","人生价值","人生理想","人生态度"],"a":"B"},{"ch":1,"t":"s","n":20,"stem":"有的人身处逆境而百折不挠，有的人在顺境中却长吁短叹，有的人笑对人生，有的人看破红尘，这些都是（ ）的表现。","o":["人生信念","人生目的","人生理想","人生态度"],"a":"D"},{"ch":1,"t":"s","n":21,"stem":"任何人都从属于一定的社会群体，处于一定的社会关系之中，这些社会关系的总和决定了（ ）。","o":["人生态度","人生目的","人的本质","人生道路"],"a":"C"},{"ch":1,"t":"s","n":22,"stem":"（ ）的思想以其科学而高尚的品质，代表了人类社会迄今为止最先进的人生追求。","o":["“人生在世、吃喝玩乐”","“服务人民、奉献社会”","人生道路","人生态度"],"a":"B"},{"ch":1,"t":"s","n":23,"stem":"（ ）认为金钱可以主宰一切，把追求金钱作为人生至高目的。","o":["极端个人主义","享乐主义","拜金主义","物质主义"],"a":"C"},{"ch":1,"t":"s","n":24,"stem":"人的本质属性是（ ） 。","o":["社会属性","自然属性","劳动属性","物质属性"],"a":"A"},{"ch":1,"t":"s","n":25,"stem":"一般来说，一个人对社会的贡献越大，他的（ ）。","o":["社会价值就越高","社会地位就越高","个人价值就越高","自我完善就越高"],"a":"A"},{"ch":1,"t":"s","n":26,"stem":"人生的自我价值是指（ ）。","o":["人对社会和他人所作的贡献","人对自然界的利用和改造","个体的人生活动对自己生存和发展所具有的价值","个体的人生活动对社会、他人所具有价值"],"a":"C"},{"ch":1,"t":"s","n":27,"stem":"人们对生活在其中的世界以及人与世界的关系的总体看法和根本观点就是（ ）。","o":["人生观","世界观","价值观","家庭观"],"a":"B"},{"ch":1,"t":"s","n":28,"stem":"抵制各种错误人生观影响的有力武器是培养和树立（ ）。","o":["共产主义理想信念和道德规范","社会主义荣辱观","服务人民、奉献社会的人生目的","“主观为自己，客观为他人”的人生目的"],"a":"C"},{"ch":1,"t":"s","n":29,"stem":"下列关于社会价值与自我价值的关系理解错误的是（ ）。","o":["不创造社会价值，就无从实现自我价值","社会价值的创造过程与自我价值的实现过程是统一的","人生的自我价值必须与社会价值相结合，并通过社会价值表现出来","实现自我价值是因，创造社会价值是果"],"a":"D"},{"ch":1,"t":"s","n":30,"stem":"人生目的主要回答（ ）。","o":["怎样的人生才有意义","世界本原是什么","人应怎样对待生活","人为什么活着"],"a":"D"},{"ch":1,"t":"s","n":31,"stem":"（ ）是一种特殊的价值，是人的生活实践对于社会和个人所具有的作用和意义。","o":["价值观","人生价值","人生态度","人生目的"],"a":"B"},{"ch":1,"t":"s","n":32,"stem":"在人生实践的具体活动中能够对人生实践起到定向作用的是（ ）。","o":["人生价值","人生态度","人生目的","人生境遇"],"a":"C"},{"ch":1,"t":"s","n":33,"stem":"人生的社会价值主要表现为 （ ）。","o":["个人通过劳动创造对社会和他人所作的贡献","个人对自己生命存在的肯定","个人对自己生命活动需要的满足程度","个人对自己的尊重和个人的自我完善"],"a":"A"},{"ch":1,"t":"s","n":34,"stem":"人生目的是指人（ ）的根本观点和认识，是人生的根本指向和追求。","o":["为什么而工作","为什么而奋斗","为什么而活着","为什么而发展"],"a":"C"},{"ch":1,"t":"s","n":35,"stem":"人的 （ ）决定了人生的社会价值是人生价值的最基本内容 .","o":["群体性","社会性","个体性","集体性"],"a":"B"},{"ch":1,"t":"s","n":36,"stem":"衡量人生社会价值的标准是个体对（ ）所作的贡献。","o":["社会、他人","国家和民族","自我和家人","国家和集体"],"a":"A"},{"ch":1,"t":"s","n":37,"stem":"人生价值内在地包含了人生的（ ）两个方面。","o":["内在价值和外在价值","自我价值和社会价值","精神价值和物质价值","外在价值和物质价值"],"a":"B"},{"ch":1,"t":"s","n":38,"stem":"人生态度是指人们通过生活实践所形成的对人生问题的一种稳定的（ ）和精神状态。","o":["实际行动","心理问题","心理矛盾","心理倾向"],"a":"D"},{"ch":1,"t":"s","n":39,"stem":"一个人如果不思考人的生命应有的意义，对什么事都显得无所谓，当一天和尚撞一天钟，其背后是一种（ ）人生观。","o":["正确的人生观","低俗、庸碌和沉沦的人生观","消极悲观的人生观","庸碌无为的人生观"],"a":"D"},{"ch":1,"t":"s","n":40,"stem":"人生观的核心是（ ）。","o":["为人民服务","人生态度","人生目的","人生价值"],"a":"C"},{"ch":1,"t":"s","n":41,"stem":"下面有关“人的本质”论述正确的是（ ）。","o":["人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和","人的本质是理性、意志和爱","人的本质是一种生理需要","人的本质是“善”"],"a":"A"},{"ch":1,"t":"s","n":42,"stem":"思考人生，树立正确的人生观，首先要对 （ ）等问题有科学的认识。","o":["人生目的","人的本质","人生态度","人生价值"],"a":"B"},{"ch":1,"t":"s","n":43,"stem":"习近平总书记指出：“幸福不会从天而降，梦想不会自动成真。” 这一论述启示我们应树立怎样的人生态度？（ ）","o":["消极等待，依赖他人帮助实现目标","积极进取，通过艰苦奋斗创造美好生活","追求享乐，以个人利益最大化为目标","随波逐流，不主动规划个人人生道路"],"a":"B"},{"ch":1,"t":"s","n":44,"stem":"习近平总书记指出：“一个人能否廉洁自律，最大的诱惑是自己，最难战胜的敌人也是自己。” 这要求我们在人生价值观层面要做到（ ）","o":["重视他人评价，忽视自我约束","强化自我修养，坚守道德底线","追求物质享受，放松自我要求","依赖外部监督，放弃自我管理"],"a":"B"},{"ch":1,"t":"s","n":45,"stem":"纪念中国人民抗日战争暨世界反法西斯战争胜利 80 周年大会的目的是铭记历史、缅怀先烈、珍爱和平、开创未来。这体现了我们应秉持（ ）的人生态度。","o":["忘却历史，只关注当下利益","沉迷过去，陷入历史仇恨无法自拔","尊重历史，以史为鉴，积极开创美好未来","漠视和平，崇尚武力解决问题"],"a":"C"},{"ch":1,"t":"s","n":46,"stem":"习近平总书记在纪念中国人民抗日战争暨世界反法西斯战争胜利 80 周年大会上强调，中华民族是不畏强暴、自立自强的伟大民族。这启示我们应树立（ ）的人生观。","o":["贪图享乐，追求个人安逸","独立自主，勇于面对困难挑战，为国家和民族奋斗","自私自利，只考虑个人利益","随波逐流，缺乏坚定信念和目标"],"a":"B"},{"ch":1,"t":"m","n":1,"stem":"评价人生价值的方法有（ ）？","o":["要坚持从社会客观条件出发","既要看贡献的大小，也要看尽力的程度","既要尊重物质贡献，也要尊重精神贡献","既要注重社会贡献，也要注重自身完善","以社会价值的实现为唯一评价方法"],"a":"BCD","e":"A项：“从社会客观条件出发”是实现人生价值的条件，不是评价方法；E项“唯一评价方法”表述绝对化。"},{"ch":1,"t":"m","n":2,"stem":"以下关于人生价值的论述正确的是（ ）？","o":["人生价值内在地包含了人生的自我价值和社会价值两个方面","人生价值选择将决定人生的目的","人生的自我价值是个体生存和发展的必要条件","人生的社会价值是社会存在和发展的重要条件","既要注重社会贡献，又要注重自身完善"],"a":"ACDE","e":"B项：因果颠倒，是人生目的决定人生价值选择，而非价值选择决定人生目的。"},{"ch":1,"t":"m","n":3,"stem":"以下关于“人生目的”、“人生态度”、“人生价值”三者关系的表述正确的是（ ）?","o":["人生目的决定着人们对待实际生活的态度和人生价值的评判","人生态度影响着人们对人生目的的持守和人生价值的实现","人生价值制约着人生目的和人生态度的选择","三者之间相互联系、相辅相成，统一为一个有机整体","三者之间没有必然的联系"],"a":"ABCD","e":"E项：三者相互联系、相辅相成，说“没有必然联系”错误。"},{"ch":1,"t":"m","n":4,"stem":"大学生要科学认识实际生活中的各种问题，勇敢面对和正确处理各种人生矛盾就应做到（ ）。","o":["树立正确的得失观","树立正确的生死观","树立正确的顺逆观","树立正确的荣辱观","以上表述都不正确"],"a":"ABCD","e":"E项：四项（得失观、生死观、顺逆观、荣辱观）均为正确表述，故E错误。"},{"ch":1,"t":"m","n":5,"stem":"现实生活中，由于多元价值观的存在，不同的人有着不同的人生价值目标，下列人生价值目标中，符合我国现阶段社会主导价值观的有（ ）。","o":["全心全意为人民服务","自愿选择到祖国最需要的地方建功立业","为追求个人利益而不惜损害国家、集体和他人的利益","只满足于个人的需要和享乐"],"a":"AB","e":"C项：损害国家、集体和他人利益违背集体主义；D项：只求个人需要和享乐是享乐主义，均不符合主导价值观。"},{"ch":1,"t":"m","n":6,"stem":"树立积极进取的人生态度，能够（ ）","o":["调整人生道路的方向","有助于人生价值的实现","促进人生目的的达到","使人总是处在顺境当中"],"a":"ABC","e":"D项：积极进取的人生态度不能保证“总是处在顺境”，顺逆境取决于客观条件。"},{"ch":1,"t":"m","n":7,"stem":"当前社会上存在各种各样形形色色的人生观，其中错误的人生观主要有（ ）。","o":["拜金主义的人生观","享乐主义的人生观","消费主义的人生观","极端个人主义的人生观"],"a":"ABCD","e":"四项均属教材所列错误人生观，本题为全选题。"},{"ch":1,"t":"m","n":8,"stem":"关于顺境和逆境的利弊的理解，正确的是（ ）。","o":["顺境对人的发展有利也有弊","逆境对人的发展有利也有弊","顺境对人的发展有利无弊","逆境对人的发展有弊无利","以上表述都不正确"],"a":"AB","e":"C、D项：把顺境说成“有利无弊”、逆境“有弊无利”，都是绝对化错误。"},{"ch":1,"t":"m","n":9,"stem":"党的二十大报告强调“为民造福是立党为公、执政为民的本质要求”，倡导以人民为中心的价值追求。下列属于报告所倡导的人生观内涵的有（ ）","o":["服务人民，将个人价值融入民族复兴事业","奉献社会，践行“为人民服务、为社会主义服务”宗旨","个人利益至上，追求物质享受最大化","以国家需求为导向，在奋斗中实现人生意义"],"a":"ABD","e":"C项：“个人利益至上、追求物质享受最大化”是享乐主义和极端个人主义，与以人民为中心的价值追求相反。"},{"ch":1,"t":"m","n":10,"stem":"端正人生态度应该做到（ ）。","o":["人生须认真","人生当务实","人生应乐观","人生要进取","创新精神"],"a":"ABCD","e":"E项：“创新精神”不属于端正人生态度的四个方面（认真、务实、乐观、进取）。"},{"ch":1,"t":"m","n":11,"stem":"关于个人与社会的关系的理解，正确的是（ ）。","o":["在社会主义社会中，个人利益与社会利益在根本上是一致的","社会利益离不开个人利益，个人利益也离不开社会利益","社会利益不是个人利益的简单相加，而是所有人利益的有机统一","社会利益体现了作为社会成员的个人的根本利益和长远利益,是个人利益得以实现的前提和基础","竞争与合作的关系"],"a":"ABCD","e":"E项：竞争与合作是人际关系的一对范畴，不是个人与社会关系的表述，答非所问。"},{"ch":1,"t":"m","n":12,"stem":"下面关于社会价值正确的说法是（ ）。","o":["社会价值是社会和他人对于个体的意义","社会价值主要通过劳动、创造和贡献表现出来","社会价值是个体的人生对于社会和他人的意义","对社会贡献得越多，其人生价值就越大","以上表述都不正确"],"a":"BCD","e":"A项：把定义弄反了，“社会和他人的意义”指向个体的是自我价值，社会价值才是个体对社会的意义。"},{"ch":1,"t":"m","n":13,"stem":"人生目的的作用有（ ）。","o":["决定走什么样的人生道路","决定会有什么样的文化水平","决定持什么样的人生态度","决定人生价值选择","以上表述都不正确"],"a":"ACD","e":"B项：人生目的不决定文化水平，它决定人生道路、人生态度和人生价值选择。"},{"ch":1,"t":"m","n":14,"stem":"关于生死观的理解，正确的是（ ）。","o":["有生必有死，这是恒常不变的自然现象","每个人只有一次生命，人生弥足珍贵","人们无法增加生命的长度，但却能追求生命应有的高度","大学生应珍惜韶华，在服务人民、奉献社会的奋斗中挖掘生命的巨大潜能","以上表述都正确"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":1,"t":"m","n":15,"stem":"当代大学生担当新时代赋予的历史责任，在服务人民、奉献社会的实践中创造有意义的人生时，应当做到：（ ）。","o":["与历史同向","与祖国同行","与人民同在","与大学同行","以上表述都不正确"],"a":"ABC","e":"D项：“与大学同行”是生造表述；E项与正确选项矛盾。"},{"ch":1,"t":"m","n":16,"stem":"关于苦与乐的关系的理解，正确的是（ ）。","o":["苦与乐既对立又统一，在一定条件下可以相互转化","真正的快乐往往由奋斗的艰苦转化而来","争做迎难而上、艰苦奋斗的开拓者","苦不能转化为乐，乐也不能转化为苦","以上表述都不正确"],"a":"ABC","e":"D项：苦与乐在一定条件下可以相互转化，说“不能转化”错误。"},{"ch":1,"t":"m","n":17,"stem":"拜金主义、享乐主义、极端个人主义的人生观之所以错误，就在于它们（ ）。","o":["否定了人的主观能动性","片面强调了个人的需要和享乐","忽视了个人对社会的责任和贡献","没能准确地把握个人与社会的关系","以上表述都不正确"],"a":"BCD","e":"A项：这三种错误人生观并不否定人的主观能动性，其要害是颠倒个人与社会关系、只讲索取不讲贡献。"},{"ch":1,"t":"m","n":18,"stem":"人生观是人们对人生目的和人生意义的根本看法和态度。下列选项属于人生观范畴的有（ ）。","o":["人为什么活着","怎样生活才有价值","人类社会的发展规律是什么","如何对待人生道路上的困难和矛盾","以上表述都不正确"],"a":"ABD","e":"C项：“人类社会的发展规律”属于世界观、社会历史观范畴，不是人生观。"},{"ch":1,"t":"m","n":19,"stem":"任何人都只能在一定的主客观条件下去实现自己的人生价值。因此，大学生在追求人生价值实现时应坚持：（ ）。","o":["从社会客观条件出发","从个体自身条件出发","不断增强实现人生价值的能力和本领","人定胜天，只要努力一切皆有可能","以上表述都不正确"],"a":"ABC","e":"D项：“人定胜天、只要努力一切皆有可能”忽视客观条件，属于主观唯心主义的绝对化表述。"},{"ch":1,"t":"m","n":20,"stem":"关于人生的自我价值和社会价值的关系的理解，正确的是（ ）。","o":["人生的自我价值的实现是个体为社会创造更大价值的前提","人生社会价值的实现是个体自我完善、全面发展的保障","没有社会价值，人生的自我价值就无法存在","人生的自我价值和社会价值没有联系","以上表述都不正确"],"a":"ABC","e":"D项：自我价值与社会价值相互依存，说“没有联系”错误。"},{"ch":1,"t":"m","n":21,"stem":"下面对人生价值评价的说法中，正确的有（ ）。","o":["一个人的实践活动是否符合社会发展的客观规律是评价人生价值的根本尺度","个人为社会提供的物质财富是对人生价值进行评价的唯一标准","评价人生价值时，既要看动机，也要看效果，更重要的是看效果","个人能力强实现的人生价值一定要比个人能力弱实现的人生价值大","尽管个人能力有大小，但只要为社会为人民尽职尽责，做出了应有贡献，都是有价值的"],"a":"AE","e":"B项：物质财富不是唯一标准，还要看精神贡献；C项：教材主张动机与效果相统一，不能“更重要地看效果”；D项：能力大小与价值大小不能简单等同。"},{"ch":1,"t":"m","n":22,"stem":"正确认识人生矛盾，就要树立正确的得失观、幸福观、生死观。大学生要以积极的心态面对人生得失，必须做到（ ）。","o":["不要惧怕一时的失去","不要满足一时的得到","不要拘泥于个人利益的得失","敢于失去","勇于争取"],"a":"ABCE","e":"D项：“敢于失去”表述不当，教材要求“不要惧怕一时的失去”，而非鼓励主动失去。"},{"ch":1,"t":"m","n":23,"stem":"世界观与人生观的关系是（ ）。","o":["一个人的人生观总是以其世界观为根据，受到其世界观的制约和影响","世界观决定人生观","人生观对世界观的巩固、发展和变化起着重要作用","树立正确的人生观离不开马克思主义科学世界观的指导。","具有唯心主义世界观，人生观不一定就完全不正确"],"a":"ABCD","e":"E项：世界观决定人生观，唯心主义世界观下的人生观不可能完全正确，该表述错误。"},{"ch":1,"t":"m","n":24,"stem":"下面关于“人生态度”的表述正确的是（ ）","o":["人生态度是人生观的主要内容","人生态度是人生观的重要内容","人生态度决定人生观","人生态度是人生观的表现和反映","人生观决定人生态度"],"a":"BDE","e":"A项：人生态度是人生观的重要组成部分，不是“主要内容”的完整表述；C项：人生态度不能决定人生观，是人生观的表现和反映。"},{"ch":1,"t":"m","n":25,"stem":"下面关于“人生目的”与“人生价值”关系表述正确的是（ ）","o":["人生目的决定人生价值选择","人生价值选择决定人生目的","正确的人生目的会使人懂得人生的价值首先在于奉献","错误的人生目的则会使人把人生价值理解为向他人进行索取","人生目的与人生价值之间没有必然的联系"],"a":"ACD","e":"B项：因果颠倒，人生目的决定人生价值选择；E项：二者存在内在联系，说“没有必然联系”错误。"},{"ch":1,"t":"m","n":26,"stem":"关于“人生目的”，下面表述述正确的是（ ） ？","o":["人生目的决定人生态度","人生态度决定人生目的","人生目的决定人生价值选择","人生目的是人生观的核心","人生目是对“人为什么活着”这一人生根本问题的认识和回答"],"a":"ACDE","e":"B项：因果颠倒，人生目的决定人生态度，而非相反。"},{"ch":1,"t":"m","n":27,"stem":"下列哪些关系属于“社会关系”的范畴？（ ）","o":["业源关系","经济关系","道德关系","法律关系","家庭关系"],"a":"ABCDE","e":"五项均属社会关系范畴，本题为全选题。"},{"ch":1,"t":"m","n":28,"stem":"习近平同青年大学生座谈时强调：要树立正确的（ ），掌握了这把总钥匙，再来看看社会万象、人生历程，一切是非、正误、主次，一切真假、善恶、美丑，自然就洞若观火、清澈明了，自然就能作出正确判断、作出正确选择。","o":["社会主义核心价值观","世界观","价值观","人生观","道德观"],"a":"BCD","e":"A、E项：习近平总书记要求树立正确的世界观、人生观、价值观“总钥匙”，社会主义核心价值观、道德观不在其列。"},{"ch":1,"t":"m","n":29,"stem":"实现人生价值需要满足以下 哪些条件？（ ）","o":["实现人生价值要从社会客观条件出发","实现人生价值要从个体自身条件出发","不断增强实现人生价值的能力和本领","实现人生价值要多对社会做贡献","需要坚持集体主义"],"a":"ABC","e":"D项：表述不准确，应为在实践中创造和贡献，而非“多对社会做贡献”的口号式说法；E项：坚持集体主义不是实现人生价值的三项条件之一。"},{"ch":1,"t":"m","n":30,"stem":"人生观的主要内容包括（ ） 。","o":["人生目的","人生态度","为人民服务","人生价值","奉献社会"],"a":"ABD","e":"C、E项：“为人民服务”“奉献社会”属于道德核心和道德原则，不是人生观的三项内容（人生目的、人生态度、人生价值）。"},{"ch":1,"t":"m","n":31,"stem":"二十大报告寄语青年“立志做有理想、敢担当、能吃苦、肯奋斗的新时代好青年”，并倡导全社会弘扬奋斗精神。下列属于报告所倡导的人生态度的有（ ）","o":["艰苦奋斗，保持“谦虚谨慎、不骄不躁”的作风","开拓创新，践行“创造性转化、创新性发展”要求","消极懈怠，满足于现有成就不思进取","求真务实，在实践中锤炼 “能吃苦、肯奋斗” 的品质"],"a":"ABD","e":"C项：“消极懈怠、满足现状不思进取”与奋斗精神背道而驰。"},{"ch":1,"t":"m","n":32,"stem":"党的二十届三中全会强调“坚持以人民为中心，做到改革为了人民、改革依靠人民、改革成果由人民共享”，并将“完善城乡融合发展体制机制”列为重大改革任务。下列属于全会所倡导的人生观内涵的有（ ）","o":["积极参与基层民主实践，在社区治理中践行全过程人民民主","扎根乡村振兴一线，通过技术帮扶带动农民增收致富","把解决群众急难愁盼问题作为人生追求，在民生服务中实现价值","秉持“精英主义”理念，认为个人成功与普通群众利益无关"],"a":"ABC","e":"D项：“精英主义”“个人成功与群众利益无关”背离以人民为中心，属于错误人生观。"},{"ch":1,"t":"j","n":1,"stem":"社会需要是个人需要的集中体现，是社会全体成员带有根本性、全局性、长远性需要的反映。","a":"T"},{"ch":1,"t":"j","n":2,"stem":"一个人从来到人世的那天起，就从属于一定的社会群体。","a":"T"},{"ch":1,"t":"j","n":3,"stem":"没有社会价值，人生的自我价值也可存在。","a":"F"},{"ch":1,"t":"j","n":4,"stem":"一个人确立了服务人民、奉献社会的人生追求，才能清楚地把握人的生命历程和奋斗目标，深刻理解人为了什么而活、应走什么样的人生之路等道理。","a":"T"},{"ch":1,"t":"j","n":5,"stem":"只有在实践中才能创造有价值的人生。","a":"T"},{"ch":1,"t":"j","n":6,"stem":"个人的需要和社会的需要没有统一性。","a":"F"},{"ch":1,"t":"j","n":7,"stem":"评价人生价值的根本尺度就是看一个人的实践活动是否符合社会发展的客观规律，是否促进了历史的进步。","a":"T"},{"ch":1,"t":"j","n":8,"stem":"失恋后“看破红尘”是成熟的表现，是现实的人生态度。","a":"F"},{"ch":1,"t":"j","n":9,"stem":"价值观是人们关于什么是价值、怎样评判价值、如何创造价值等问题的根本观点。","a":"T"},{"ch":1,"t":"j","n":10,"stem":"人民群众是历史的创造者，是国家的主人。","a":"T"},{"ch":1,"t":"j","n":11,"stem":"个人利益的得失只能部分地衡量人生价值的大小，在奉献社会中才能实现更大的人生价值。","a":"T"},{"ch":1,"t":"j","n":12,"stem":"我们要坚决反对享乐主义，但是并不反对人们在辛勤劳动之后适度享受生活。","a":"T"},{"ch":1,"t":"j","n":13,"stem":"人生的价值同时表现为两个方面，一方面表现为个人对社会和他人的责任、义务和奉献，另一方面，表现为个人从社会和他人那里得到尊重和各种需要的满足。","a":"T"},{"ch":1,"t":"j","n":14,"stem":"当代大学生的人生价值观应与社会主义核心价值观相一致。","a":"T"},{"ch":1,"t":"j","n":15,"stem":"个人与社会的关系，归根结底是个人利益与社会利益的关系。","a":"T"},{"ch":1,"t":"j","n":16,"stem":"只有顺境才有利于人的进步与发展，逆境始终不利于人的发展。","a":"F"},{"ch":1,"t":"j","n":17,"stem":"尊重自己就是把满足个人自身的需要作为最终目的。","a":"F"},{"ch":1,"t":"j","n":18,"stem":"人生价值评价的基本标准是劳动和贡献。","a":"T"},{"ch":1,"t":"j","n":19,"stem":"世界观决定人生观，人生观从属于世界观。","a":"T"},{"ch":1,"t":"j","n":20,"stem":"个人拥有金钱的多少不能作为衡量人生价值的标准。","a":"T"},{"ch":1,"t":"j","n":21,"stem":"人生的自我价值能否实现与社会价值没有任何关系。","a":"F"},{"ch":1,"t":"j","n":22,"stem":"人生的社会价值是社会生存发展的重要条件。","a":"T"},{"ch":1,"t":"j","n":23,"stem":"人生的自我价值是个体生存发展的必要条件。","a":"T"},{"ch":1,"t":"j","n":24,"stem":"人生价值制约着人生目的和人生态度的选择。","a":"T"},{"ch":1,"t":"j","n":25,"stem":"一个人对自己个体物质和精神需要以怎样的方式和在多大程度上得到满足与社会没有关系。","a":"F"},{"ch":1,"t":"j","n":26,"stem":"个体的人生活动只需要具有满足自我需要的价值属性即可，没必要具有满足社会需要的价值属性。","a":"F"},{"ch":1,"t":"j","n":27,"stem":"认识人的本质，只能立足于具体的、历史的社会关系中从事社会实践的人，而不能从抽象的人性论出发。","a":"T"},{"ch":1,"t":"e","n":1,"stem":"某高校化工学院大三学生小林近期陷入多重困惑：​\n专业学习上，小林原本对化学专业有浓厚兴趣，曾计划考研深造，但看到身边同学大多选择跨考计算机、金融等“热门专业”，且家人多次强调“化学就业面窄、赚钱少”，他开始动摇，甚至怀疑自己的专业选择“是否太不切实际”；\n社会实践中，小林加入了学校“乡村文化调研社”，原本希望通过实地走访记录乡村非遗文化，但调研过程中，部分同学为“快速出成果”，存在编造调研数据、照搬网络资料的情况，小林多次提醒却被反驳“大家都这么做，认真你就输了”，他陷入“坚守诚信还是随波逐流”的纠结；​\n个人生活里，小林发现自己每天花费大量时间刷短视频、逛社交平台，看似“充实”，实则常常感到空虚，对比身边有人专注科研发表论文、有人积极参与志愿服务获得认可，他愈发迷茫“自己的人生价值到底该如何实现”。结合《思想道德与法治》第一章 “领悟人生真谛 把握人生方向”的相关内容（如人生目的、人生态度、人生价值、科学对待人生环境等），回答下列问题：​\n1、从“人生目的与人生道路选择”的关系角度，分析小林在专业选择上的困惑，说明大学生应如何树立正确的专业选择观，避免被“热门”、“功利”等因素误导？​\n2、材料中小林面临的“诚信困境”，本质上是人生态度的选择问题。请结合教材中“积极进取的人生态度”的要求，谈谈大学生在社会实践中应如何坚守诚信原则，抵制“投机取巧”的不良风气？​\n针对小林“人生价值迷茫”的问题，运用“人生价值的评价与实现”相关理论，说明大学生应如何摆脱“虚拟社交依赖”，在现实生活中创造有意义的人生价值？​","k":["理论依据：人生目的决定人生道路；选择人生道路要兼顾个人兴趣、专业优势与社会需要，而非追逐“热门”“功利”。","对小林的分析：因“热门专业”“家人功利化建议”而动摇，本质是人生目的不清，混淆了“专业热度”与“人生价值实现”。","正确专业选择观：①立足兴趣与特长，明确“为何选择专业”；②理性看待热门，热门≠适合；③主动与家人沟通专业理想与规划。","诚信困境：积极进取的人生态度要求认真、务实、诚信、坚毅；编造数据、抄袭资料虽能短期获利，却损害信誉。","做法：明确诚信是立身之本；以提出合理调研方案、分享真实方法引导团队，而非消极妥协；以长远眼光看待社会实践。","价值迷茫：人生价值评价的根本尺度是对社会的贡献，价值在劳动和实践中创造，虚拟社交只能带来“虚假充实”。","实现路径：树立社会价值优先观念；制定现实目标清单（读书笔记、公益活动）；以具体行动替代刷屏式消遣。"]},{"ch":2,"t":"s","n":1,"stem":"以下关于理想与空想的说法，正确的是（ ）。","o":["理想如果是实现不了的，那就是空想","空想具有超前性就等同于理想","只要信念坚定，空想照样可以实现","理想经过长期努力可以实现，而空想不能"],"a":"D"},{"ch":2,"t":"s","n":2,"stem":"爱因斯坦曾经说过：“每个人都有一定的理想，这种理想决定着他的努力和判断的方向。就在这个意义上，我从来不把安逸和快乐看作是生活目的本身——这种伦理基础我叫它猪栏的理想。”这段话凸显了（ ）。","o":["理想不仅具有现实性而且具有预见性","理想具有时代性和阶级性","理想具有实践性和实现可能性","理想源于现实又超越现实"],"a":"A"},{"ch":2,"t":"s","n":3,"stem":"理想是多方面和多类型的，从不同的角度审视，可以把理想划分为多种类型。从理想的主体上划分，理想有（ ）。","o":["科学理想和非科学理想","长远理想和近期理想","个人理想和社会理想","政治理想和道德理想"],"a":"C"},{"ch":2,"t":"s","n":4,"stem":"解决人生目的和奋斗目标的问题，最根本是要靠（ ）。","o":["理想信念","文化素质","法制教育","社会舆论"],"a":"A"},{"ch":2,"t":"s","n":5,"stem":"理想是人们在社会实践中形成的、有可能实现的、对未来社会和自身发展的向往与追求，是人们的世界观、人生观和价值观在奋斗目标上的集中体现。而空想是脱离实际的主观臆想，没有实现的可能性。由此可见，理想和空想的本质区别在于（ ）。","o":["理想具有实现的可能性","是否符合事物客观必然性的运动趋势","理想是人类特有的一种精神现象","理想具有超越现实性"],"a":"B"},{"ch":2,"t":"s","n":6,"stem":"理想和现实是一对矛盾，它们之间的关系既对立又统一。理想和现实的统一性表现在（ ）。","o":["理想源于现实，在将来又会变成新的现实","理想等同于现实，是可以立即实现的","理想是对现实随心所欲的想象","理想是完美的，现实是有缺陷的"],"a":"A"},{"ch":2,"t":"s","n":7,"stem":"如果用理想的标准来衡量现实，当人们发现现实和理想相差甚远时，就对现实大失所望，甚至极为不满，采取完全否定的态度。这种错误认识是陷入（ ）的片面性误区而生成。","o":["以理想来否定现实","以现实来否定理想","把理想等同于现实","把现实等同于理想"],"a":"A"},{"ch":2,"t":"s","n":8,"stem":"理想信念是在实践中形成的，也只有在实践中才能实现。看一个人是不是真有理想，主要是看他（ ）。","o":["在主观上是否有美好的愿望","想得是否很美妙","说得是否很动听","在行动上是否能为追求理想而奋斗"],"a":"D"},{"ch":2,"t":"s","n":9,"stem":"理想是人们在实践中形成的对未来社会和自身发展目标的向往与追求，其本质特征是（ ）","o":["脱离现实的完美设想","具有实现可能性的奋斗目标","纯粹主观的情感寄托","永恒不变的价值判断"],"a":"B"},{"ch":2,"t":"s","n":10,"stem":"习近平总书记指出：\"理想信念就是共产党人精神上的 ' 钙'\"，这强调了理想信念具有（ ）","o":["思想引导作用","道德规范作用","精神支撑作用","法律约束作用"],"a":"C"},{"ch":2,"t":"s","n":11,"stem":"习近平总书记指出：中国共产党成立以来，共产主义远大理想激励了一代又一代共产党人英勇奋斗，成千上万的烈士为了这个理想献出了宝贵生命。理想之所以美好，理想之所以令人向往，是因为理想在现实中产生，但它不是对现状的简单描绘，而是与奋斗目标相联系的未来的现实，是人们对未来美好生活的憧憬和期待，这体现出理想具有（ ）","o":["超越性","实践性","时代性","主观性"],"a":"A"},{"ch":2,"t":"s","n":12,"stem":"理想作为一种精神现象，是人类社会实践的产物。理想源于现实，又超越现实，在现实中多种类型。从层次上划分，理想有（ ）","o":["个人理想和一般理想","崇高理想和一般理想","道德理想和政治理想","生活理想和职业理想"],"a":"B"},{"ch":2,"t":"s","n":13,"stem":"“现实是此岸，理想是彼岸。中间隔着湍急的河流，行动则是架在川上的桥梁。”这形象地说明（ ）。","o":["现实不能成为理想","理想就是现实","理想的实现必须落实在行动上","理想是可以自发实现的"],"a":"C"},{"ch":2,"t":"s","n":14,"stem":"中国特色社会主义最本质的特征是（ ）。","o":["中国共产党的领导","中国特色社会主义道路","中国特色社会主义理论体系","中国特色社会主义制度"],"a":"A"},{"ch":2,"t":"s","n":15,"stem":"理想是人们在实践中形成的、有可能实现的对未来社会和自身发展目标的向往和追求。当代大学生应该树立的共同理想是（ ）。","o":["中国特色社会主义","中国梦","经济富强","社会主义核心价值观"],"a":"A"},{"ch":2,"t":"s","n":16,"stem":"老子说：“合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。”这句话说明了（ ）","o":["立志做大事","立志当高远","立志须躬行","立志做大官"],"a":"C"},{"ch":2,"t":"s","n":17,"stem":"（ ）是人的思想和行为的定向器，一旦确立就可以使人方向明确、精神振奋。","o":["理想信念","人生态度","人生目的","个人私德"],"a":"A"},{"ch":2,"t":"s","n":18,"stem":"追求崇高的理想需要科学的信念，具有坚定社会主义信念的人，坚信( )。","o":["社会主义必然代替资本主义，全世界最终必然实现共产主义","通往共产主义道路是遥远的，可望不可及","社会主义道德将成为所有人自觉的行为习惯和准则","不同的团体有相同的信念"],"a":"A"},{"ch":2,"t":"s","n":19,"stem":"中国特色社会主义共同理想与共产主义远大理想有着内在的联系，它们之间是( )。","o":["职业理想和道德理想的关系","个人理想和社会理想的关系","阶段性理想和最终理想的关系","有实现可能性的理想和根本不可能实现的空想的关系"],"a":"C"},{"ch":2,"t":"s","n":20,"stem":"一个人如果没有崇高理想或者缺乏理想，就会像一艘没有舵的船，随波逐流，难以顺利地到达彼岸。人只要有了崇高的理想，就会在黑暗中看到光明，在平凡中看到伟大，在遭受困难和挫折时能充满信心，坚持胜利。这就是理想在人生中的( )。","o":["物质力量作用","思想武器作用","精神境界作用","昭示奋斗目标作用"],"a":"D"},{"ch":2,"t":"s","n":21,"stem":"信念作为认知、情感和意志的有机统一体，其形成的核心基础是（ ）","o":["明确的认知和强烈的情感","单纯的情感体验","盲目的意志坚持","他人的强制灌输"],"a":"A"},{"ch":2,"t":"s","n":22,"stem":"教材中强调的 \"三个增强\" 要求是：增强对马克思主义的信仰、增强对中国特色社会主义的信念、增强对（ ）的信心","o":["实现中华民族伟大复兴","全面依法治国","实现共同富裕","全面深化改革"],"a":"A"},{"ch":2,"t":"s","n":23,"stem":"现实生活中，当人遇到特殊困难或重大打击时，如果没有一种力量来支撑，人就会垮下来。这时起着精神支柱作用，支撑着人的精神和意志，使人在困难和逆境中振作起来，战胜艰难险阻的是( )。","o":["人的经济实力","人的主观想象","人的理想信念","人的思想感情"],"a":"C"},{"ch":2,"t":"s","n":24,"stem":"新时代背景下，\"发扬斗争精神、提高斗争本领\" 的要求体现了理想信念在实践中需要（ ）","o":["依靠顽强奋斗","规避矛盾冲突","等待有利时机","寻求外部援助"],"a":"A"},{"ch":2,"t":"s","n":25,"stem":"在确立理想和追求理想的过程中，当发现理想和现实的矛盾时，应该采取的正确态度是( )。","o":["对现实大失所望，逃避或反对现实","对理想失去信心，“告别理想”","不加分析地全盘认同当下的现实","坚定信念，在实践中把理想变为现实"],"a":"D"},{"ch":2,"t":"s","n":26,"stem":"\"理想信念不是拿来说、拿来唱的，更不是用来装点门面的\"，这强调理想信念必须（ ）","o":["见诸行动","高调宣扬","束之高阁","因人而异"],"a":"A"},{"ch":2,"t":"s","n":27,"stem":"“人们在实践中形成的、有实现可能性的、对未来社会和自身发展的向往与追求，是人们的世界观、人生观和价值观在奋斗目标上的集中体现”是指( )。","o":["理想","信念","人生观","价值观"],"a":"A"},{"ch":2,"t":"s","n":28,"stem":"当教师，要当一个模范教师；当科学家，要当一个对国家有突出贡献的科学家；当解放军战士，要当一个最英勇的解放军战士；当工人，要当一个新时代的劳动模范；当农民，要当一个对改变农村面貌有贡献的农民。这些都是人生理想中( )。","o":["社会理想的表现","生活理想的表现","职业理想的表现","道德理想的表现"],"a":"C"},{"ch":2,"t":"s","n":29,"stem":"马克思主义最崇高的社会理想是( )。","o":["实现共产主义","建设社会主义","发展民主主义","摆脱贫穷落后"],"a":"A"},{"ch":2,"t":"s","n":30,"stem":"“千里之行，始于足下。”理想的实现，需要每个人从我做起，从现在做起，从平凡做起。这是因为 ( )。","o":["理想是人们为之奋斗的目标","把理想变为现实，要靠努力奋斗，在实践中才能达到","社会实践是产生科学知识的源泉","有了坚定的信念，理想就会自然得到实现"],"a":"B"},{"ch":2,"t":"s","n":31,"stem":"“失去信念的理想是虚幻的，失去理想的信念是空泛的。”这句话说明，在确立理想信念时，应该( )。","o":["把崇高的理想与坚定的信念结合起来","超越人的生活体验和实际行动","学会对不同的理想信念进行辨别和选择","把个人的理想信念与社会的理想信念结合起来"],"a":"A"},{"ch":2,"t":"s","n":32,"stem":"大学生将个人理想融入中国特色社会主义共同理想，关键要做到（ ）","o":["把个人奋斗融入国家发展伟业","专注个人成就，忽视社会需求","等待社会理想实现后再追求个人理想","以个人理想改造社会理想"],"a":"A"},{"ch":2,"t":"s","n":33,"stem":"习近平阐述在“中国梦”时指出，“中国梦”归根到底是( )的梦。","o":["工人","人民","知识分子","农民"],"a":"B"},{"ch":2,"t":"s","n":34,"stem":"理想作为一种社会意识形态，不是从天而降，而是( )。","o":["社会存在的反映，是从社会实践中产生的","人们头脑中构造出来的","能为社会大多数人谋利益的构想","人们纯粹主观的构想"],"a":"A"},{"ch":2,"t":"s","n":35,"stem":"由于成长环境和性格等方面的不同，人们会形成不同的理想信念，即使同一个人，也会形成关于社会生活不同方面的许多理想信念。这说明，理想信念具有( )。","o":["共同性","片面性","政治性","多样性"],"a":"D"},{"ch":2,"t":"m","n":1,"stem":"理想信念的作用主要体现在( )。","o":["指引人生的奋斗目标","提供人生的前进动力","提供人生的精神支柱","提高人生的精神境界","提高社会地位"],"a":"ABCD","e":"E项：理想信念的作用是指引目标、提供动力、提供精神支柱、提高精神境界，与“提高社会地位”无关。"},{"ch":2,"t":"m","n":2,"stem":"诗人流沙河在《理想》中写道：饥寒的年代里，理想是温饱；温饱的年代里，理想是文明；离乱的年代里，理想是安定；安定的年代里，理想是繁荣。流沙河的诗句说明（ ）。","o":["理想具有梦幻性","理想具有时代性","理想具有变化多端，无迹可踪","理想是人类实践的产物，归根到底，是由经济基础决定"],"a":"BD","e":"A项：“梦幻性”否定理想的现实根基；C项：理想有内在规律，并非“变化多端、无迹可踪”。"},{"ch":2,"t":"m","n":3,"stem":"理想的特征是（ ）。","o":["超越性","实践性","时代性","实现可能性"],"a":"ABC","e":"D项：教材概括的理想特征是超越性、实践性、时代性，“实现可能性”不是其列出的特征。"},{"ch":2,"t":"m","n":4,"stem":"正确认识理想与现实的关系是实现理想的思想基础。关于理想与现实的关系，正确的表述有（ ）。","o":["理想与现实是对立统一的","现实规定并制约着理想","现实是理想的基础，理想是未来的现实","理想一定可以转化为现实"],"a":"ABC","e":"D项：理想转化为现实需要主观努力和客观条件，“一定可以转化”过于绝对。"},{"ch":2,"t":"m","n":5,"stem":"四川农业大学毕业生龙海违背其父希望他跳出“农门”的愿望，携女友王旭到农村养猪。历尽各种艰辛和世人的嘲讽，终于研制成功新型饲料添加剂，取得了事业的成功，不仅自己致富，也帮助带领村民养猪致富。龙海和王旭的事迹说明了（ ）。","o":["理想信念具有多样性，不同的人由于成长经历和性格等方面的差异会形成不同的理想信念","在实现理想的过程中，会遇到各种各样的困难，只有坚定不移，务实工作，才是最好的途径","当代大学在确立自己的理想信念时必须注意从实际出发，以自身条件为参照，在多样化的理想信念面前，正确辨析，选择适合自己，符合国家、社会需要的理想","要实现自己的理想，就要敢于实践，善于实践，空想是没有结果的"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":2,"t":"m","n":6,"stem":"下列关于社会理想与个人理想的关系，表述正确的有（ ）。","o":["社会理想是个人理想的凝聚升华，代表和反映着人们的共同愿望和根本利益","社会理想规定指引着个人理想","当社会理想同个人理想有矛盾冲突时，应当使个人的理想服从于社会理想","当社会理想同个人理想有矛盾冲突的时候，应当使社会理想适应于个人理想"],"a":"ABC","e":"D项：二者冲突时应个人理想服从社会理想，而不是让社会理想迁就个人理想。"},{"ch":2,"t":"m","n":7,"stem":"“杂交水稻之父”袁隆平在年轻时，违背了父亲的遗愿，选择了农学。后致力于杂交水稻的研究，经历无数失败，几十年如一日，痴心不改，矢志不移，一路艰辛，一路坎坷，终于取得了一个又一个的杂交水稻种子培育难题的突破。袁隆平的事迹说明（ ）。","o":["理想的实现需要艰苦奋斗的精神","理想的实现需要坚韧不拔的恒心","理想的实现也要靠运气","确立个人理想时，要考虑到国家和社会的需要"],"a":"ABD","e":"C项：袁隆平的成功来自长期奋斗，把成就归因于“运气”是错误的。"},{"ch":2,"t":"m","n":8,"stem":"江西农村青年张立勇始终没有放弃对理想的追求，多年来一边打工一边自学。后来在叔父的帮助下，来到清华大学食堂打工，克服重重困难，坚持自学英语多年，终于取得令清华北大学子钦佩的成绩，获得了“英语神厨”的美誉，成为很多人学习的榜样。张立勇的事迹给有我们的启示有（ ）。","o":["人只要有明确的目标，理想就会实现","一个人要成功，需要有能帮助自己的亲人","受磨难而奋进，将压力变为动力，有助于理想的实现","在逆境中要有顽强的毅力和信念，经勤奋努力，才有可能让理想实现"],"a":"CD","e":"A项：“只要有目标理想就会实现”绝对化；B项：把成功归结为亲人帮助，忽视了自身奋斗。"},{"ch":2,"t":"m","n":9,"stem":"理想信念是人的（ ）和（ ）的定向器，一旦确立就可以使人方向明确、精神振奋，即使前进的道路曲折、人生的境遇复杂，也能看到希望和曙光。","o":["思想","意识","行为","情感"],"a":"AC","e":"B、D项：理想信念是人的思想和行为的定向器，意识、情感不是教材表述。"},{"ch":2,"t":"m","n":10,"stem":"在追求理想的过程中，人们常常会感受到理想与现实之间的矛盾，正确认识理想与现实的关系要（ ）。","o":["把理想和现实对立起来","辩证看待理想与现实的矛盾","认识到实现理想的长期性、艰巨性和曲折性","认识到艰苦奋斗是实现理想的重要条件"],"a":"BCD","e":"A项：把理想与现实对立起来，恰恰是错误的认识方式。"},{"ch":2,"t":"m","n":11,"stem":"追求理想和实现理想的过程，是人的精神世界（ ）的过程，也是一个人沿着自我成长和完善的阶梯不断攀登、逐步提升精神境界的过程。","o":["从狭隘走向高远","从空虚走向充实","从犹疑走向执着","从贫穷走向富有"],"a":"ABC","e":"D项：理想提升的是精神境界，不是“从贫穷走向富有”的物质变化。"},{"ch":2,"t":"m","n":12,"stem":"大学生要牢记“空谈误国、实干兴邦”，（ ），充分展现自己的抱负和激情，在真刀真枪的实战中成就一番事业。","o":["志存高远","脚踏实地","埋头苦干","安于现状"],"a":"ABC","e":"D项：“安于现状”与“空谈误国、实干兴邦”的要求相反。"},{"ch":2,"t":"m","n":13,"stem":"信念为人们追求理想目标提供了强大的精神动力，具有（ ）。","o":["支撑性","执着性","超越性","多样性"],"a":"ABD","e":"C项：“超越性”是理想的特征，不是信念的特征（信念为支撑性、执着性、多样性）。"},{"ch":2,"t":"m","n":14,"stem":"对理想和现实的关系，理解错误的是（ ）。","o":["理想源于现实，而且超越现实","有了坚定的信念，理想就一定能变成现实","理想就是现实","现实是过去的理想"],"a":"BCD","e":"B项：信念坚定只是条件之一，“一定能变成现实”错误；C项：理想不等于现实；D项：现实不等于过去的理想。"},{"ch":2,"t":"m","n":15,"stem":"邓小平指出：“如果不搞社会主义，而走资本主义道路，中国的混乱状态就不能结束，贫穷落后的状态就不能改变。”所以，中国特色社会主义是当代中国发展进步的根本方向，是发展中国、稳定中国的必由之路。那么，中国特色社会主义是由（ ）构成的。","o":["中国特色社会主义道路","中国特色社会主义理论体系","中国特色社会主义制度","中国特色社会主义的共同理想","中国特色社会主义文化"],"a":"ABCE","e":"D项：中国特色社会主义由道路、理论体系、制度、文化构成，“共同理想”不在其中。"},{"ch":2,"t":"m","n":16,"stem":"以下关于理想特征的说法中，正确的有（ ）","o":["理想是多方面和多类型的","理想不仅源于现实，而且超越现实","理想可以凭空产生，只是需要在实践中实现","理想并没有特定历史时代的烙印","只要有理想，就一定能实现"],"a":"AB","e":"C项：理想源于现实，不能凭空产生；D项：理想有特定历史时代的烙印；E项：理想实现需要条件，“一定能实现”错误。"},{"ch":2,"t":"m","n":17,"stem":"关于共产主义远大理想的说法中，错误的有（ ）","o":["实现共产主义指日可待","共产主义太遥远了，是无法实现的","共产主义没有经过实践检验","共产主义只有在社会主义社会充分发展和高度发达的基础上才能实现","共产主义既是社会理想，也是现实运动"],"a":"ABC","e":"A项：共产主义实现需要长期过程，“指日可待”错误；B项：说“无法实现”是悲观怀疑；C项：共产主义运动早已在实践中检验。"},{"ch":2,"t":"m","n":18,"stem":"下面关于大学生如何坚定马克思主义信仰的说法中正确的有（ ）","o":["学习和掌握马克思主义的立场、观点、方法","确立正确的世界观和历史观","准确把握时代发展潮流","以科学的理想信念指引人生前进的道路和方向","努力实践成为精致的利己主义者"],"a":"ABCD","e":"E项：“精致的利己主义者”与马克思主义信仰背道而驰。"},{"ch":2,"t":"m","n":19,"stem":"大学生要不断增强中国特色社会主义（ ），自觉做共产主义远大理想和中国特色社会主义共同理想的坚定信仰者、忠实实践者。","o":["道路自信","理论自信","制度自信","文化自信","历史自信"],"a":"ABCD","e":"E项：中国特色社会主义自信是道路、理论、制度、文化“四个自信”，“历史自信”不在其列。"},{"ch":2,"t":"m","n":20,"stem":"一个真正认为共产主义是科学的人，在世界社会主义发展遭到暂时的困难和曲折时，也不放弃自己追求的目标。这说明( )。","o":["追求崇高的理想需要坚定的信念","信念本身就表明着一种稳定的立场","信念可以成为人们追求理想目标的强大动力","信念是一种单纯的知识或想法","坚定的信念使得人们具有强大的精神定力，不为困难所惧"],"a":"ABCE","e":"D项：信念不是单纯的知识或想法，而是认知、情感、意志的统一。"},{"ch":2,"t":"m","n":21,"stem":"追求一种理想，就意味着相信这种理想是正义的并且能够实现的，这种相信本身就是一种信念。这说明( )。","o":["信念中包含有一定的认识","信念往往伴随着炽热的感情","信念总要表现为行为和实践的意志","信念是随心所欲的主观臆断"],"a":"ABC","e":"D项：信念有其认识基础和现实依据，不是“随心所欲的主观臆断”。"},{"ch":2,"t":"m","n":22,"stem":"信念是( )的有机统一体，为人们矢志不渝、百折不挠地追求理想目标提供了强大的精神动力。","o":["认知","情感","意志","行为","想象"],"a":"ABC","e":"D、E项：信念是认知、情感、意志的有机统一体，行为、想象不属于其构成。"},{"ch":2,"t":"m","n":23,"stem":"对个人理想与社会理想关系的理解，正确的是( )。","o":["社会理想决定、制约着个人理想","当二者发生矛盾时，社会理想要服从个人理想","社会理想是个人理想的凝炼和升华","社会理想排斥个人理想","个人理想的实现依赖于社会理想的实现"],"a":"ACE","e":"B项：二者矛盾时应个人理想服从社会理想；D项：社会理想不排斥个人理想，而是凝聚升华个人理想。"},{"ch":2,"t":"m","n":24,"stem":"马克思主义理论是 ( )理论、（ ）理论、（ ）理论、（ ）理论，这一理论犹如壮丽日常，照亮了人类探索历史规律和寻求自身解放的道路。","o":["科学的","人民的","实践的","不断发展开放的"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":2,"t":"m","n":25,"stem":"在中国共产党的领导下，走中国特色社会主义道路，实现中华民族伟大复兴，是现阶段我国各族人民的共同理想。这个共同理想( )。","o":["是迈向共产主义最高理想的一个阶段","集中了我国工人、农民、知识分子和其他劳动者、建设者和爱国者的利益和愿望","是保证全体人民在政治上、道义上和精神上团结一致，争取胜利的强大思想武器","是人类最崇高的理想境界","有着广泛的社会共识，具有令人信服的必然性、广泛性和包容性"],"a":"ABCE","e":"D项：“人类最崇高的理想境界”是共产主义远大理想，不是现阶段共同理想。"},{"ch":2,"t":"m","n":26,"stem":"李大钊曾经指出：“老于旅途的人，走到平坦的地方，固然高高兴兴地往前走，走到崎岖的境界，愈是奇趣横生，觉得在此奇绝壮观的境界，愈能感到一种冒险的美趣”，“要知在艰难的国运中建造国家，亦是人生中最有趣的事”。这段话的意思是说( )。","o":["一个革命者要有树立为国家和民族献身的社会理想","追求理想要不断磨炼自己的意志和毅力","要有艰苦奋斗的精神","靠冒险就能实现理想","要充分估计理想实现中的艰险坎坷，并能苦中作乐"],"a":"ABCE","e":"D项：李大钊强调的是不畏艰险的意志，不是“靠冒险就能实现理想”。"},{"ch":2,"t":"m","n":27,"stem":"实现理想要有艰苦奋斗的精神。在社会主义条件下，艰苦奋斗的精神表现在( )。","o":["自力更生，奋发图强，不怕困难，不畏艰险地去完成各项任务","艰苦朴素，勤劳节俭，抵制和反对剥削阶级腐朽生活作风的侵蚀","刻苦钻研，勇于探索，孜孜不倦地学习理论和专业知识","乐天安命，顺其自然，回避社会和人生矛盾，过一种与世无争的生活","艰苦奋斗是一时的权宜之计，很快就不需要了"],"a":"ABC","e":"D项：“乐天安命、回避矛盾”是消极避世；E项：艰苦奋斗是长期精神品格，不是“一时权宜之计”。"},{"ch":2,"t":"m","n":28,"stem":"关于理想和信念的关系，下列叙述正确的是( )。","o":["理想是信念的目标和方向","信念是对理想的支持，是人们追求理想的动力和源泉","在很多情况下，理想亦是信念，信念亦是理想。当理想作为信念，它是人们确信的一种观点和主张；当信念作为理想时，它是与奋斗目标相联系的一种向往和追求","理想重在标志人与奋斗目标之间的关系，主要是指向未来的；信念的侧重点在于标志人对事物、观念的看法和态度，主要是面对现实的","理想信念是人生发展的内在动力"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":2,"t":"m","n":29,"stem":"邓小平说：“美好的前景如果没有切实的措施和工作去实现它，就有成为空话的危险。”这说明( )。","o":["社会实践是科学知识产生的源泉","社会实践是联系理想和现实的桥梁","有了理想并不意味着成功，更不意味着已经成功","把理想转变为现实要付出辛勤的劳动，要靠实实在在的实践","理想具有时代性"],"a":"BCD","e":"A项：讲的是科学知识的来源，与“理想需要实践实现”无关；E项：理想的时代性同样不是本句所指。"},{"ch":2,"t":"m","n":30,"stem":"下面关于信仰信念信心的说法中，正确的有( )。","o":["学史增信，就是要增强信仰信念和信心，这是我们战胜一切强敌的强大精神力量。","当代大学生肩负重任，应当切实增强对马克思主义的信仰。","中国特色社会主义是历史发展的必然结果，必须坚定不移地坚持走下去。","只要拥有信心，中华民族的伟大复兴轻轻松松、敲锣打鼓就能实现。"],"a":"ABC","e":"D项：民族复兴要靠实干奋斗，“敲锣打鼓就能实现”是错误表述。"},{"ch":2,"t":"m","n":31,"stem":"中国特色社会主义共同理想是社会主义核心价值体系的主题。要求大学生( )。","o":["坚定对中国共产党的信任","坚定中国特色社会主义信念","坚定实现中华民族伟大复兴的信心","坚定马克思主义科学信仰","坚信理想与现实是对立的"],"a":"ABCD","e":"E项：理想信念与现实是辩证统一的，说“理想与现实对立”错误。"},{"ch":2,"t":"m","n":32,"stem":"从理想的内容划分，理想有( )。","o":["政治理想","道德理想","职业理想","生活理想","社会理想"],"a":"ABCD","e":"E项：“社会理想”是按理想的主体划分出的类型，不属于按内容划分（政治、道德、职业、生活理想）。"},{"ch":2,"t":"m","n":33,"stem":"在确立理想之时，要充分认识到理想的实现具有( )。","o":["长期性","艰巨性","曲折性","自发性","偶然性"],"a":"ABC","e":"D、E项：理想实现具有长期性、艰巨性、曲折性，不是自发、偶然实现的。"},{"ch":2,"t":"j","n":1,"stem":"从理想的性质上划分，理想可分为个人理想和社会理想。","a":"F"},{"ch":2,"t":"j","n":2,"stem":"信念是一种单纯的知识和想法。","a":"F"},{"ch":2,"t":"j","n":3,"stem":"信念是人们在一定的认识基础上确立的对某种思想或事物坚信不疑并身体力行的心理态度和精神状态。","a":"T"},{"ch":2,"t":"j","n":4,"stem":"在一定的社会中，人们的信念具有多样性，也有共通之处。","a":"T"},{"ch":2,"t":"j","n":5,"stem":"实践产生理想，理想指引实践，理想与实践相互作用、不断循环上升的过程，推动人们立足现实、着眼未来，在奋斗中追求，在追求中奋斗。","a":"T"},{"ch":2,"t":"j","n":6,"stem":"理想之所以能够成为一种推动人们创造美好生活的巨大力量，就在于它不仅具有现实性而且具有预见性。","a":"T"},{"ch":2,"t":"j","n":7,"stem":"凡是符合客观事物发展规律、反映人民群众根本利益的理想，是科学的理想；反之，是非科学的理想。","a":"T"},{"ch":2,"t":"j","n":8,"stem":"中国特色社会主义这一共同理想指引我们在改革开放以来取得了非常了不起的成绩和进步。","a":"T"},{"ch":2,"t":"j","n":9,"stem":"坚定的理想信念，必须建立在对马克思主义的深刻理解上，建立在对历史规律的深刻把握上。","a":"T"},{"ch":2,"t":"j","n":10,"stem":"信念是理想所指的对象，理想是信念实现的保障。","a":"F"},{"ch":2,"t":"j","n":11,"stem":"社会理想的实现，必须以个人理想的实现为前提和基础。","a":"F"},{"ch":2,"t":"j","n":12,"stem":"中国特色社会主义是当代中国发展进步的根本方向，是发展中国、稳定中国的必由之路。","a":"T"},{"ch":2,"t":"j","n":13,"stem":"信念有着绝对的稳定性。","a":"F"},{"ch":2,"t":"j","n":14,"stem":"一个人的理想信念越崇高、越坚定，精神境界和人格就会越高尚。","a":"T"},{"ch":2,"t":"j","n":15,"stem":"科学的理想是人的主观能动性与社会发展客观趋势的一致性的反映。","a":"T"},{"ch":2,"t":"j","n":16,"stem":"信念是认知、情感和意志的有机统一体，是人们在一定的认识基础上确立的对某种思想或事物坚信不疑并身体力行的心理态度和精神状态。","a":"T"},{"ch":2,"t":"j","n":17,"stem":"个人理想与社会理想的关系实质上是个人与社会的关系在理想层面上的反映。","a":"T"},{"ch":2,"t":"j","n":18,"stem":"强调个人理想要符合社会理想，并不是要排斥和抹杀个人理想，而是要摆正个人理想同社会理想的关系。","a":"T"},{"ch":2,"t":"j","n":19,"stem":"理想在现实中产生，与未来奋斗目标没有联系。","a":"F"},{"ch":2,"t":"j","n":20,"stem":"马克思主义具有与时俱进的理论品格和持久的生命力。","a":"T"},{"ch":2,"t":"j","n":21,"stem":"当代大学生肩负的历史使命是坚持和发展中国特色社会主义、实现中华民族伟大复兴的中国梦。","a":"T"},{"ch":2,"t":"j","n":22,"stem":"理想信念是一个思想认识问题，而不是一个实践问题。","a":"F"},{"ch":2,"t":"j","n":23,"stem":"理想仅有现实性而没有任何预见性。","a":"F"},{"ch":2,"t":"e","n":1,"stem":"（一）、在中国共产党历史展览馆广场上，矗立着一座名为《信仰》的雕塑，展现的是71位不同时代、不同身份、不同年龄的中国共产党员庄严宣誓的场景，充盈着信仰的力量。一代代中国共产党人正是凝聚在信仰的旗帜下，为理想信念前赴后继、接续奋斗。\n习近平总书记在广东考察时强调：“坚定理想信念，增强对党的价值追求和前进方向的高度政治认同，把好世界观、人生观、价值观这个“总开关’。”开展学习贯彻习近平新时代中国特色社会主义思想主题教育是党的建设的重大任务，其中一个具体目标是“凝心铸魂筑牢根本”，教育引导广大党员、干部经受思想淬炼、精神洗礼，坚定对马克思主义的信仰、对中国特色社会主义的信念、对实现中华民族伟大复兴中国梦的信心。我们要深刻领会习近平新时代中国特色社会主义思想关于坚定理想信念、提升思想境界、加强党性锻炼等一系列要求，筑牢信仰之基、补足精神之钙、把稳思想之舵，从思想上正本清源、固本培元，坚定不移地为实现既定目标而奋斗。\n结合材料，请理论联系实际分析：为什么说理想信念是精神之“钙”？","k":["理想信念是精神之“钙”：是人们行动的内在动力，有坚定信念才能在困难面前保持勇气和毅力。","引领思想和行为：缺“钙”会导致思想偏差、行为失范，理想信念能指引方向、避免迷失。","凝聚人心：共产党人因共同理想信念而团结奋斗，社会中同样需要共同理想凝聚力量、促进和谐。","提高精神境界：“心灵之钙”滋养心灵，使人真正领悟人生意义与价值。","结论：大学生要坚定理想信念，把个人追求融入民族复兴，在实践中不断“补钙”。"]},{"ch":2,"t":"e","n":2,"stem":"（二）材料一：扎根边疆的青春成长\n23 岁的阮彬彬从广西老家到吉林大学求学，再参军入伍到西北边陲，青春足迹在地图上画出一个三角形。初入军营时，第一次实弹射击考核因紧张导致不及格，战术基础动作考核也因手肘擦伤仅差一点及格。但他没有放弃，申请补考并拼尽全力达到及格线。老兵用营区白杨树“根扎得深才能长成参天大树”的比喻激励他，阮彬彬给这棵树起名“扎根树”，每天坚持训练。两个多月后，他在新训考核中综合成绩评定为优秀，成为全班第一名，最终前往喀喇昆仑守护祖国边防。他说：“希望我能像这棵树一样，把根深深扎在大地上，长得更高、更壮。”\n材料二：乡村教育的坚守与创新\n华东师范大学硕士毕业生李微楠2017年成为西部计划志愿者，前往云南省临沧市云县大寨中学支教。支教第一年，他因管理不善被校领导批评，甚至怀疑自己的选择。但他没有退缩，为把地理课变有趣，找来影视资料和各地特产辅助教学；在语文课开展阅读比赛和绘画活动；利用新闻专业知识指导学校广播站，开设 \"校坛风云\" 节目。支教 3 年，他对 20 多个村寨的102名学生进行家访，最远步行 30 多公里山路，为停电村寨学生送去 30 多台充电台灯。他所带班级的地理成绩从一半人不及格提升至全县前三名。两年支教结束后，他又申请延长服务期，后考上特岗教师并转为在编教师，2024 年获教育部 \"高校毕业生基层就业卓越奖学金\"。\n材料三：航天强国的青春接力\n2025 年 4 月 24 日，神舟二十号载人飞船成功发射，开启 \"神舟家族太空接力\" 新征程。航天员王杰曾在中国空间技术研究院工作，负责空间站微振动抑制关键技术攻关，后通过选拔成为航天飞行工程师，实现从 \"建造空间站\" 到 \"住进空间站\" 的梦想接力。为适应空间站应用与发展新阶段，神舟团队建立 \"多线并举，滚动待命\" 的批产技术状态管理模式，通过多项优化手段大幅压缩研制和测试时间，同时实施基于信息化的质量确认工作，确保 \"一次做对\"。团队始终弘扬 \"两弹一星\" 精神和载人航天精神，将 \"质量第一\" 理念挺在前头，在轨道舱原运能基础上拓展出约 20% 的上行载荷装载空间，为空间站运送更多关键物资。\n问题设计：\n1.结合材料，分析三位主人公的理想信念体现了《思想道德与法治》教材中理想信念的哪些基本内涵？他们的理想信念具有哪些共同特质？\n2.材料中的主人公在践行理想信念过程中都面临了不同挑战，请对比分析他们是如何将理想转化为现实行动的？这体现了理想与现实之间怎样的辩证关系？\n3.习近平总书记指出：\"理想信念不是拿来说、拿来唱的，更不是用来装点门面的，只有见诸行动才有说服力。\" 结合上述案例，谈谈当代大学生应如何在实现中华民族伟大复兴中国梦的实践中放飞青春梦想？","k":["基本内涵：理想信念是实践中形成的对未来的向往与追求，是世界观、人生观、价值观在奋斗目标上的集中体现。","共同特质：家国情怀（个人理想融入国家需要）、实践品格（用具体行动落实理想）、奋斗精神（困难面前不退缩）。","理想与现实的辩证关系：理想源于现实又高于现实；理想可转化为现实，需把目标分解为具体行动、发扬斗争精神。","案例对照：阮彬彬以“扎根树”自励、反复训练；李微楠创新教学、深入家访；神舟团队建立新管理模式、优化技术参数。","大学生启示：坚定理想信念、练就过硬本领、勇于实践奋斗、坚持知行统一、保持长期坚守。"]},{"ch":3,"t":"s","n":1,"stem":"爱国主义是调节个人和国家之间关系的道德要求、政治原则和（ ）。","o":["内心信念","法律规范","自觉行为","传统美德"],"a":"B"},{"ch":3,"t":"s","n":2,"stem":"中华传统文化源远流长，包含着丰富的内容，其中，夸父追日、大禹治水、愚公移山、精卫填海等动人的传说故事，体现着中国精神的（ ）。","o":["伟大梦想精神","伟大创造精神","伟大奋斗精神","伟大团结精神"],"a":"A"},{"ch":3,"t":"s","n":3,"stem":"以下关于实现中国梦必须弘扬中国精神的说法，不正确的是（ ）。","o":["激发创新创造的精神动力","增强个人自信","推进复兴伟业的精神支柱","凝聚中国力量的精神纽带"],"a":"B"},{"ch":3,"t":"s","n":4,"stem":"爱国主义最终的落脚点和归宿是（ ）。","o":["爱国理想","爱国思想","爱国行为","爱国情感"],"a":"C"},{"ch":3,"t":"s","n":5,"stem":"在经济全球化的时代背景下弘扬爱国主义，应该注意的一个误区是狭隘民族主义。因为狭隘民族主义（ ）。","o":["完全否定本国的传统和现实；","往往对本民族进行过度的颂扬和崇拜；","倡导从经济基础到上层建筑的一切领域都与西方接轨；","主张学习和吸收世界各国人民创造的一切优秀文明成果"],"a":"B"},{"ch":3,"t":"s","n":6,"stem":"邓小平曾告诫说：“谈到人格，但不要忘记还有一个国格。特别是像我们这样第三世界的发展中国家，没有民族自尊心，不珍惜自己民族的独立，国家是立不起来的。”在这里，国格的含义主要是指（ ）。","o":["政府的权威","国家的外交形象","民族自尊心和自豪感","民族历史传统"],"a":"C"},{"ch":3,"t":"s","n":7,"stem":"中国特色社会主义进入新时代，爱国主义的鲜明主题是（ ）。","o":["实现中华民族伟大复兴的中国梦","传承传统文化","赞美历史成就","热爱祖国河山"],"a":"A"},{"ch":3,"t":"s","n":8,"stem":"爱国主义中检验一个人对祖国忠诚程度的试金石是（ ）。","o":["热爱自己的骨肉同胞","热爱故土河山","热爱自己的国家","对祖国的忠诚和热爱"],"a":"A"},{"ch":3,"t":"s","n":9,"stem":"一个民族赖以生存和发展的精神动力和民族文化中最本质、最深刻的内容是（ ）。","o":["民族风俗","民族生活方式","民族精神","民族艺术"],"a":"C"},{"ch":3,"t":"s","n":10,"stem":"我国古代在天文历法、数学、农学、医学、地理学等众多领域取得了举世瞩目的成就，这些发明创造同当时的生产实践紧密结合，为中华民族的发展进步提供了有力支撑。英国的哲学家培根曾说：印刷术、火药、指南针，这些发明改变了整个世界事物的面貌和状态。资料显示，16世纪以前世界上最重要的300多项发明和创造中，中国占173项，远远超过同时期的欧洲。这些成就的取得都源于（ ）。","o":["追求梦想的民族禀赋","勇于创新创造的民族禀赋","自强不息的民族禀赋","团结奋进的民族禀赋"],"a":"B"},{"ch":3,"t":"s","n":11,"stem":"改革开放以来，党带领人民在继承和弘扬伟大民族精神的基础上，赋予中华民族精神以新的时代内涵，形成了（ ）时代精神。","o":["以挑战极限为核心的青藏铁路精神","以爱国主义为核心的民族精神","以奉献祖国为核心的航天精神","以改革创新为核心的时代精神"],"a":"D"},{"ch":3,"t":"s","n":12,"stem":"从某种意义上说，创新决定着世界政治经济力量对比的变化，也决定着各国各民族的前途命运。（ ）始终是推动人类社会发展的第一动力。","o":["创新","改革","开放","科技"],"a":"A"},{"ch":3,"t":"s","n":13,"stem":"2012年，广东省航海学校专科生徐某考入一所重点大学后，他发贴求助，获得2000元捐款。不久，对方向徐某提供了一份兼职，月薪2000元，要求他到附近军港为其拍摄军事设施和军舰。尽管徐某很快意识到对方可能是境外间谍，但受金钱诱惑难以自拔。2013年5月，徐某行为败露，被国家安全机关依法审查。 这个案例说明（ ）。","o":["增强国家安全认识的必要性","增强国家安全情感的必要性","增强国家安全意识的必要性","增强国家安全行为的必要性"],"a":"C"},{"ch":3,"t":"s","n":14,"stem":"一个中国原则是两岸关系的政治基础。（ ）是界定两岸关系的根本性质，是确保两岸关系和平发展的关键。","o":["一个中国原则","“九二共识”","和平统一","一国两制"],"a":"B"},{"ch":3,"t":"s","n":15,"stem":"必须面向世界，构建（ ），这是新时代坚持和发展中国特色社会主义基本方略的重要内容。","o":["美好生态","和谐社会","人类命运共同体","公平正义"],"a":"C"},{"ch":3,"t":"s","n":16,"stem":"抛弃传统、丢掉根本，就等于割断了自己的精神命脉。历史和现实都表明，一个抛弃或者背叛了自己历史文化的民族，不仅不可能发展起来，而且很可能上演一场历史悲剧。“灭人之国，必先去其史。”这是要求我们（ ）。","o":["尊重和传承中华民族历史和文化","尊重和传承中华民族文化和精神","尊重和传承中华民族性格和历史","尊重和传承中华民族宗教和文化"],"a":"A"},{"ch":3,"t":"s","n":17,"stem":"习近平说：“历史是一面镜子，从历史中，我们能够更好看清世界、参透生活、认识自己；历史也是一位智者，同历史对话，我们能够更好认识过去、把握当下、面向未来。”这是要求我们（ ） 。","o":["尊重和传承中华民族文化","尊重和传承中华民族历史","尊重和传承中华民族性格","尊重和传承中华民族宗教"],"a":"B"},{"ch":3,"t":"s","n":18,"stem":"习近平说：“一个民族、一个国家，必须知道自己是谁，是从哪里来，要到哪里去，想明白了、想对了，就要坚定不移朝着目标前进。”这是要求我们（ ）。","o":["尊重和传承中华民族宗教","尊重和传承中华民族文化","尊重和传承中华民族性格","尊重和传承中华民族历史"],"a":"D"},{"ch":3,"t":"s","n":19,"stem":"习近平总书记讲（ ）已经成为中华民族的基因，植根在中国人内心，潜移默化影响着中国人的思想方式和行为方式。","o":["中华优秀传统文化","中国特色社会主义","中国道路","马克思主义"],"a":"A"},{"ch":3,"t":"s","n":20,"stem":"虽然我国有不尽相同的56个民族，但在长期的民族交流中形成了居住上的交错杂居、经济上的相互依存、情感上的彼此亲近、文化上的兼收并蓄，最终形成彼此都认同的（ ），它是民族团结的“最大公约数”和“最大同心圆”。","o":["中国精神","中华民族","中国道路","中国文化"],"a":"B"},{"ch":3,"t":"s","n":21,"stem":"民族团结的核心是 （ ）。","o":["促进祖国发展","维护祖国统一","促进民族团结","促进民族文化"],"a":"B"},{"ch":3,"t":"s","n":22,"stem":"（ ）是我国的基本国策，是最符合包括台湾同胞在内的中华民族的根本利益，所以两岸应该增进互信、良性互动、求同存异、务实进取，促进两岸和平发展，任何“以武谋独”的企图都是死路一条。","o":["一国两制、澳人治澳","一国两制、港人治港","和平统一、一国两制","和平统一，一国两府"],"a":"C"},{"ch":3,"t":"s","n":23,"stem":"解决（ ），实现祖国完全统一是中华民族伟大复兴的题中之义，也是不可阻挡的历史潮流，更是全体中华儿女的共同心愿。","o":["新疆问题","香港问题","台湾问题","西藏问题"],"a":"C"},{"ch":3,"t":"s","n":24,"stem":"（ ）是国家的灵魂，是国家和民族的胎记，是国家和民族得以延续的精神基因，是培养民族心理、民族个性、民族精神的摇篮，是民族凝聚力的重要基础。","o":["制度","文化","道路","理论"],"a":"B"},{"ch":3,"t":"s","n":25,"stem":"（ ）是一个国家、一个民族的灵魂。爱祖国的灿烂文化，就是要认真学习和真正了解祖国的历史，在充分理解和尊重的基础上，积极推动中华优秀传统文化的传承性发展和创造性转化。","o":["文化","制度","道路","理论"],"a":"A"},{"ch":3,"t":"s","n":26,"stem":"（ ）是中华民族精神的核心内容，是国家得以延续和发展的基因，是民族精神的核心。","o":["价值规范","民族团结","爱国主义","人生目的"],"a":"C"},{"ch":3,"t":"s","n":27,"stem":"爱国主义是调节（ ）之间关系的理论原则和规范，这个理论原则和规范主要是是通过政治原则、道德要求和法律规范等形式表现出来的。","o":["个人和国家","国家和社会","社会和个人","民族和国家"],"a":"A"},{"ch":3,"t":"s","n":28,"stem":"习近平《在欧美同学会成立100周年庆祝大会上的讲话》中指出：“在激烈的国际竞争中，惟创新者进，惟创新者强，惟创新者胜。”这段话说明一个道理，即（ ）。","o":["对外开放是我国赢得未来的必然要求","创新始终是推动人类社会发展的第一动力","改革创新是我国赢得未来的必然要求","创新能力是当今国际竞争新优势的集中体现"],"a":"D"},{"ch":3,"t":"s","n":29,"stem":"（ ）始终是推动人类社会发展的第一动力，从某种意义上说，它决定着世界政治经济力量的对比变化，也决定着各国各民族的前途命运。","o":["改革","创新","开放","进取"],"a":"B"},{"ch":3,"t":"s","n":30,"stem":"中华民族很早就提出“苟日新，又日新，日日新”，“穷则变，变则通，通则久”等看法，在历史的长河中，又逐步形成了变通求新、因革损益、革故鼎新、与时俱进、与日偕新等思想观念，这说明（ ）是中华民族最深沉的民族禀赋。","o":["改革创新","团结奋进","变法图强","民主革命"],"a":"A"},{"ch":3,"t":"s","n":31,"stem":"中国特色社会主义之所以具有蓬勃的生命力，就在于它实行的是（ ）的社会主义。","o":["改革开放","团结奋进","变法图强","自我革命"],"a":"A"},{"ch":3,"t":"s","n":32,"stem":"促进祖国统一，保持香港、澳门长期繁荣稳定是新时代爱国主义的应有内容，也是新时代一个忠诚爱国者的基本操守。国家针对香港、澳门两个特别行政区提出的坚定不移贯彻执行的基本方针是（ ）。","o":["高度自治","港人治港","澳人治澳","一国两制"],"a":"D"},{"ch":3,"t":"s","n":33,"stem":"当今世界，没有哪个国家能独自应对人类面临的各种挑战，也没有哪个国家能退回到自我封闭的孤岛。如何共同建设一个持久和平、普遍安全、共同繁荣、开放包容、清洁美丽的世界，中国提出了自己的建设治理方案。这个方案就是（ ）。","o":["在经济全球化中坚守中国主权","正确处理中国与世界的辩证关系","构建人类命运共同体","坚持平等互利、和平共处的国际交往原则"],"a":"C"},{"ch":3,"t":"s","n":34,"stem":"在中华民族5000多年绵延发展的历史长河中，（ ）始终是激昂的主旋律，始终是激励我国各族人民自强不息的强大力量。","o":["爱国主义","民族精神","时代精神","改革创新"],"a":"A"},{"ch":3,"t":"s","n":35,"stem":"中国近代民主革命的先驱者孙中山说：“天下大势，浩浩汤汤，顺之者昌，逆之者亡。”如果从精神层面讲，这段话说的是（ ）。","o":["时代精神","中国精神","民族精神","与时俱进精神"],"a":"A"},{"ch":3,"t":"s","n":36,"stem":"在几千年历史长河中，中国人民始终心怀梦想、不懈追求，我们不仅形成了小康生活的理念，而且秉持天下为公的情怀，盘古开天、女娲补天、伏羲画卦、神农尝草、夸父追日、精卫填海、愚公移山等我国古代神话深刻反映了中国人民勇于追求和实现梦想的执着精神。这些事例说明中华民族是一个具有（ ）的民族。","o":["伟大奋斗精神","伟大创造精神","伟大梦想精神","伟大团结精神"],"a":"C"},{"ch":3,"t":"s","n":37,"stem":"在几千年历史长河中，中国人民始终团结一心、同舟共济，建立了统一的多民族国家，发展了56个民族多元一体的融洽民族关系，形成了守望相助的中华民族大家庭。特别是近代以后，面对外来侵略寇急祸重的严峻形势，我国各族人民手挽手、肩并肩，英勇奋斗，浴血奋战，打败了一切穷凶极恶的侵略者，捍卫了民族独立和自由,共同书写了中华民族保卫祖国、抵御外辱的壮丽史诗。这些事例都说明中国人民是一个具有（ ）的民族。","o":["伟大梦想精神","伟大创造精神","伟大奋斗精神","伟大团结精神"],"a":"D"},{"ch":3,"t":"s","n":38,"stem":"在几千年历史长河中，中国人民始终革故鼎新、自强不息，开发和建设了祖国辽阔秀丽的大好河山，开拓了波涛万顷的辽阔海疆，开垦了物产丰富的广袤粮田，治理了桀骜不驯的千百条大江大河，战胜了数不清的自然灾害，建设了星罗棋布的城镇乡村，发展了门类齐全的产业，形成了多姿多彩的生活。这一系列的事例都说明中国人民是一个具有（ ）的民族。","o":["伟大奋斗精神","伟大创造精神","伟大团结精神","伟大梦想精神"],"a":"A"},{"ch":3,"t":"s","n":39,"stem":"在几千年的历史长河中，中国人民始终辛勤劳作、发明创造，我国产生了老子、孔子、庄子、孟子、墨子、孙子、韩非子等闻名于世的伟大思想巨匠，发明了造纸术、火药、印刷术、指南针等深刻影响人类文明进程的伟大科技成果，创作了诗经、楚辞、汉赋、唐诗、宋词、元曲、明清小说等伟大文艺作品，传承了格萨尔王、玛纳斯、江格尔等震撼人心的伟大史诗，建设了万里长城、都江堰、大运河、故宫、布达拉宫等气势浑宏的伟大工程。这一系列的事例都说明中国人民是一个具有（ ）的民族。","o":["伟大奋斗精神","伟大创造精神","伟大团结精神","伟大梦想精神"],"a":"B"},{"ch":3,"t":"s","n":40,"stem":"古籍《孔子家语·五仪解》中说：“人有五仪：有庸人，有士人，有君子，有贤人，有圣人。”强调圣人是人生追求的最高境界，并对圣人作了具体的描述，“所谓圣者,德合于天地，变通无方，穷万事之终始，协庶品之自然，敷其大道而遂成情性。明并日月，化行若神。下民不知其德，睹者不识其邻。此谓圣人也。”这段话反映出（ ）。","o":["中华民族是非常重视高尚品格养成的民族。","中华民族在理解物质生活和精神生活的相互关系时，认为精神生活比物质生活更重要，它是人之所以异于禽兽的主要标志，是中华民族崇尚精神优秀传统的重要标识。","中华民族认为，理想是激励个体的精神内驱力，是凝聚社会整体的精神力量，所以要矢志不渝的坚守理想，它反映着中华民族对理想的不懈追求，是中华民族崇尚精神典型体现。","中华民族十分强调道德修养和道德教化，对道德修养和道德教化的重视是中华民族崇尚精神优秀传统的重要内容。"],"a":"A"},{"ch":3,"t":"s","n":41,"stem":"古籍《世说新语·笺疏》里讲“德成智出，业广惟勤，小胜靠智，大胜靠德。”《中庸》中说“君子戒慎乎其所不睹，恐惧乎其所不闻。莫见乎隐，莫显乎微，故君子慎其独也。”这反映出（ ）。","o":["中华民族崇尚精神的优秀传统还表现在对理想人格的执着追求。","中华民族十分重视精神生活，对物质生活和精神生活的关系有自己独到的见解。","中华民族认为，理想是激励个体的精神内驱力，是凝聚社会整体的精神力量，所以要矢志不渝的坚守理想，它反映出中华民族对理想的不懈追求，是中华民族崇尚精神的典型体现。","中华民族十分强调道德修养和道德教化，重视道德修养和道德教化是中华民族崇尚精神优秀传统的重要内容。"],"a":"D"},{"ch":3,"t":"s","n":42,"stem":"关学大师张载在《张子语录·语录》中说：“为天地立心,为生民立命，为往圣继绝学，为万世开太平。”孔子强调的“杀身成仁”，孟子追求的“舍生取义”；范仲淹心系的“先天下之忧而忧，后天下之乐而乐”都说明（ ）。","o":["中华民族认为，理想是激励个体的精神内驱力，是凝聚社会整体的精神力量，所以要矢志不渝的坚守理想，它反映着中华民族对理想的不懈追求，是中华民族崇尚精神的典型体现。","中华民族在物质生活和精神生活的相互关系的理解上，认为精神生活比物质生活更重要，它是人之所以异于禽兽的主要标志，是中华民族崇尚精神优秀传统的重要标识。","中华民族十分强调道德修养和道德教化，重视道德修养和道德教化是中华民族崇尚精神优秀传统的重要内容。","中华民族崇尚精神的优秀传统还表现为对理想人格的执着追求。"],"a":"A"},{"ch":3,"t":"s","n":43,"stem":"古籍《论语·述而》中说，颜回“饭疏食，饮水，曲肱而枕之，乐亦在其中矣。不义而富且贵，于我如浮云。”《论语·雍也》中也说，颜回“一箪食,一瓢饮,在陋巷。人不堪其忧,回也不改其乐。”这两段话反映了（ ）。","o":["中华民族认为，理想是激励个体的精神内驱力，是凝聚社会整体的精神力量，所以要矢志不渝的坚守理想。它反映出中华民族对理想的不懈追求，是中华民族崇尚精神的典型体现。","中华民族在物质生活和精神生活的相互关系的理解上，认为精神生活比物质生活更重要，它是人之所以异于禽兽的主要标志，是中华民族崇尚精神优秀传统的重要标识。","中华民族十分强调道德修养和道德教化，重视道德修养和道德教化是中华民族崇尚精神优秀传统的重要内容。","中华民族崇尚精神的优秀传统还表现在对理想人格的执着追求。"],"a":"B"},{"ch":3,"t":"s","n":44,"stem":"中华民族能在5000多年的历史长河中历经磨难仍坚韧不倒、生生不息、薪火相传的守候着完整的国家形态，传承着完整的中华文化，如果从精神层面看，其中一个很重要的原因就是深深根植于中华传统优秀文化中的（ ）。","o":["创造精神","爱国主义","团结精神","中国精神"],"a":"D"},{"ch":3,"t":"s","n":45,"stem":"习近平在《习近平谈治国理政》第2卷中讲：“人无精神则不立，国无精神则不强。精神是一个民族赖以长久生存的灵魂，唯有精神上达到一定的高度，这个民族才能在历史的洪流中屹立不倒、奋勇向前。”这段话集中论述了（ ）。","o":["在实现中华民族伟大复兴中国梦的过程中，必须弘扬中国精神，弘扬中国精神是实现中国梦的必要条件。","在实现中华民族伟大复兴中国梦的过程中，中国精神能弘扬最好，不弘扬也行。","在实现中华民族伟大复兴中国梦的过程中，必须弘扬中华民族精神，它是实现中国梦的必要条件。","在实现中华民族伟大复兴中国梦的过程中，必须弘扬改革创新的时代精神，要励精图治。"],"a":"A"},{"ch":3,"t":"m","n":1,"stem":"下列关于爱国主义概念的正确论述是（ ）。","o":["爱国主义体现了人们对自己祖国的深厚感情，揭示个人对祖国的依存关系","爱国主义是人们对自己家园以及民族和文化的归属感、认同感、尊严感与荣誉感的统一","爱国主义是调节个人与国家之间关系的道德要求、政治原则和法律规范","爱国主义是中华民族精神的民族心、民族魂，是中华民族最重要的精神财富","爱国主义就是爱国情感"],"a":"ABCD","e":"E项：爱国主义不只是情感，而是爱国情感、爱国思想、爱国行为的统一，该表述片面。"},{"ch":3,"t":"m","n":2,"stem":"新时代大力弘扬爱国主义的基本要求是（ ）。","o":["拥护国家的基本制度","遵守国家的宪法法律","维护国家安全和统一","捍卫国家利益","为国家的繁荣发展贡献自己的力量"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":3,"t":"m","n":3,"stem":"实现中国梦之所以要积极弘扬中国精神，主要是因为（ ）。","o":["它是凝聚中国力量的精神纽带","它是激发创新创造的精神动力","它是推进复兴伟业的精神支柱","它是爱国主义价值要求的体现","它是民族精神的客观要求"],"a":"ABC","e":"D、E项：中国精神的作用集中在凝聚力量、激发创新创造、提供精神支柱三点，其余表述不属于“为什么弘扬”。"},{"ch":3,"t":"m","n":4,"stem":"中国人民用勤劳和智慧书写了辉煌的中华历史，也培育铸就了独特的中国精神，为当代中国的发展和文明进步提供了强大的精神动力。中国精神的主要内容是（ ）。","o":["伟大创造精神","伟大奋斗精神","伟大团结精神","伟大梦想精神","愚公精神"],"a":"ABCD","e":"E项：“愚公精神”是具体精神形态，不是中国精神的主要内容（伟大创造、奋斗、团结、梦想精神）。"},{"ch":3,"t":"m","n":5,"stem":"改革创新是时代精神的核心，其内容包括（ ）。","o":["理论创新","制度创新","科技创新","文化创新"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":3,"t":"m","n":6,"stem":"改革创新要求人们自觉增强改革创新的能力本领。它要求大学生（ ）。","o":["夯实创新基础","培养创新思维","投身创新实践","增强创新意志","要有改革意识"],"a":"ABC","e":"D、E项：增强改革创新本领要求夯实创新基础、培养创新思维、投身创新实践，“增强创新意志”“改革意识”不在此列。"},{"ch":3,"t":"m","n":7,"stem":"下列关于爱国主义特点的表述，正确的有（ ）。","o":["爱国主义是现实的","爱国主义是历史的、具体的","爱国主义具有虚化的","在未来的共产主义社会，国家消亡后，爱国主义就会失去存在的条件和意义"],"a":"ABD","e":"C项：爱国主义是真实具体的，“虚化”表述错误。"},{"ch":3,"t":"m","n":8,"stem":"世界上没有哪个国家不主张爱国，爱国主义作为一种伟大的精神品格受到了各个国家人民的推崇。爱国主义是（ ）。","o":["一种重大的政治原则","人们对自己祖国的浓厚感情;","鼓舞和凝聚各民族的精神支柱","调整个人与国家关系的道德规范"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":3,"t":"m","n":9,"stem":"对个人而言，爱国主义包含着三个基本方面内容，它们是（ ），是三者的辩证统一。","o":["情感","思想","行为","认识"],"a":"ABC","e":"D项：爱国主义三方面内容是爱国情感、爱国思想、爱国行为，“认识”并入思想之中。"},{"ch":3,"t":"m","n":10,"stem":"关于爱国主义下列说法不正确的是（ ）。","o":["爱国主义不但要爱祖国的大好河山，还要爱祖国的灿烂文化","爱国主义在不同的历史时期有着不同的内涵","民族主义是爱国主义的高级阶段","民族主义等于爱国主义"],"a":"CD","e":"C项：民族主义不等同于爱国主义，更不是其“高级阶段”；D项：把二者划等号错误。"},{"ch":3,"t":"m","n":11,"stem":"在当代中国，爱国主义首先表现在对社会主义中国的热爱上，这是因为（ ）。","o":["选择社会主义制度，是中国人民长期艰苦奋斗的结果","中国共产党人的最高理想就是建设和发展中国特色社会主义","社会主义是一种先进的社会制度，用社会主义取代资本主义是人类历史发展的必然","改革开放以来我们取得一切成绩和进步的根本原因就是开辟了中国特色社会主义道路，形成了中国特色社会主义理论体系，确立中国特色社会主义制度，发展了中国特色社会主义文化。"],"a":"ACD","e":"B项：中国共产党人的最高理想是实现共产主义，不是建设中国特色社会主义。"},{"ch":3,"t":"m","n":12,"stem":"世界上没有一个民族能够在亦步亦趋走别人的路实现自己的发展振兴，也没有一个民族会在心神不宁、游移彷徨中成就自己的光荣与梦想。坚持和发展中国特色社会主义，需要我们（ ）只有自觉弘扬中国精神，增强民族自尊心和自信心，坚定不移走自己的路，才能使全体人民在实现复兴伟业的征途中拥有坚如磐石的精神和信仰力量，不畏困难吓倒，不为诱惑所动，不为干扰迷惑，坚定不移的把我们的事业不断推向前进，直至光辉彼岸。","o":["正确认识当代世界和中国发展大势;","正确认识中国精神;","正确认识中国特色和国际相比较，坚持道路自信、理论自信、制度自信和文化自信","正确弘扬中国精神","正确认识传统文化，增强全民族的文化自信"],"a":"AC","e":"B、D、E项：题干强调“正确认识世界和中国发展大势”“正确认识中国特色和国际比较”，其余属弘扬中国精神的其他要求，与设问不对应。"},{"ch":3,"t":"m","n":13,"stem":"习总书记说，实现中国梦必须弘扬中国精神，这是因为中国精神（ ）。","o":["是凝聚中国力量的精神纽带","是激发创造创新的精神动力","是兴国之魂强国之魂","是推进复兴伟业的精神定力","不能鼓舞民族复兴的斗志"],"a":"ABCD","e":"E项：中国精神能鼓舞民族复兴斗志，“不能鼓舞”表述错误。"},{"ch":3,"t":"m","n":14,"stem":"时代精神是一个国家和民族在新的历史条件下形成和发展的，是体现民族特质并顺应时代潮流的（ ）的总和，是一种对社会发展具有积极影响和推动作用的集体意识。","o":["思想观念","价值取向","精神风貌","社会风尚","时代要求"],"a":"ABCD","e":"E项：“时代要求”不是时代精神的构成要素（思想观念、价值取向、精神风貌、社会风尚）。"},{"ch":3,"t":"m","n":15,"stem":"习近平强调，民族复兴不仅表现为经济腾飞，更要有中国精神的振奋和彰显；只有（ ），中国特色社会主义事业才能顺利向前推进。","o":["物质文明建设和精神文明建设都搞好;","国家的物质力量和精神力量都增强","全国各族人民的物质生活和精神生活都改善;","政治民主和法治公平都彰显","以德治国和依法治国都实现"],"a":"ABC","e":"D、E项：习近平强调的是物质文明与精神文明、物质力量与精神力量、物质生活与精神生活“都搞好、都增强、都改善”，另两项不是原表述。"},{"ch":3,"t":"m","n":16,"stem":"在新民主主义革命时期，毛泽东在《纪念白求恩》这篇文章中说：“我们大家要学习他毫无自私自利之心的精神。从这点出发，就可以变为大有利于人民的人。一个人能力有大小，但只要有这点精神，就是一个高尚的人，一个纯粹的人，一个有道德的人，一个脱离了低级趣味的人，一个有益于人民的人。”这段话反映了中国共产党是中华民族重精神优秀传统的（ ）。","o":["忠实继承者","坚定弘扬者","不变的固守者;","逆反的背叛者","机械的传承者"],"a":"AB","e":"C、D、E项：对传统精神应做忠实继承者、坚定弘扬者，“固守”“背叛”“机械传承”均不符合要求。"},{"ch":3,"t":"m","n":17,"stem":"中国精神是一个极为重要的概念，正确理解中国精神的概念内涵是弘扬中国精神的必要前提。中国精神的概念内涵包括（ ）。","o":["中国精神是以爱国主义为核心的民族精神和以改革创新为核心的时代精神的有机统一","中国精神是我国文明进步和发展的强大精神支柱和支撑","中国精神是凝心聚力的兴国之魂","中国精神是凝心聚力的强国之魂","中国精神是增强我国文化软实力的重要表现"],"a":"ABCD","e":"E项：增强文化软实力是中国精神的意义，不属于其概念内涵的四层表述。"},{"ch":3,"t":"m","n":18,"stem":"2013年3月5日，习近平在第十二届全国人民代表大会第一次会议上强调：实现中国梦必须弘扬中国精神。这就是以爱国主义为核心的民族精神，以改革创新为核心的时代精神。习近平认为，中国精神是（ ）。","o":["凝心聚力的兴国之魂","核心价值的精神之魂","凝心聚力的强国之魂","公平正义的法治之魂","崇尚善念的道德之魂"],"a":"AC","e":"B、D、E项：“核心价值的精神之魂”“法治之魂”“道德之魂”均为生造提法，习近平原话是兴国之魂、强国之魂。"},{"ch":3,"t":"m","n":19,"stem":"南开大学的创办者、老校长张伯苓针对学生“爱国三问”——你是中国人吗？你爱中国吗？你愿意中国好吗？这既是历史之问，也是时代之问、未来之问。这说明（ ）。（用92页材料）","o":["某大学硕士研究生田某某由于“辱国”言论被开除，说明新时代对大学生进行弘扬中国精神教育仍然具有一定的必要性。","现实生活中，在中国社会屡次出现“精日现象”，说明“爱国三问”仍然具有一定的现实性。","在经济全球化时代，“爱国三问”已经过时，不具有必要性","从构建人类命运共同体的角度看，“爱国三问”应该被弱化","从构建人类命运共同体的角度看，应该强调国际视野而不应该过分强调国家主权"],"a":"AB","e":"C项：“爱国三问已过时”错误；D项：人类命运共同体不意味着弱化爱国；E项：强调国际视野不能否定国家主权。"},{"ch":3,"t":"m","n":20,"stem":"实现中华民族伟大复兴的中国梦，必须弘扬中国精神，这就是（ ）。","o":["以爱国主义为核心的民族精神;","以改革创新为核心的时代精神","以坚韧不拔为核心的愚公精神","以为国分忧、为民族争气为核心的铁人精神","以勇于创造为核心的民族精神"],"a":"ABE","e":"C、D项：愚公精神、铁人精神是具体精神形态；E项：民族精神的核心是爱国主义，不是“勇于创造”。"},{"ch":3,"t":"m","n":21,"stem":"改革创新之所以是时代的要求，主要是因为（ ）。","o":["创新始终是推动人类社会发展的第一动力","创新能力是当今国际竞争新优势的集中体现","改革创新是我国赢得未来的必然要求","改革创新是我们的奋斗目标","改革创新是实现民族复兴的客观要求"],"a":"ABC","e":"D项：改革创新是动力和路径，不是奋斗目标本身；E项：不是教材所列的三条主要原因。"},{"ch":3,"t":"m","n":22,"stem":"爱国主义体现了人们对自己祖国的深厚感情、揭示了个人和国家的相互依存关系，是人们对自己家园以及民族和文化的（ ）的统一。","o":["归属感","认同感","尊严感","荣誉感","民族感"],"a":"ABCD","e":"E项：“民族感”不是教材表述，应为归属感、认同感、尊严感、荣誉感。"},{"ch":3,"t":"m","n":23,"stem":"维护国家统一是我国公民的基本义务，切实做好香港、澳门的繁荣稳定。在大陆地区，坚决反对（ ），做好民族团结工作，还要解决台湾问题。","o":["藏独","疆独","台独","港独"],"a":"AB","e":"C、D项：题干限定“在大陆地区”，针对的是藏独、疆独分裂势力；台独、港独属另外语境下的表述。"},{"ch":3,"t":"m","n":24,"stem":"新时代弘扬爱国主义，要求我们正确处理（ ），推动人类的文明的发展进步。","o":["立足中国与面向世界的辩证关系","既尊重各国的历史特点、文化传统、发展道路，并从中汲取有益成分壮大中华文化、增强其活力和生机","又要求同存异、交流互鉴、共同前进","中国精神和中国力量的关系"],"a":"ABC","e":"D项：“中国精神和中国力量的关系”不是新时代弘扬爱国主义要处理的那对关系。"},{"ch":3,"t":"m","n":25,"stem":"中国精神就是以（ ）为核心的民族精神和以（ ）为核心的时代精神的辩证统一，是我国文明进步和发展的强大精神支柱，是凝心聚力的兴国之魂、强国之魂。","o":["爱国主义","改革创新","延安精神","载人航天精神"],"a":"AB","e":"C、D项：延安精神、载人航天精神是具体精神形态，不是民族精神和时代精神的核心。"},{"ch":3,"t":"m","n":26,"stem":"（ ）是实现中华民族伟大复兴的必然要求，是不可阻挡的历史进程，也是全体中华儿女的共同心愿。","o":["保持香港长期繁荣稳定","保持澳门长期繁荣稳定","解决台湾问题、实现祖国完全统一","保持台湾长期繁荣稳定","经济增长率始终处于高位"],"a":"ABC","e":"D项：台湾问题的核心是实现祖国完全统一，不是“保持台湾长期繁荣稳定”；E项：经济增长率与题意无关。"},{"ch":3,"t":"m","n":27,"stem":"2005年3月14日第十届全国人民代表大会第三次会议通过 《反分裂国家法》。《反分裂国家法》规定：（ ）国家得采取非和平方式及其他必要措施，捍卫国家主权和领土完整。”","o":["“台独”分裂势力以任何名义、任何方式造成台湾从中国分裂出去的事实","或者发生将会导致台湾从中国分裂出去的重大事变","或者和平统一的可能性完全丧失","或者台湾地方政府否定“九二共识”","或者台湾地方政府实行“亲美仇中”的外交政策"],"a":"ABC","e":"D、E项：《反分裂国家法》规定的三种情形是造成分裂事实、发生重大事变、和平统一可能性完全丧失，不含否定“九二共识”、亲美仇中。"},{"ch":3,"t":"m","n":28,"stem":"我国的爱国主义始终围绕着实现（ ）而发展，最终汇流于中国特色社会主义。中国特色社会主义道路、理论体系、制度体系、文化体系是实现民族复兴中国梦的唯一正确的道路、理论、制度和文化，必须予以坚持。要坚持中国特色社会主义，就必须同各种违背中国特色社会主义的错误思潮作斗争，对其予以批判。","o":["国家富强","人民幸福","民族独立","民族解放","民族复兴"],"a":"ABCD","e":"E项：民族复兴是总目标，爱国主义围绕的是国家富强、民族独立、民族解放、人民幸福。"},{"ch":3,"t":"m","n":29,"stem":"爱国主义体现了人民群众对自己祖国的深厚感情，这种深厚感情主要是对祖国的（ ）。","o":["荣誉感","归属感","尊严感","认同感","庄严感"],"a":"ABCD","e":"E项：“庄严感”不是教材表述的四种情感。"},{"ch":3,"t":"m","n":30,"stem":"爱国主义是（ ）的有机统一体。","o":["爱国情感","爱国思想","爱国行为","爱国意志","爱国认识"],"a":"ABC","e":"D、E项：爱国主义是爱国情感、爱国思想、爱国行为的统一体，不含“爱国意志”“爱国认识”。"},{"ch":3,"t":"m","n":31,"stem":"爱国主义是调节国家和个人之间关系的理论原则和规范，这个理论原则和规范是通过（ ）等形式表现的。","o":["政治原则","道德要求","法律规范","价值追求","人的主观意识"],"a":"ABC","e":"D、E项：爱国主义通过政治原则、道德要求、法律规范三种形式表现，不含价值追求和主观意识。"},{"ch":3,"t":"m","n":32,"stem":"新时代的大学生，在实现中华民族伟大复兴的历史进程中应该做忠诚的爱国者。下列哪些选项是做忠诚的爱国者的要求（ ）。","o":["维护和促进祖国统一","促进民族团结","增强国家安全意识","履行维护国家安全义务","不遵守国家法律"],"a":"ABCD","e":"E项：“不遵守国家法律”与做忠诚爱国者的要求直接冲突。"},{"ch":3,"t":"m","n":33,"stem":"改革创新，首先要求人们自觉树立改革创新的自觉意识。它要求大学生（ ）。","o":["增强改革创新的责任感","树立敢于突破陈规的意识","树立大胆探索未知领域的信心","增强克服困难的意志","不唯书不唯上的思想品质"],"a":"ABC","e":"D、E项：自觉树立改革创新意识包括增强责任感、树立突破陈规意识、树立探索未知的信心，另两项属于能力本领层面。"},{"ch":3,"t":"m","n":34,"stem":"新时代的大学生置身于实现中华民族伟大复兴的时代洪流之中，应当以时代使命为己任，把握时代脉搏、迎接时代挑战，做改革创新的生力军。这需要（ ）。","o":["树立改革创新的自觉意识","增强改革创新的能力本领","强化为民服务的初心信仰","践行社会主义核心价值观","增强克服困难的精神毅力"],"a":"AB","e":"C、D、E项：做改革创新生力军要求树立自觉意识、增强能力本领，其余不属于教材所列的两项要求。"},{"ch":3,"t":"m","n":35,"stem":"2025年9月3日，北京天安门广场上，一支支新型作战编队隆隆驶过，无人机蜂群与隐形战机协同编组，高超音速导弹巍然矗立，部分陆海空基战略重器、高超精打、无人和反无人装备首次亮相，这不是科幻电影，而是中国抗战胜利80周年阅兵式的现实场景。以上内容说明：","o":["创新是推动发展人类社会的重要力量","创新能力是当今国际竞争新优势的集中体现","创新能够引领发展的主动权","创新是国家发展全局的核心位置","最根本的是要增强自主创新能力"],"a":"BC","e":"按参考答案，材料直接说明的是“创新能力是国际竞争新优势的集中体现”“创新能够引领发展的主动权”；A、D、E属引申性表述，非材料直接指向。"},{"ch":3,"t":"j","n":1,"stem":"伟大的民族精神包括伟大创造精神、伟大奋斗精神和伟大团结精神。","a":"F"},{"ch":3,"t":"j","n":2,"stem":"国防力量强大能为国家、民族的生存发展提供有力的支撑，而国防力量羸弱则会使国家、民族面临凌辱甚至被侵略的灾难。","a":"T"},{"ch":3,"t":"j","n":3,"stem":"如果国家无法给予我想得到的东西，我就有理由不爱国。","a":"F"},{"ch":3,"t":"j","n":4,"stem":"爱国不分先后，爱国也不在于做大事还是做小事。","a":"T"},{"ch":3,"t":"j","n":5,"stem":"在现阶段，爱国主义主要表现在献身于建设和保卫社会主义现代化事业，献身于促进祖国统一的事业。","a":"F"},{"ch":3,"t":"j","n":6,"stem":"爱国主义在不同的历史时代和文化背景下，其内涵不同。","a":"T"},{"ch":3,"t":"j","n":7,"stem":"爱祖国是抽象的政治概念，不是具体的。","a":"F"},{"ch":3,"t":"j","n":8,"stem":"中国精神就是以改革创新为核心的民族精神和以爱国主义为核心的时代精神。","a":"F"},{"ch":3,"t":"j","n":9,"stem":"习近平主持召开中央国家安全委员会第一次会议时强调，坚持总体国家安全观，即必须坚持以人民安全为宗旨，以政治安全为根本，以经济安全为基础，以军事、文化、社会安全为保障，以促进国际安全为依托，走出一条中国特色国家安全道路。","a":"T"},{"ch":3,"t":"j","n":10,"stem":"培养创新型思维方式是增强改革创新能力本领的前提。","a":"T"},{"ch":3,"t":"j","n":11,"stem":"“一国两制”是求维护祖国统一之同，存意识形态之异。","a":"T"},{"ch":3,"t":"j","n":12,"stem":"爱国主义是一个社会范畴，它是随着社会的发展而变化的，反映的是社会发展的客观规律。","a":"T"},{"ch":3,"t":"j","n":13,"stem":"实施创新驱动发展战略，最根本的是要增强自主创新能力，最紧迫的是要破除体制机制障碍，最大限度地解放和激发科技作为第一生产力所蕴含的巨大潜能。","a":"T"},{"ch":3,"t":"j","n":14,"stem":"爱国主义是调节个人与祖国之间关系的道德要求。","a":"T"},{"ch":3,"t":"j","n":15,"stem":"中国精神是我国当今时代的民族精神和时代精神的有机统一。","a":"F"},{"ch":3,"t":"j","n":16,"stem":"中国精神具有浓烈的中华民族特征，赋予中国精神这种特征的是改革创新。","a":"F"},{"ch":3,"t":"j","n":17,"stem":"在中华民族的悠久历史中，爱国主义始终是激昂的主旋律，是激励我国各族人民自强不息的强大力量。","a":"T"},{"ch":3,"t":"j","n":18,"stem":"“灭人之国，必先去其史”。这句话说明在新时代坚守爱国主义必须要尊重和传承中华民族的历史和文化。","a":"T"},{"ch":3,"t":"j","n":19,"stem":"改革开放始终是推动人类社会发展的第一动力。","a":"F"},{"ch":3,"t":"j","n":20,"stem":"民族精神和时代精神是相互独立、各自发展的，共同构成了中国精神。","a":"F"},{"ch":3,"t":"e","n":1,"stem":"新时代的中国青年肩负着民族复兴的重任。回顾历史，从‘两弹一星’元勋们隐姓埋名、无私奉献，到中国航天人‘特别能吃苦、特别能战斗、特别能攻关、特别能奉献’的载人航天精神；从抗疫斗争中逆行而上的白衣天使，到奋战在脱贫攻坚一线的党员干部……在他们身上，我们看到了爱国主义精神的伟大传承，也看到了改革创新、锐意进取的时代光芒。中国精神正是在一代代人的奋斗中得以继承和弘扬。”\n结合材料，请回答：\n1、“中国精神”的内涵是什么？材料中是如何体现这一内涵的？\n2、作为新时代的青年大学生，你应该如何理解和践行“中国精神”，为实现中华民族伟大复兴贡献自己的力量？","k":["中国精神的内涵：以爱国主义为核心的民族精神和以改革创新为核心的时代精神的统一。","爱国主义体现：两弹一星元勋的奉献、航天人的攻关奉献、抗疫逆行者的担当、扶贫干部的为民情怀，都把国家利益放在首位。","改革创新体现：打破技术垄断、攻关未知领域，抗疫与脱贫中的新方法新模式，都是改革创新、敢于超越的时代精神。","理解与坚定：认识中国精神是凝聚中国力量、实现民族复兴的精神纽带，坚定“四个自信”。","继承传统：学习英雄模范事迹，把爱国情、强国志落实到日常学习生活。","勇于创新：珍惜学习时光，培养批判性思维与创新能力，练就过硬本领。","投身实践：参与社会实践和志愿服务，把个人理想融入国家发展伟业。"]},{"ch":4,"t":"s","n":1,"stem":"（ ）是社会主义核心价值体系的基础。","o":["民族精神和时代精神","社会主义荣辱观","马克思主义指导思想","中国特色社会主义共同理想"],"a":"B"},{"ch":4,"t":"s","n":2,"stem":"社会主义核心价值体系是全党全国各族人民团结奋斗的（ ）。","o":["共同纲领","共同理想","共同思想基础","理论基础"],"a":"C"},{"ch":4,"t":"s","n":3,"stem":"社会主义核心价值体系把我们党倡导的基本理论、思想观念和（ ）系统凝练地整合在一起。","o":["价值取向","基本纲领","基本路线","方针政策"],"a":"A"},{"ch":4,"t":"s","n":4,"stem":"（ ）是践行社会主义核心价值体系的主体。","o":["工人阶级","青少年","党员干部","人民群众"],"a":"D"},{"ch":4,"t":"s","n":5,"stem":"建设社会主义核心价值体系，第一位的就是坚持（ ）。","o":["社会主义核心价值观","中国共产党的执政地位","中国特色社会主义","马克思主义的指导地位"],"a":"A"},{"ch":4,"t":"s","n":6,"stem":"社会主义核心价值观和社会主义核心价值体系具有内在的一致性，都体现了社会主义（ ）的本质要求，体现了社会主义制度在思想和精神层面的质的规定性，是建设中国特色社会主义现代化强国、实现中华民族伟大复兴中国梦的价值引领。","o":["物质文明","道德观念","意识形态","精神文明"],"a":"C"},{"ch":4,"t":"s","n":7,"stem":"社会主义核心价值观是社会主义核心价值体系的（ ），体现了社会主义核心价值体系的根本性质和基本特征，反映了社会主义核心价值体系的丰富内涵和实践要求，是社会主义核心价值体系的高度凝练和集中表达。","o":["基础","精神内核","灵魂","本质要求"],"a":"B"},{"ch":4,"t":"s","n":8,"stem":"（ ）承载着一个民族、一个国家的精神追求，体现一个社会评判是非曲直的价值标准。","o":["民族精神","理想信念","价值取向","核心价值观"],"a":"D"},{"ch":4,"t":"s","n":9,"stem":"建设社会主义核心价值体系，培育和践行社会主义核心价值观都应把（ ）共同理想作为共同的主题。","o":["中国特色社会主义","爱国主义","马克思主义","社会主义"],"a":"A"},{"ch":4,"t":"s","n":10,"stem":"党的（ ）提出，要倡导富强、民主、文明、和谐，倡导自由、平等、公正、法治，倡导爱国、敬业、诚信、友善，积极培育和践行社会主义核心价值观。","o":["十九大","十七大","十八大","二十大"],"a":"C"},{"ch":4,"t":"s","n":11,"stem":"社会主义核心价值观中，体现公民层面价值要求的是（ ）","o":["爱国、敬业、诚信、友善","富强、民主、文明、和谐","自由、平等、公正、法治","社会主义荣辱观"],"a":"A"},{"ch":4,"t":"s","n":12,"stem":"社会主义核心价值观中，体现社会层面价值要求的是（ ）","o":["富强、民主、文明、和谐","自由、平等、公正、法治","爱国、敬业、诚信、友善","社会主义荣辱观"],"a":"B"},{"ch":4,"t":"s","n":13,"stem":"（ ）是一定社会形态社会性质的集中表现，在一个社会的思想观念体系中处于主导地位，体现着社会制度、社会运行的基本原则和社会发展的根本方向。","o":["思想道德素质","人生观","法治素质","核心价值观"],"a":"D"},{"ch":4,"t":"s","n":14,"stem":"“空谈误国，实干兴邦”和“天下难事，必作于易；天下大事，必作于细”都体现了（ ）的重要性。","o":["修德","勤学","笃实","明辨"],"a":"C"},{"ch":4,"t":"s","n":15,"stem":"“人生的扣子从一开始就要扣好。”大学生成长成才和全面发展，离不开正确（ ）的引领。正确的（ ）能够引导大学生把人生价值追求融入国家和民族事业，努力成为中国特色社会主义事业的合格建设者和可靠接班人。","o":["价值观","世界观","人生观","以上都是"],"a":"A"},{"ch":4,"t":"s","n":16,"stem":"社会主义核心价值观以其先进性、人民性和真实性而居于人类社会的价值制高点，具有强大的（ ）。","o":["精神力量","道义力量","舆论力量","真理力量"],"a":"B"},{"ch":4,"t":"s","n":17,"stem":"（ ）反映了人们对美好社会的期望和憧憬，是衡量现代社会是否充满活力又和谐有序的重要标志。","o":["富强、和谐、自由、敬业","富强、民主、文明、和谐","爱国、敬业、诚信、友善","自由、平等、公正、法治"],"a":"D"},{"ch":4,"t":"s","n":18,"stem":"（ ）反映了“中国梦”的实现道路：中国特色社会主义。","o":["倡导“富强、民主、文明、和谐”","倡导“自由、平等、公正、法治”","倡导“爱国、敬业、诚信、友善”","倡导“富强、和谐、自由、敬业”"],"a":"A"},{"ch":4,"t":"s","n":19,"stem":"先秦时期就提出了“和而不同”“和合中庸”“政通人和”“天人合一”“协和万邦”等丰富多彩、意蕴深远的（ ）理念。","o":["重民本","重伦理","重和谐","重爱国"],"a":"C"},{"ch":4,"t":"s","n":20,"stem":"社会主义核心价值体系主要包括马克思主义指导思想、中国特色社会主义共同理想、以（ ）为核心的民族精神和以（ ）为核心的时代精神、社会主义荣辱观。","o":["爱国主义 改革创新","社会主义 与时俱进","爱国主义 团结奋斗","艰苦奋斗 与时俱进"],"a":"A"},{"ch":4,"t":"s","n":21,"stem":"习近平总书记强调，培育和践行社会主义核心价值观，要把社会主义核心价值观融入社会发展各方面，转化为人民的（ ）和行为习惯。","o":["理想信念","道德情操","情感认同","价值追求"],"a":"C"},{"ch":4,"t":"s","n":22,"stem":"社会主义核心价值体系是（ ）在价值层面的本质规定。","o":["社会主义意识形态","社会意识形态","社会主义制度","中国特色社会主义"],"a":"C"},{"ch":4,"t":"s","n":23,"stem":"中国梦的提出，是新时期我国关于发展的神圣宣示，也是价值观念的自信和自觉。提出中国梦，就是要在全社会牢牢铸起坚实的精神支柱，是社会的精神文化建设、价值建设的自觉追求，只有（ ）才能将全社会的发展诉求凝聚成中国梦。","o":["社会主义思想道德建设","社会主义核心价值观","马克思主义中国化","社会主义精神文明"],"a":"B"},{"ch":4,"t":"s","n":24,"stem":"（ ）是文化软实力的灵魂、文化软实力建设的重点，是决定文化性质和方向的最深层次要素。","o":["开拓创新","民族精神","核心价值观","先进文化"],"a":"C"},{"ch":4,"t":"s","n":25,"stem":"社会主义核心价值体系的主题是（ ）。","o":["社会主义荣辱观","马克思主义指导思想","以爱国主义为核心的民族精神和以改革创新为核心的时代精神","中国特色社会主义共同理想"],"a":"D"},{"ch":4,"t":"s","n":26,"stem":"社会主义核心价值体系的灵魂是（ ）。","o":["马克思主义","共同理想","时代精神","社会主义荣辱观"],"a":"A"},{"ch":4,"t":"s","n":27,"stem":"社会主义核心价值观是( )的价值遵循。","o":["提高国家文化软实力","坚持和发展中国特色社会主义","实现中国梦","实现祖国统一"],"a":"B"},{"ch":4,"t":"s","n":28,"stem":"下列选项中，最能体现社会主义核心价值观“人民性”本质属性的是（ ）","o":["顺应全球绿色发展趋势​","解决群众 “看病难、上学贵” 问题​","推动构建人类命运共同体​","传承中华优秀传统文化"],"a":"B"},{"ch":4,"t":"s","n":29,"stem":"社会思潮越是纷繁复杂，越需要主旋律，越需要用（ ）的指导思想引领多样化的社会意识。","o":["多元化","高度统一","高度集中","一元化"],"a":"D"},{"ch":4,"t":"s","n":30,"stem":"社会主义荣辱观是社会主义核心价值体系的（ ）。","o":["主题","灵魂","基础","精髓"],"a":"C"},{"ch":4,"t":"s","n":31,"stem":"社会主义核心价值体系以科学世界观和方法论为指导，体现了社会主义意识形态的本质，反映了对共产党执政规律、社会主义建设规律、（ ）的深刻认识。","o":["人类社会发展规律","当前人类发展规律","当代世界发展规律","人与自然发展规律"],"a":"A"},{"ch":4,"t":"s","n":32,"stem":"人民有信仰，国家才有力量。将社会主义核心价值观的教育宣传活动，融入国民教育和（ ）建设全过程，同改革开放的实践经验和伟大成就联系起来，我们就能不断形成更加广泛的价值认同，不仅为国家发展助力，更为民族进步铸魂。","o":["政治文明","精神文明","物质文明","生态文明"],"a":"B"},{"ch":4,"t":"s","n":33,"stem":"（ ）能够引导大学生把人生价值追求融入国家和民族事业，始终站在人民大众立场，同人民一道拼搏、同祖国一道前进，服务人民、奉献社会，努力成为中国特色社会主义事业的合格建设者和可靠接班人。","o":["正确的价值观","正确的价值取向","正确的人生观","正确的道德观"],"a":"A"},{"ch":4,"t":"s","n":34,"stem":"社会主义核心价值观把涉及国家、社会、公民的价值要求融为一体，体现了社会主义本质要求，继承了中华优秀传统文化，吸收了世界文明成果，体现了时代精神，回答了新的历史时期有关国家建设、社会建设和公民个人等方面的重大问题。其中，\"自由、平等、公正、法治\"回答的是（ ）。","o":["培育什么样的公民","建设什么样的国家","建设什么样的社会","怎样建设社会主义法治国家"],"a":"C"},{"ch":4,"t":"s","n":35,"stem":"社会主义核心价值观是实现中华民族伟大复兴的中国梦的（ ）。","o":["共同理想","价值支撑","精神动力","根本指针"],"a":"B"},{"ch":4,"t":"s","n":36,"stem":"社会主义核心价值观是社会主义核心价值体系的（ ）。","o":["条件","前提","基础","内核"],"a":"D"},{"ch":4,"t":"s","n":37,"stem":"社会主义核心价值观是( )的最大公约数。","o":["增进社会团结和谐","促进社会进步","提高国家文化软实力","实现祖国统一"],"a":"A"},{"ch":4,"t":"s","n":38,"stem":"社会主义核心价值观的现实基础是( )。","o":["中国梦","中国特色社会主义道路","改革开放","中国特色社会主义建设"],"a":"D"},{"ch":4,"t":"s","n":39,"stem":"社会主义核心价值观代表最广大人民的根本利益体现了其( )。","o":["道义性","人民性","人本性","真实性"],"a":"B"},{"ch":4,"t":"s","n":40,"stem":"社会主义核心价值观必须立足（ ），符合广大人民群众的期待。","o":["世界各国普适性的标准","国际大形势","中国特色社会主义伟大实践","西方国家的建设实践"],"a":"C"},{"ch":4,"t":"m","n":1,"stem":"下列对社会主义核心价值观与中华优秀传统文化的关系表述正确的是（ ）。","o":["中华优秀传统文化是中华民族的精神命脉","中华优秀传统文化是涵养社会主义价值观的重要保障","中华优秀传统文化的价值已经褪色","要同我们正在进行的奋斗相结合培育和弘扬社会主义核心价值观必须立足中华优秀传统文化"],"a":"ABD","e":"C项：中华优秀传统文化至今仍有强大生命力，说“价值已经褪色”错误。"},{"ch":4,"t":"m","n":2,"stem":"关于社会主义核心价值观与中国特色社会主义建设的关系，下列表述正确的是（ ）","o":["中国特色社会主义建设是社会主义核心价值观的实践根据","中国特色社会主义建设展示着社会主义核心价值观的生机活力","中国特色社会主义建设的成功经验是对社会主义核心价值观正确性、可信性的检验","中国特色社会主义建设的新推进不断为社会主义核心价值观注入丰富而鲜活的时代内涵"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":3,"stem":"坚定社会主义核心价值观，要求我们（ ）。","o":["借鉴吸收别国的发展模式","充分认识社会主义核心价值观引的优越性及其在中华民族实现自己梦想的奋斗中所具有的重大意义","自觉以社会主义核心价值观引领多样化的社会思潮","在发展的进程中虚心学习借鉴人类社会创造的一切文明成果"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":4,"stem":"核心价值观在一个社会的思想观念体系中处于主导地位，体现着（ ）的阶级属性、（ ）的基本原则和（ ）的基本方向。","o":["社会制度","社会历史","社会运行","社会发展"],"a":"ACD","e":"B项：核心价值观体现的是社会制度的阶级属性、社会运行的基本原则、社会发展的基本方向，“社会历史”不是原表述。"},{"ch":4,"t":"m","n":5,"stem":"大学生培育和弘扬社会主义核心价值观要做到（ ）","o":["勤学","修德","明辨","笃实"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":6,"stem":"习近平指出：\"每个时代都有每个时代的精神，每个时代都有每个时代的价值观念。一个民族、一个国家的核心价值观必须同这个民族、这个国家的历史文化相契合，同这个民族、这个国家的人民正在进行的奋斗相结合，同这个民族、这个国家需要解决的时代问题相适应。\"由此可见，培育和践行社会主义核心价值观（ ）。","o":["有利于实现民族独立、实现国富民强","有利于引导广大青年进德修业、成才成长","能为实现中华民族伟大复兴的中国梦提供价值支撑","能够为协调推进\"四个全面\"战略布局提供精神动力"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":7,"stem":"加强社会主义核心价值观体系建设的重要意义，在于社会主义核心价值体系（ ）。","o":["指明了中国发展的前进方向","凝聚了民族团结的力量","提供了国家发展的强大动力","奠定了社会和谐的思想基础"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":8,"stem":"社会主义核心价值观以其（ ）而居于人类社会的价值制高点，具有强大的道义力量。","o":["先进性","人民性","真实性","阶级性"],"a":"ABC","e":"D项：社会主义核心价值观的道义力量来自先进性、人民性、真实性，“阶级性”不是其居价值制高点的原因。"},{"ch":4,"t":"m","n":9,"stem":"社会主义核心价值体系的基本内容是（ ）。","o":["马克思主义指导思想","中国特色社会主义共同理想","以爱国主义为核心的民族精神和以改革创新为核心的时代精神","社会主义荣辱观"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":10,"stem":"社会主义核心价值观的基本范畴和基本原则有（ ）。","o":["倡导富强、民主、文明、和谐","倡导自由、平等、公正、法治","倡导爱国、敬业、诚信、友善","倡导改革、开放、民主、科学"],"a":"ABC","e":"D项：“改革、开放、民主、科学”不是社会主义核心价值观的24字表述。"},{"ch":4,"t":"m","n":11,"stem":"在全社会培育和弘扬社会主义核心价值观，需要大学生始终走在时代前列，成为社会主义核心价值观的（ ）。","o":["坚定信仰者","积极传播者","模范践行者","忠实守护者"],"a":"ABC","e":"D项：大学生应做社会主义核心价值观的坚定信仰者、积极传播者、模范践行者，“忠实守护者”不在此列。"},{"ch":4,"t":"m","n":12,"stem":"“一种价值观要真正发挥作用，必须融入社会生活，让人们在实践中感知它，领悟它。”大学生要切实做到（ ），使社会主义核心价值观成为一言一行的基本遵循。","o":["勤学","修德","明辨","笃实"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":13,"stem":"在社会主义核心价值观建设中，要深入挖掘和阐发中国传统文化讲仁爱、重民本以及（ ）的时代价值。","o":["守诚信","崇正义","尚和合","求大同"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":14,"stem":"推进社会主义核心价值观与社会主义核心价值体系建设，就是要弘扬共同理想、凝聚精神力量、引领道德风尚，形成（ ）的精神纽带，使我们的国家、民族、人民在思想上和精神上强起来，更好地坚持中国道路、弘扬中国精神、凝聚中国力量。","o":["团结向上","奋发向上","团结和睦","和睦融洽"],"a":"BC","e":"A、D项：教材表述为形成“奋发向上、团结和睦”的精神纽带，另两项用词不符。"},{"ch":4,"t":"m","n":15,"stem":"社会主义核心价值观体现了社会主义的本质要求，是对我们要（ ）等重大问题的深刻解答。","o":["建设什么样的国家","建设什么样的社会","培养什么样的公民","坚持什么样的道路"],"a":"ABC","e":"D项：社会主义核心价值观解答的是建设什么样的国家、社会、培养什么样的公民，“坚持什么样的道路”不在此列。"},{"ch":4,"t":"m","n":16,"stem":"关于社会主义核心价值观，下列表述正确的是( )。","o":["要同国家制度相配合","要与中华民族优秀灿烂的历史文化相契合","要同我们所要解决的时代问题相适应","要同我们正在进行的奋斗相结合"],"a":"BCD","e":"A项：原文是“同这个民族、这个国家的历史文化相契合，同人民正在进行的奋斗相结合，同需要解决的时代问题相适应”，不含“同国家制度相配合”。"},{"ch":4,"t":"m","n":17,"stem":"坚定的核心价值观自信，是中国特色社会主义( )的价值内核。","o":["道路自信","理论自信","制度自信","文化自信"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":18,"stem":"社会主义核心价值观具有（ ）。","o":["真实性","实践性","先进性","人民性"],"a":"ACD","e":"B项：“实践性”不是社会主义核心价值观的三大特性（先进性、人民性、真实性）。"},{"ch":4,"t":"m","n":19,"stem":"核心价值观其实就是一种德，是（ ）。","o":["个人的德","国家的德","社会的德","他人的德"],"a":"ABC","e":"D项：核心价值观是国家的德、社会的德、个人的德，“他人的德”表述错误。"},{"ch":4,"t":"m","n":20,"stem":"社会主义核心价值体系是社会主义中国的精神旗帜，是（ ）。","o":["社会主义意识形态的本质体现","全党全国各族人民团结奋斗的共同思想基础","实现科学发展、社会和谐的推动力量","国家文化软实力的核心内容"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":4,"t":"m","n":21,"stem":"下列选项中，体现社会主义核心价值观“道义性”的有（ACE ）​","o":["中国向发展中国家提供不附加政治条件的援助​","坚持 “绿水青山就是金山银山” 的发展理念​","推动构建人类命运共同体，促进全球共同发展​","保障公民依法享有广泛的民主权利​","倡导 “己所不欲，勿施于人” 的交往准则"],"a":"ACE","e":"B项：生态文明理念体现的是先进性；D项：保障民主权利体现人民性；二者不属于“道义性”的表现。"},{"ch":4,"t":"m","n":22,"stem":"社会主义核心价值观对中华优秀传统文化的“创造性转化”，具体表现为（ABDE ）","o":["将传统“天人合一”的生态思想转化为“绿色发展”的现代理念​","将传统“天下大同”的理想转化为“人类命运共同体”的时代追求​","直接沿用传统“三纲五常”的伦理规范作为公民层面价值要求​","将传统“敬业乐群”的职业伦理转化为公民层面“敬业”的价值准则​","将传统“讲信修睦”的交往原则转化为“诚信”“友善”的价值要求"],"a":"ABDE","e":"C项：“三纲五常”属封建伦理糟粕，不能直接沿用为公民价值要求。"},{"ch":4,"t":"m","n":23,"stem":"下列选项中，体现社会主义核心价值观对传统文化“创新性发展”的有（ABDE ）","o":["从传统 “民为邦本” 发展为 “以人民为中心” 的发展思想​","从传统 “重义轻利” 发展为 “义利兼顾” 的现代价值取向​","抛弃传统 “和而不同” 思想，照搬西方 “普世价值”​","从传统 “德主刑辅” 发展为 “依法治国与以德治国相结合” 的治理理念","将传统 “孝道” 拓展为 “养老助老” 的社会公共责任"],"a":"ABDE","e":"C项：抛弃“和而不同”、照搬西方“普世价值”，与创新性发展背道而驰。"},{"ch":4,"t":"m","n":24,"stem":"社会主义核心价值观与人类共同价值的契合点体现在（ABCD ）​","o":["倡导 “和谐” 与全球反战浪潮相呼应​","追求 “公正” 与国际社会反对霸权主义的诉求一致​","强调 “友善” 与人类对文明交流互鉴的期待相符​","主张 “富强” 与其他国家追求民族复兴的目标相通​","坚持 “民主” 与西方资本主义民主完全一致"],"a":"ABCD","e":"E项：中国民主是全过程人民民主，与西方资本主义民主有本质区别，“完全一致”错误。"},{"ch":4,"t":"m","n":25,"stem":"相较于人类历史上其他的价值观，社会主义核心价值观具有一系列显著特征，使其拥有强大的感召力和生命力。这些显著特征包括（ABCE）","o":["反映了人类社会发展进步的共同价值理念","彰显了人民至上的根本价值立场","凝聚了全体人民共同的价值追求","继承并超越了西方普世价值的全部内容","具有引领和整合社会思潮的强大功能"],"a":"ABCE","e":"D项：对西方“普世价值”应批判借鉴，说“继承并超越其全部内容”绝对化。"},{"ch":4,"t":"m","n":26,"stem":"正确理解社会主义核心价值观与社会主义核心价值体系的关系，是深刻把握我国社会主义意识形态建设的关键。下列关于二者关系的论述，正确的有（ABDE）","o":["社会主义核心价值观是社会主义核心价值体系的内核与精神实质","社会主义核心价值体系是社会主义核心价值观的理论来源和实践基础","两者在内容上完全等同，只是表述方式不同","社会主义核心价值体系主要包括马克思主义指导思想、中国特色社会主义共 同理想、民族精神和时代精神、社会主义荣辱观","践行社会主义核心价值观，就是对社会主义核心价值体系的根本坚持"],"a":"ABDE","e":"C项：二者是内核与体系的关系，内容上不等同，只是表述不同也错误。"},{"ch":4,"t":"j","n":1,"stem":"社会主义核心价值观具有先进性、人民性和真实性。","a":"T"},{"ch":4,"t":"j","n":2,"stem":"对一个民族、一个国家来说，最持久、最深层的力量是全社会共同认可的核 心价值观。","a":"T"},{"ch":4,"t":"j","n":3,"stem":"社会主义核心价值观必须广泛借鉴世界文明成果，符合人类最美好的价值追求。","a":"T"},{"ch":4,"t":"j","n":4,"stem":"雷锋精神是社会主义核心价值观的生动体现。","a":"T"},{"ch":4,"t":"j","n":5,"stem":"中国优秀传统文化是社会主义核心价值观产生与存在的土壤和社会基础。","a":"T"},{"ch":4,"t":"j","n":6,"stem":"培育和践行社会主义核心价值观，能够有效解决和化解我国的社会矛盾。","a":"T"},{"ch":4,"t":"j","n":7,"stem":"爱国、敬业、诚信、友善，是公民基本道德规范，人人都要遵守。","a":"T"},{"ch":4,"t":"j","n":8,"stem":"建设中国特色社会主义，要突出重点项目来发展，提高国家文化软实力是当前的重中之重。","a":"T"},{"ch":4,"t":"j","n":9,"stem":"中国特色社会主义不是从天上掉下来的，也不是什么复制品、舶来品。","a":"T"},{"ch":4,"t":"j","n":10,"stem":"社会主义核心价值观是社会主义核心价值体系的内核，体现着社会主义核心价值体系的根本性质和基本特征。","a":"T"},{"ch":4,"t":"j","n":11,"stem":"社会主义核心价值观的道义力量主要来源于它的先进性。","a":"F"},{"ch":4,"t":"j","n":12,"stem":"一个民族、一个国家的核心价值观与这个民族、这个国家的历史文化没有关系。","a":"F"},{"ch":4,"t":"j","n":13,"stem":"“扣好人生的扣子”反映出青年时期的价值观养成十分重要。","a":"T"},{"ch":4,"t":"e","n":1,"stem":"为应对人口老龄化挑战，提升老年人生活质量，某市积极推广智慧养老服务模式。该模式通过建设智慧养老服务平台，整合医疗、康复、护理、家政等多元化服务资源，为老年人提供个性化、精准化的养老服务。平台利用物联网、大数据、云计算等现代信息技术，实现养老服务的智能化、高效化和便捷化。同时，政府还鼓励社会力量参与智慧养老服务平台的建设和运营，推动形成政府主导、社会参与的养老服务格局。\n请问上述材料体现了社会主义核心价值观的那些特性？请结合材料进行分析。","k":["先进性：运用物联网、大数据等技术实现养老服务智能化、高效化，体现对创新养老模式的推动。","人民性：以老年人实际需求为导向，提供个性化、精准化服务，引导社会力量参与，体现以人民为中心。","道义性：保障老年人权益、引导尊老敬老风尚，体现道义担当。"]},{"ch":4,"t":"e","n":2,"stem":"“智行”是一家国内迅速崛起的科技公司，其开发的人工智能算法广泛应用于社会招聘、信贷评估、公共服务等领域，公司以“效率至上、技术中立”为核心企业文化，取得了巨大的商业成功。然而，近期有媒体和公众曝出，其算法存在“大数据杀熟”（对老客户定价更高）、根据用户户籍和消费历史进行“隐形歧视”（如某些地区的用户更难获得贷款）以及为了追求流量而推送低俗内容等问题。面对质疑，公司发言人回应：“算法只是工具，本身没有价值观。问题的根源在于输入的数据本身存在社会偏见，而非技术。我们的首要职责是为股东创造最大价值。”\n此事引发了社会各界的广泛讨论。有人认为技术无罪，企业追求利润天经地义；也有人认为科技企业必须承担起应有的社会责任，不能成为社会偏见的放大镜。\n请结合本章所学内容，分析以下问题：\n1、请运用社会主义核心价值观的内容，分析“智行”公司的行为和回应存在哪些价值偏差？\n2、“算法只是工具，本身没有价值观”这一观点是否正确？为什么？","k":["国家层面：偏离“公正”与“法治”——“大数据杀熟”“隐形歧视”违背机会公平、规则公平，涉嫌违法。","国家层面：偏离“富强”——富强是全体人民共同富裕与国家繁荣，而非企业短期利润最大化。","社会层面：偏离“平等”“公正”——按户籍、消费历史区别对待，放大社会偏见、加剧不平等。","个人层面：偏离“敬业”“诚信”——“唯股东利益论”是狭隘敬业观；杀熟是对用户信任的背叛。","“算法只是工具”错误：算法由人设计，必然嵌入设计者、决策者的价值偏好，选择数据与目标本身就是价值判断。","算法能重塑价值观：广泛应用于社会决策后，会成为塑造规则、影响认知的力量，不再是中立工具。"]},{"ch":5,"t":"s","n":1,"stem":"社会主义职业道德中最高层次的要求是（ ）。","o":["诚实守信","爱岗敬业","办事公道","奉献社会"],"a":"D"},{"ch":5,"t":"s","n":2,"stem":"下列的内容中不属于网络生活中的道德要求的是（ ）。","o":["加强网络道德自律","正确使用网络工具","营造良好网络道德环境","实名制登记上网"],"a":"D"},{"ch":5,"t":"s","n":3,"stem":"社会公德的主要内容中，（ ）是每个公民应该承担的责任义务，既显示了个人道德修养水平，也是社会文明水平的重要标志。","o":["遵守秩序","爱护公物","文明礼貌","助人为乐"],"a":"B"},{"ch":5,"t":"s","n":4,"stem":"公民应该恪忠职守，兢兢业业地工作，克己奉公，服务社会。这是公民基本道德规范中（ ）的要求。","o":["敬业奉献","团结友善","明礼诚信","勤俭自强"],"a":"A"},{"ch":5,"t":"s","n":5,"stem":"由一定规则维系的人们公共生活的一种有序化状态是（ ）。","o":["公共生活","公共状态","公共秩序","公共领域"],"a":"C"},{"ch":5,"t":"s","n":6,"stem":"等公车时主动排队，上车自觉买票；过马路遵守交通规则，不闯红灯；购物、提款、游览观光时按照先后顺序，不插队。以上这些行为都属于对社会公德中（ ）。","o":["文明礼貌的要求","助人为乐的要求","保护环境的要求","爱护公物的要求"],"a":"A"},{"ch":5,"t":"s","n":7,"stem":"陶行知先生说：“爱之酒，甜而苦，两人喝是甘露，三人喝是酸醋，随便喝，要中毒。”这体现了爱情的（ ）。","o":["强烈持久性","生物本能性","平等互爱性","专一排他性"],"a":"D"},{"ch":5,"t":"s","n":8,"stem":"下列不属于社会公德缺失的是（ ）。","o":["过马路闯红灯","排队加塞","夫妻在家打架","不爱护公物"],"a":"C"},{"ch":5,"t":"s","n":9,"stem":"大学生中存在的“不在乎天长地久，只在乎曾经拥有”的爱情观是属于（ ）。","o":["错置爱情的地位","只重过程不顾结果","片面、功利化的对待爱情","误把友谊当爱情"],"a":"B"},{"ch":5,"t":"s","n":10,"stem":"网络生活中要求人们形成道德自律是因为网络生活的（ ）。","o":["信息广泛性","方便快捷","虚拟性","覆盖面广"],"a":"C"},{"ch":5,"t":"s","n":11,"stem":"在职业活动中提倡（ ），并不是一个高不可攀的道德标准，在社会主义社会里，每个公民无论从事什么工作、能力如何，都能够在本职岗位上，通过不同的形式为人民服务。每一个从业人员在职业活动中，都自觉遵循服务群众的要求，整个社会就会形成一种人人都是服务者，人人又都是服务对象的良好秩序与和谐状态。","o":["办事公道","爱岗敬业","服务群众","诚实守信"],"a":"C"},{"ch":5,"t":"s","n":12,"stem":"（ ）是社会主义职业道德中最高层次的要求，体现了社会主义职业道德的最高目标指向的精神。","o":["办事公道","诚实守信","奉献社会","爱岗敬业"],"a":"C"},{"ch":5,"t":"s","n":13,"stem":"2019年10月，中共中央、国务院印发的《新时代公民道德建设实施纲要》中规定了公民道德建设的总体要求，其中属于行业中扎根立足的基础是（ ）。","o":["诚实守信","爱国守法","勤奋自强","团结友善"],"a":"A"},{"ch":5,"t":"s","n":14,"stem":"道德作为特殊的社会意识形态对于社会发展具有多种功能。通过评价等方式，指导和纠正人们的行为和实践活动，协调人们之间的关系，是道德的( )。","o":["调节功能","认识功能","激励功能","沟通功能"],"a":"A"},{"ch":5,"t":"s","n":15,"stem":"社会主义集体主义原则的主要价值取向是( )。","o":["国家利益高于集体利益","集体利益高于个人利益","局部利益高于个人利益","社会利益高于集体利益"],"a":"B"},{"ch":5,"t":"s","n":16,"stem":"人们根据一定的道德原则和规范来改造自我，教育自己，形成自己的道德品质，提高自己的道德境界的道德实践活动，称为( )。","o":["道德修养","道德构建","道德意志","道德认知"],"a":"A"},{"ch":5,"t":"s","n":17,"stem":"习近平在北京会见第四届全国道德模范及提名奖获得者时强调，精神的力量是无穷的，道德的力量也是无穷的。道德反映社会现实特别是反映社会经济关系的功效与能力，是道德的( )。","o":["调节功能","规范功能","激励功能","认识功能"],"a":"D"},{"ch":5,"t":"s","n":18,"stem":"邻里之间互谅互让，互帮互助，宽以待人，团结友爱。这是人们在社会生活中应当遵循的( )。","o":["社会公德","家庭美德","职业道德","环境道德"],"a":"B"},{"ch":5,"t":"s","n":19,"stem":"为人民服务是社会主义道德的核心，各行各业的从业人员都要以( )为目标。","o":["服务群众","爱岗敬业","诚实守信","办事公道"],"a":"A"},{"ch":5,"t":"s","n":20,"stem":"个人在社会生活中勇于开拓创新，积极参与竞争，不怕困难，不畏艰险，奋发向上，永远进步。这是良好个人品德中( )。","o":["文明礼貌的表现","敬业好学的表现","勇于进取的表现","正直无私的表现"],"a":"C"},{"ch":5,"t":"s","n":21,"stem":"关于爱情的话题，古希腊哲学家柏拉图说过：“为着品德而去眷恋一个情人，总是一件很美的事。”近代法国启蒙思想家卢梭也认为：“我们之所以爱一个人，是由于我们认为那个人具有我们所尊重的品质。”据此，在爱情中起主导作用的应该是( )。","o":["衣着和相貌","生理欲求","道德和精神","财富和地位"],"a":"C"},{"ch":5,"t":"s","n":22,"stem":"根据我国现阶段经济社会生活和人们思想道德的实际，可将集体主义分为三个层次的道德要求，其中对我国公民最基本的道德要求是（ ）。","o":["顾全大局、遵纪守法、热爱祖国、诚实劳动","先公后私、先人后己","无私奉献、一心为公","先私后公、先己后人"],"a":"A"},{"ch":5,"t":"s","n":23,"stem":"（ ）是个体人格完善的重要标志。","o":["职业道德","社会公德","个人品德","家庭美德"],"a":"C"},{"ch":5,"t":"s","n":24,"stem":"个人品德是个体对某种道德要求认同和践履的结果，集中体现了道德认知、道德情感、道德意志、道德信念和（ ）的内在统一。","o":["道德教育","道德行为","道德表现","道德内容"],"a":"B"},{"ch":5,"t":"s","n":25,"stem":"恋爱中的道德规范不包括（ ）。","o":["自觉承担责任","摆正爱情位置","尊重人格平等","文明相亲相爱"],"a":"B"},{"ch":5,"t":"s","n":26,"stem":"为调整和规范人类社会生活三大领域，相应分别形成了（ ）。","o":["社会公德、生活道德、职业道德","生活道德、职业道德、家庭道德","生活道德、职业道德、社会公德","社会公德、职业道德、家庭美德"],"a":"D"},{"ch":5,"t":"s","n":27,"stem":"青年马克思在谈到选择职业的理想和价值时曾经写道：“如果我们选择了最能为人类而工作的职业，那么，重担就不能把我们压倒，因为这是为大家作出的牺牲；那时我们所享受的就不是可怜的、有限的、自私的乐趣，我们的幸福将属于千百万人，我们的事业将默默地、但是永恒发挥作用地存在下去，面对我们的骨灰，高尚的人们将洒下热泪。”这体现了正确的择业观中（ ）的要求。","o":["树立崇高的职业理想","服从社会发展的需要","做好充分的择业准备","培养创业的勇气和能力"],"a":"A"},{"ch":5,"t":"s","n":28,"stem":"下列不属于公共活动的特征的是（ ）。","o":["交往对象的复杂性","活动范围的广泛性","活动内容的开放性","活动方式的一致性"],"a":"D"},{"ch":5,"t":"s","n":29,"stem":"社会主义道德区别和优越于其他社会形态道德的显著标志是（ ）。","o":["恪守诚信","集体主义原则","正确的义利观","以为人民服务为核心"],"a":"D"},{"ch":5,"t":"s","n":30,"stem":"中国革命道德萌芽于（ ）前后，发端于中国共产党成立以后蓬勃发展的伟大工人运动和农民运动，经过土地革命战争、抗日战争、解放战争以及社会主义革命、建设、改革的长期发展，逐渐形成并不断发扬光大。","o":["五四运动","义和团运动","太平天国运动","一二九运动"],"a":"A"},{"ch":5,"t":"s","n":31,"stem":"道德修养是一个循序渐进的过程，古人云：“积土成山，风雨兴焉；积水成渊，蛟龙生焉；积善成德，而神明自得，圣心备焉。故不积跬步，无以至千里；不积小流，无以成江海。”下列名言中与这段话在含义上近似的是( )。","o":["勿以善小而不为，勿以恶小而为之","仁远乎哉？我欲仁，斯仁至矣","君子求诸已，小人求诸人","有能一日用其力于仁矣乎？我未见力不足者"],"a":"A"},{"ch":5,"t":"s","n":32,"stem":"在道德的历史发展中出现了多种历史类型，其中出现最早的是（ ）。","o":["原始社会的道德","奴隶社会的道德","封建社会的道德","资本主义社会的道德"],"a":"A"},{"ch":5,"t":"s","n":33,"stem":"（ ）是指道德通过评价等方式，指导和纠正人们的行为和实践活动，协调社会关系和人际关系的功效与能力。","o":["道德的认识功能","道德的调节功能","道德的规范功能","道德的导向功能"],"a":"B"},{"ch":5,"t":"s","n":34,"stem":"道德的产生、发展和变化，归根到底根源于（ ）。","o":["统治阶级的意志","在法律上的反映","全体人民的意愿","社会经济关系"],"a":"D"},{"ch":5,"t":"s","n":35,"stem":"道德赖以产生的客观条件是（ ）。","o":["社会关系的形成","人的自我意识","生产实践","人类的自我进化"],"a":"A"},{"ch":5,"t":"s","n":36,"stem":"道德是以（ ）为评价方式，主要依靠社会舆论、传统习俗和内心信念来发挥作用的行为规范的总和。","o":["是非","真假","善恶","美丑"],"a":"C"},{"ch":5,"t":"s","n":37,"stem":"马克思主义科学地揭示了道德的起源，认为道德( )。","o":["起源于上天的命令或者神的旨意","起源于人们的情感欲望","产生于人类的历史发展和人们的社会实践中","起源于人先天具有的某种良知和善良意志"],"a":"C"},{"ch":5,"t":"s","n":38,"stem":"道德反映社会关系特别是反映社会经济关系的功效与能力，是道德的( )。","o":["调节功能","规范功能","激励功能","认识功能"],"a":"D"},{"ch":5,"t":"s","n":39,"stem":"恩格斯指出，在阶级社会中，“人们自觉或不自觉地，归根到底总是从他们阶级地位所依据的实际关系中——从他们进行生产和交换的经济关系中，获得自己的伦理观念”。这句话说明( )。","o":["道德调整的社会关系范围极为有限","道德因反映特定阶级的利益而具有阶级性","有什么样的道德就有什么样的社会经济关系","社会经济关系的发展变化并不必然引起道德的发展变化"],"a":"B"},{"ch":5,"t":"s","n":40,"stem":"作为从业者步入职业殿堂的“通行证”，并体现着从业者的道德操守和人格力量的职业道德是( )。","o":["爱岗敬业","诚实守信","办事公道","服务群众"],"a":"B"},{"ch":5,"t":"s","n":41,"stem":"下列说法是对道德本质的理解，其中错误的是( )。","o":["在人类道德史上，一切道德上的兴衰起伏、进退消长，和社会经济关系的变革无关。","道德是反映社会经济关系的特殊的意识形态。","道德是社会利益关系的特殊调节方式。","道德是一种实践精神。"],"a":"A"},{"ch":5,"t":"s","n":42,"stem":"对待中华民族道德传统，正确的做法是( )。","o":["批判地继承","全盘肯定","全盘否定","文化虚无主义"],"a":"A"},{"ch":5,"t":"s","n":43,"stem":"在我国作为道德建设的核心，( )决定并体现着社会道德建设的根本性质和发展方向。","o":["市场经济","集体主义","社会主义","为人民服务"],"a":"D"},{"ch":5,"t":"s","n":44,"stem":"道德产生的主观条件是( )。","o":["人类自我意识的形成和发展","劳动","社会关系的形成","社会分工的不同"],"a":"A"},{"ch":5,"t":"s","n":45,"stem":"道德是由一定的社会经济基础所决定，并为其服务的（ ）。","o":["历史传统","上层建筑","政治措施","习惯势力"],"a":"B"},{"ch":5,"t":"s","n":46,"stem":"随着生成式AI（如ChatGPT）的普及，有人利用其制作和传播虚假信息。下列行为符合网络道德要求的是（ ）","o":["使用AI生成虚假新闻以吸引流量","未经许可用AI“换脸”技术制作搞笑视频","利用AI辅助学习并注明AI的协助","将他人的AI生成作品署名为自己的原创"],"a":"C"},{"ch":5,"t":"s","n":47,"stem":"“银发直播”群体（平均年龄77岁）通过短视频免费传播知识，感动无数网友。他们的行为主要体现了个人品德中的（ ）","o":["勤奋好学","自强自律","奉献社会","明礼遵规"],"a":"C"},{"ch":5,"t":"m","n":1,"stem":"“四个全面”战略布局是指（ ）。","o":["全面建成小康社会","全面深化改革","全面依法治国","全面从严治党","全面建设社会主义现代化国家"],"a":"BCDE","e":"A项：“全面建成小康社会”是过去的表述，现行“四个全面”已调整为“全面建设社会主义现代化国家”。"},{"ch":5,"t":"m","n":2,"stem":"当今世界公共生活的特征主要表现在（ ）。","o":["活动范围的广泛性","活动内容的开放性","交往对象的复杂性","活动方式的多样性","活动结果的相关性"],"a":"ABCD","e":"E项：公共生活特征是范围广泛、内容开放、对象复杂、方式多样，“活动结果的相关性”不属于。"},{"ch":5,"t":"m","n":3,"stem":"中华传统美德和中国革命道德是一脉相承的。其一脉相承性主要体现在（ ）。","o":["中华传统美德是中国革命道德的渊源之一","它们形成的基础都是中华传统道德的精华","它们都是对中国优良道德传统的延续和发展","中国革命道德超越了中华传统美德的时代局限"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":4,"stem":"下列对集体利益与个人利益是矛盾的统一体正确理解的是（ ）。","o":["集体利益是个人利益汇合而成的，个人的正当利益是集体利益不可分割的一部分","集体利益与个人利益不存在一致性","不包含个人利益的集体利益是根本不存在的","集体利益与个人利益是相对抗的"],"a":"AC","e":"B项：集体利益与个人利益在根本上是一致的；D项：把二者说成“相对抗”是错误理解。"},{"ch":5,"t":"m","n":5,"stem":"社会主义集体主义原则具有多层次的道德要求，它包括（ ）。","o":["先公后私、先人后己的层次","公私兼顾，不损公肥私的层次","C、主观为自我，客观为别人的层次","D、全心全意为人民服务、无私奉献、一心为公的层次"],"a":"ABD","e":"C项：“主观为自我、客观为别人”是错误的人生观，不属于集体主义的层次要求。"},{"ch":5,"t":"m","n":6,"stem":"与以往的道德形态相比，社会主义道德具有显著的先进性特征体现在（ ）。","o":["社会主义道德是社会主义经济基础的反映","社会主义道德是对人类优秀道德资源的批判继承和创新发展","社会主义道德克服了以往阶级社会道德的片面性和局限性","社会主义道德通过社会舆论和国家强制力量来维持"],"a":"ABC","e":"D项：道德靠社会舆论、传统习俗和内心信念维系，“国家强制力量”是法律的特征。"},{"ch":5,"t":"m","n":7,"stem":"在对待传统道德的问题上，下列属于错误思潮的是（ ）。","o":["坚持文化复古主义，中国的落后就是因为儒家文化的失落","吸取借鉴优良的道德文明成果","实行历史虚无主义，中国要全盘西化","坚持以我为主、为我所用的基本原则"],"a":"AC","e":"B项：吸取借鉴优良道德文明成果是正确态度；D项：“以我为主、为我所用”同样正确，不属于错误思潮。"},{"ch":5,"t":"m","n":8,"stem":"下列选项中，对社会主义道德正确理解的有（ ）。","o":["社会主义道德是以公有制为主体的经济基础的反映","社会主义道德是以马克思主义世界观为指导，由无产阶级自觉地培养起来的道德","社会主义道德是以为人民服务为核心，集体主义为原则，代表无产阶级和广大劳动人民根本利益和长远利益的先进道德体系","社会主义道德属于共产主义道德体系，是共产主义道德在社会主义历史阶段的具体体现"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":9,"stem":"下列选项中，对社会主义道德正确理解的有（ ）。","o":["社会主义道德是建立在历史唯物主义基础上的","社会主义道德决定社会主义经济基础的发展方向","社会主义道德符合社会历史发展的方向和人民的根本利益","随着社会主义实践的发展，社会主义道德发挥作用的范围也在扩大"],"a":"ACD","e":"B项：经济基础决定道德，道德不能“决定经济基础的发展方向”，属因果颠倒。"},{"ch":5,"t":"m","n":10,"stem":"下列对社会主义集体主义原则的理解正确的有（ ）。","o":["社会主义集体主义强调国家利益、社会整体利益和个人利益的辩证统一","社会主义集体主义强调国家利益、社会整体利益高于个人利益","社会主义集体主义强调重视和保障个人的正当利益","社会主义条件下，不会发生个人利益与集体利益的激烈冲突，因此不存在为了集体利益而牺牲个人利益的问题"],"a":"ABC","e":"D项：社会主义条件下仍可能发生个人利益与集体利益的冲突，仍需要提倡为集体利益牺牲个人利益的精神。"},{"ch":5,"t":"m","n":11,"stem":"道德发挥作用的途径主要是（ ）。","o":["政策引导","社会舆论","传统习俗","人们的内心信念"],"a":"BCD","e":"A项：政策引导属于行政手段，道德发挥作用靠社会舆论、传统习俗和内心信念。"},{"ch":5,"t":"m","n":12,"stem":"社会经济关系对道德的决定作用表现在( )。","o":["社会经济关系的性质决定着各种道德体系的性质","社会经济关系所表现出来的利益决定着各种道德的基本原则和主要规范","社会经济关系的结构决定着道德的职能，社会经济关系的变化必然引起道德的变化","在阶级社会中，社会经济关系主要表现为阶级关系，因此，道德也必然带有阶级属性"],"a":"ABD","e":"C项：表述不够准确，教材强调经济关系的性质决定道德体系性质、利益决定原则规范、阶级社会中道德具有阶级属性，“结构决定职能”非原表述。"},{"ch":5,"t":"m","n":13,"stem":"公共秩序主要包括（ ）。","o":["教学秩序","营业秩序","娱乐秩序","工作秩序"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":14,"stem":"大学生投身崇德向善的道德实践，要弘扬真善美、贬斥假恶丑，做社会主义道德的示范者和引领者，促成( )的社会风尚。","o":["知荣辱","讲正气","作奉献","促和谐"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":15,"stem":"下列选项中体现了推崇“仁爱”原则、注重以和为贵的中华传统美德的有( )。","o":["“己欲立而立人，己欲达而达人”","“亲亲而仁民，仁民而爱物”","“国而忘家，公而忘私”","“先天下之忧而忧，后天下之乐而乐”"],"a":"AB","e":"C、D项：“国而忘家、公而忘私”“先天下之忧而忧”体现的是爱国奉献、责任担当，不属于“仁爱”“和为贵”。"},{"ch":5,"t":"m","n":16,"stem":"社会道德建设最终要落实到个人品德的养成和提高上，主要原因在于（ ）。","o":["个人品德对道德和法律作用的发挥具有重要的推动作用","个人品德是经济社会发展过程中重要的主体精神力量","个人品德的稳定性可以促使整个社会道德水平的稳定发展","个人品德的提升能够为社会道德和法律的发展进步创造条件、提供动力"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":17,"stem":"道德的本质是由（ ）决定的。","o":["社会经济关系的性质","社会经济关系所表现出来的利益","阶级关系","人们对道德的认识与把握"],"a":"ABC","e":"D项：道德本质由社会经济关系决定，人们对道德的认识不能决定道德本质。"},{"ch":5,"t":"m","n":18,"stem":"下列关于道德起源的说法，不科学的是（ ）。","o":["道德起源于“上帝”的旨意","道德起源于人性中的情感","道德起源于人先天具有的某种良知","道德产生于人类的历史发展和人们的社会实践"],"a":"ABC","e":"D项：道德产生于历史发展和社会实践，是科学表述；A、B、C均属唯心主义道德起源论。"},{"ch":5,"t":"m","n":19,"stem":"网络生活中的道德要求包括( )。","o":["正确使用网络工具","健康进行网络交往","营造良好网络道德环境","加强网络文明自律"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":20,"stem":"中国革命道德的当代价值在于( )。","o":["有利于加强和巩固社会主义和共产主义的理想信念","有利于培育和践行社会主义核心价值观","有利于引导人们树立正确的道德观","有利于培育良好的社会道德风尚"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":21,"stem":"爱岗敬业是职业道德的核心和基础。下列表现属于爱岗敬业的有（ ）。","o":["在本职工作中勤奋努力，不偷懒，不怠工","喜欢自己的工作，能心情愉快、乐观向上地从事自己的本职工作","为求得未来自己理想的职业，利用现有的职业劳动时间全力为求新职做准备","不情愿地成为了现有职业的劳动者，在没有调换工作之前，仍坚守工作岗位，履行职业责任"],"a":"ABD","e":"C项：利用本职工作时间全力为跳槽做准备，是不敬业的表现。"},{"ch":5,"t":"m","n":22,"stem":"下列哪些是道德的功能( )。","o":["认识功能","调节功能","导向功能","激励功能"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"m","n":23,"stem":"人类历史上各种道德类型既有各自的特征，又相互联系。道德发展遵循一定的规律，道德发展的规律包括( )。","o":["道德随时可能会发生变化","道德有其自身发展的相对独立性","道德进步是一个曲折前进的历史过程","道德随着社会生产方式的发展不断进步"],"a":"BCD","e":"A项：道德具有相对稳定性，“随时可能发生变化”否认了其相对独立性。"},{"ch":5,"t":"m","n":24,"stem":"有序公共生活的价值在于：( )。","o":["是社会生产活动的重要基础","是促进科技飞速发展的重要条件","是提高社会成员生活质量的基本保障","是社会文明的重要标志"],"a":"ACD","e":"B项：有序公共生活不是“促进科技飞速发展的重要条件”，属牵强拔高。"},{"ch":5,"t":"m","n":25,"stem":"个人品德是个体对某种道德要求认同和践履的结果，集中体现了（ ）的内在统一。","o":["道德认知","道德情感","道德意志","道德行为","道德信念"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":5,"t":"m","n":26,"stem":"下列说法中，正确的是( )。","o":["为人民服务是社会主义经济基础的客观要求","为人民服务是社会主义人际关系的客观要求","市场经济就是要求全心全意为人民服务","为人民服务是社会主义市场经济健康发展的要求"],"a":"ABD","e":"C项：市场经济本身不会自发产生全心全意为人民服务的要求，该表述错误。"},{"ch":5,"t":"m","n":27,"stem":"社会主义道德建设的三大社会道德领域是指( )。","o":["社会公德","职业道德","公民道德","家庭美德"],"a":"ABD","e":"C项：社会主义道德建设的三大领域是社会公德、职业道德、家庭美德，“公民道德”不是其中之一。"},{"ch":5,"t":"m","n":28,"stem":"大学生发扬革命道德、传承红色基因，就要深入了解（ ）的历史，了解中国共产党人和广大人民群众进行革命斗争的艰苦实践。","o":["中国社会","中国革命","中国发展","中国道德"],"a":"AB","e":"C、D项：应了解中国社会、中国革命的历史，“中国发展”“中国道德”不是原文表述。"},{"ch":5,"t":"m","n":29,"stem":"中国古代思想家提出的代表性道德修养方法有( )。","o":["学思并重","省察克治","慎独自律","积善成德","知行合一"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":5,"t":"m","n":30,"stem":"党的十七大报告提出，建设和谐文化，培育文明风尚，要以增强诚信意识为重点。这是因为，诚信是( )。","o":["社会主义道德建设的核心和原则","从业人员人格力量的体现","从业人员道德操守的体现","行业中扎根立足的基础"],"a":"BCD","e":"A项：社会主义道德的核心是为人民服务，原则是集体主义，诚信不是核心和原则。"},{"ch":5,"t":"m","n":31,"stem":"马克思说：“真正的爱情表现在恋人对他的偶像采取含蓄、谦恭，甚至羞涩的态度，而绝不是表现在随意流露热情和过早亲昵。”这表明（ ）。","o":["恋爱双方的交往应当文明端庄，持之以度","真正的爱是远离疯狂和近于淫荡的东西的","恋爱过程中要有高尚的情趣和健康的交往方式","爱情蕴含着丰富的社会属性把人的一切自然属性排除在外","爱情是至高无上的，应该付出全部热情和真心"],"a":"ABC","e":"D项：爱情包含自然属性，不能“排除人的一切自然属性”；E项：把爱情置于至高无上、不顾一切，是片面观点。"},{"ch":5,"t":"m","n":32,"stem":"下列属于家庭美德主要内容的是（ ）。","o":["尊老爱幼","男女平等","诚实守信","办事公道","邻里互助"],"a":"ABE","e":"C项：诚实守信属职业道德；D项：办事公道属职业道德，均不属家庭美德。"},{"ch":5,"t":"m","n":33,"stem":"在对待传统道德的问题上，要反对的两种错误思潮是（ ）。","o":["文化复古主义","西方个人主义","历史虚无主义","民族虚无主义","新自由主义"],"a":"AC","e":"B、D、E项：对待传统道德要反对的两种错误思潮是文化复古主义和历史虚无主义，其余不属于。"},{"ch":5,"t":"m","n":34,"stem":"社会公德的主要内容包括（ ）。","o":["文明礼貌","尊老爱幼","爱护公物","助人为乐","诚实守信"],"a":"ACD","e":"B项：尊老爱幼属家庭美德；E项：诚实守信属职业道德，均不属社会公德。"},{"ch":5,"t":"m","n":35,"stem":"“只有在集体中，个人才能获得全面发展其才能的手段，也就是说，只有在集体中才可能有个人自由。”这说明（ ）。","o":["没有集体利益，就不可能有个人利益","集体主义坚决排斥个人利益和个性自由","只有集体的事业兴旺发达，才能保证个人正当利益的充分实现","集体主义要求个人无条件地服从集体","当个人利益与集体利益发生冲突时，个人利益要服从集体利益"],"a":"ACE","e":"B项：集体主义不排斥个人正当利益和个性自由；D项：集体主义不要求无条件服从，而是辩证统一。"},{"ch":5,"t":"m","n":36,"stem":"随着现代社会分工的发展和专业化程度的提高，市场竞争日趋激烈，整个社会对从业人员（ ）的要求越来越高。","o":["职业领域","职业观念","职业态度","职业纪律","职业作风"],"a":"BCDE","e":"A项：“职业领域”不是对从业者要求提高的方面，应为职业观念、态度、纪律、作风。"},{"ch":5,"t":"m","n":37,"stem":"为人民服务是先进性要求和广泛性要求的统一，可以通过不同层次、不同形式表现出来。以下选项中属于“为人民服务”的有（ ）。","o":["毫不利己、专门利人、无私奉献","顾全大局、先公后私、爱岗敬业、办事公道","热心公益、助人为乐、见义勇为、扶贫济困、帮残助残。","遵纪守法、诚实劳动、获取正当的个人利益。","放弃个人利益。"],"a":"ABCD","e":"E项：“放弃个人利益”不是为人民服务的普遍要求，为人民服务是先进性与广泛性的统一。"},{"ch":5,"t":"m","n":38,"stem":"对大学生来说，树立正确的择业观，应该做到以下哪些方面（ ）。","o":["培养创业的勇气和能力","树立崇高的职业理想","做好充分的择业准备","服从社会发展的需要","要有积极创业的思想准备"],"a":"ABCD","e":"E项：与A项“培养创业的勇气和能力”重复，且不属于教材概括的四点要求。"},{"ch":5,"t":"m","n":39,"stem":"下列行为符合家庭美德要求的有 （ ）。","o":["某父亲沉溺于打麻将，从不管教子女","某丈夫经常对妻子实施家庭暴力","某夫妇主动照顾身边无子女的邻居大妈","某媳妇周末经常去看望公婆，帮助他们做家务","某丈夫多年精心照顾卧病在床的妻子"],"a":"CDE","e":"A项：沉溺麻将不管教子女；B项：对妻子实施家暴，均严重违背家庭美德。"},{"ch":5,"t":"m","n":40,"stem":"中国革命道德的主要内容包括（ ）。","o":["全心全意为人民服务","为实现社会主义和共产主义理想而奋斗","始终把革命利益放在首位","修身自律，保持节操","树立社会新风，建立新型人际关系"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":5,"t":"m","n":41,"stem":"中华传统美德的基本精神包括（ ）。","o":["重视整体利益，强调责任奉献","强调道德修养，注重道德践履","注重人伦关系，重视道德义务","追求精神境界，向往理想人格","推崇“仁爱”原则，注重以和为贵。"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":5,"t":"m","n":42,"stem":"下列关于道德的社会作用的表述正确的有（ ）。","o":["道德对巩固特定社会的经济基础具有不可替代的重要作用","道德对巩固特定社会的上层建筑具有不可替代的重要作用","道德是提高人的精神境界的内在动力","道德是促进人的自我完善的内在动力","道德是推动人的全面发展的内在动力"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":5,"t":"m","n":43,"stem":"（ ）是道德最基本的功能。","o":["激励功能","认识功能","规范功能","调节功能","导向功能"],"a":"BCD","e":"A、E项：道德最基本的功能是认识功能、规范功能、调节功能，激励与导向不属于“最基本”。"},{"ch":5,"t":"m","n":44,"stem":"近期，某城市因特色旅游（如“淄博烧烤”、“哈尔滨冰雪”）火爆出圈，当地市民的下列哪些行为受到了全国游客的广泛赞誉，成为社会公德建设的生动典范？（ ）","o":["自发免费接送游客，提供暖心服务","商家坚持诚信经营，绝不缺斤短两","全体市民一致同意政府提高景点门票价格以增加收入","在公共场合自觉维护秩序，主动礼让游客"],"a":"ABD","e":"C项：全体市民一致同意涨价以增加收入，与服务游客、诚信经营的社会公德导向不符。"},{"ch":5,"t":"m","n":45,"stem":"下列哪些现象是近年来社会中出现的违背职业道德的“新形态”？( )","o":["电商直播主播利用虚假“悲情剧本”演戏带货","“全职儿女”在家陪伴父母并从事家务劳动","个别员工利用远程办公的便利“一岗多职”，同时为多家公司全职工作并隐瞒事实","职场“摸鱼”文化，即在上班时间敷衍了事、专注私事"],"a":"ACD","e":"B项：“全职儿女”属于家庭领域的现象，不属于违背职业道德的新形态。"},{"ch":5,"t":"m","n":46,"stem":"随着生成式人工智能（AIGC）的普及，其应用引发了新的网络道德争议。下列哪些行为值得警惕和规范？（ ）","o":["利用AI技术生成虚假新闻、谣言或不雅内容进行传播","使用AI辅助完成作业或工作报告，并注明使用了AI协助","未经同意使用他人肖像通过“AI换脸”技术制作视频","将AI生成的作品完全署名为自己的原创作品进行发表"],"a":"ACD","e":"B项：使用AI辅助并注明，是符合学术与职业规范的做法，无须警惕。"},{"ch":5,"t":"m","n":47,"stem":"锤炼个人品德需要做到知行合一。以下哪些行为是“知行合一”的良好体现？（ ）","o":["大学生小王深知环保重要，日常坚持垃圾分类并积极参与环保志愿活动","小李在网络上积极转发各类道德文章，但现实中经常对室友恶语相向","某公司领导要求员工诚信，但自己却为了业绩数据造假","小张承诺每天锻炼身体，即使天气寒冷也坚持完成计划"],"a":"AD","e":"B项：网上转发道德文章却对室友恶语相向，是典型言行不一；C项：要求员工诚信而自己造假，同样违背知行合一。"},{"ch":5,"t":"m","n":48,"stem":"关于近期社会热议的“全职儿女”现象，下列哪些解读符合家庭美德的内涵？（ ）","o":["是年轻人逃避社会竞争、“躺平”啃老的不孝行为","是家庭成员之间基于 mutual respect（相互尊重）和实际需求的新型互助方式","其性质取决于是否尊重父母意愿、是否分担家庭责任、是否具有长期规划","完美体现了“尊老爱幼”的传统美德，应成为全社会推崇的模式"],"a":"BC","e":"A项：一概斥为“躺平啃老”过于武断；D项：说其“完美体现”并应成全社会模式，属过度拔高。"},{"ch":5,"t":"m","n":49,"stem":"针对“宠物”相关的社会公德问题，以下哪些行为是主人应遵守的基本规范？（ ）","o":["携带犬只出户时，应当按规定佩戴犬牌并系犬绳","及时清理宠物在公共区域产生的粪便","禁止携带任何宠物进入公共交通工具和室内公共场所","妥善管理宠物，防止其惊吓、伤害他人"],"a":"ABD","e":"C项：“禁止任何宠物进入所有公共交通工具和室内公共场所”过于绝对，不符合现行规范与实际。"},{"ch":5,"t":"m","n":50,"stem":"面对“零工经济”（如外卖骑手、网约车司机）的蓬勃发展，如何保障其职业道德和权益？（ ）","o":["平台应合理设定绩效考核规则，避免诱导骑手超速、闯红灯","从业者应遵守行业规范，提供诚信、准时的服务","消费者应给予更多理解和尊重，尽量不给差评和投诉","社会应健全相关法律法规，明确平台和从业者的责任与权利"],"a":"ABD","e":"C项：要求消费者“尽量不给差评和投诉”不合理，正当评价与投诉是消费者权利。"},{"ch":5,"t":"m","n":51,"stem":"下列哪些社会现象体现了中华传统美德的当代传承？（ ）","o":["“剩菜盲盒”应用的推广，减少了食物浪费，体现了“俭以养德”","多个城市设立“好人基金”，奖励和帮扶见义勇为者，体现了“仁者爱人”","国庆期间众多游客自发前往红色圣地参观学习，体现了“家国情怀”","年轻人热衷购买奢侈品以彰显个性，体现了“克勤克俭”"],"a":"ABC","e":"D项：购买奢侈品彰显个性与“克勤克俭”的传统美德相反。"},{"ch":5,"t":"m","n":52,"stem":"以下哪些情况属于学术或职业领域的失信行为？( )","o":["毕业论文抄袭、剽窃他人的研究成果","求职简历“注水”，虚构工作经历和学历","使用AI工具辅助进行文献综述和思路整理","在商业合作中背信弃义，泄露对方商业秘密"],"a":"ABD","e":"C项：使用AI工具辅助文献综述和思路整理属正常学术辅助，不是失信行为。"},{"ch":5,"t":"m","n":53,"stem":"数字技术的发展给道德建设带来了新挑战，主要表现为（ ）","o":["网络信息的泛滥使得辨别真伪、善恶的难度加大","算法推荐可能导致“信息茧房”，削弱社会共识","AI技术的滥用引发隐私、公平和诚信等伦理问题","数字鸿沟加剧了不同群体在获取道德教育资源上的不平等"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":5,"t":"j","n":1,"stem":"集体主义原则所确立的价值目标是以社会为本位。","a":"T"},{"ch":5,"t":"j","n":2,"stem":"婚姻家庭的自然属性是婚姻家庭得以形成和发展的前提条件，因而自然属性是婚姻家庭的本质所在。","a":"F"},{"ch":5,"t":"j","n":3,"stem":"网络是一个虚拟时空，因此无需道德规约。","a":"F"},{"ch":5,"t":"j","n":4,"stem":"社会主义不仅要有高度发展的生产力，还要有高度发展的精神文明。","a":"T"},{"ch":5,"t":"j","n":5,"stem":"职业道德和职业活动中的法律体现的都是一种自律意识。","a":"F"},{"ch":5,"t":"j","n":6,"stem":"公共生活具有鲜明的封闭性和隐秘性。","a":"F"},{"ch":5,"t":"j","n":7,"stem":"在阶级社会中，道德是阶级斗争的重要工具。","a":"T"},{"ch":5,"t":"j","n":8,"stem":"道德的认识功能是道德最突出也是最重要的社会功能。","a":"F"},{"ch":5,"t":"j","n":9,"stem":"道德作为一种特殊的社会意识形式，归根到底是由经济基础决定的，是社会经济关系的反映。","a":"T"},{"ch":5,"t":"j","n":10,"stem":"集体主义强调国家利益、社会整体利益高于个人利益，换句话说，集体主义不重视个人利益的实现。","a":"F"},{"ch":5,"t":"j","n":11,"stem":"无论是在古代社会，还是在现代社会，道德都是社会历史发展的最终决定因素。","a":"F"},{"ch":5,"t":"j","n":12,"stem":"男性应该是家庭的顶梁柱，所以应该由男性来决定家庭的大小事务。","a":"F"},{"ch":5,"t":"j","n":13,"stem":"共产主义道德与社会主义道德在本质上不是同一类型的道德。","a":"F"},{"ch":5,"t":"j","n":14,"stem":"奉献社会是社会主义职业道德中最高层次的要求，体现了社会主义职业道德的最高目标指向。","a":"T"},{"ch":5,"t":"j","n":15,"stem":"中华传统美德作为中国传统道德的精华部分,为社会主义道德建设提供了丰富的资源。","a":"T"},{"ch":5,"t":"j","n":16,"stem":"在社会主义初级阶段，为人民服务对所有人的要求应该都是一样的。","a":"F"},{"ch":5,"t":"j","n":17,"stem":"在阶级社会中，占社会统治地位的道德是统治阶级的道德，而同时存在着的其他阶级的道德则处于从属地位。","a":"T"},{"ch":5,"t":"j","n":18,"stem":"网络生活中的道德要求，是社会公德在网络空间的运用和扩展。","a":"T"},{"ch":5,"t":"j","n":19,"stem":"“为人民服务”与市场经济体制存在根本矛盾。","a":"F"},{"ch":5,"t":"j","n":20,"stem":"任何道德都是具体历史时代的产物。","a":"T"},{"ch":5,"t":"j","n":21,"stem":"社会主义集体主义只强调集体利益，不强调个人利益。","a":"F"},{"ch":5,"t":"j","n":22,"stem":"网络世界是虚拟的，所以上网没有道德约束。","a":"F"},{"ch":5,"t":"j","n":23,"stem":"集体主义是社会主义道德建设的核心。","a":"F"},{"ch":5,"t":"j","n":24,"stem":"“养心莫善于诚”要求人们在道德修养中必须把培养诚信放在首位。","a":"T"},{"ch":5,"t":"j","n":25,"stem":"没有中华传统美德的长期发展和丰厚积淀，就不可能有中国革命道德的形成和发展。","a":"T"},{"ch":5,"t":"j","n":26,"stem":"为人民服务只适于党员干部而不能推广到全体人民。","a":"F"},{"ch":5,"t":"j","n":27,"stem":"社会关系的形成是道德赖以产生的主观条件。","a":"F"},{"ch":5,"t":"j","n":28,"stem":"道德的产生、发展和变化，归根结底源于人类的理性。","a":"F"},{"ch":5,"t":"j","n":29,"stem":"道德模范离我们生活很远，所以在生活中没有必要对自己要求这么高，做好自己的事情就可以。","a":"F"},{"ch":5,"t":"j","n":30,"stem":"道德具有调节功能、认识功能、规范功能、导向功能和激励功能等。","a":"T"},{"ch":5,"t":"j","n":31,"stem":"在对待中国传统道德的问题上，要反对复古论和虚无论两种错误观点。","a":"T"},{"ch":5,"t":"j","n":32,"stem":"人类最初的道德是以风俗习惯等形式表现出来的。","a":"T"},{"ch":5,"t":"j","n":33,"stem":"家庭关系就是指夫妻关系。","a":"F"},{"ch":5,"t":"j","n":34,"stem":"“不矜细行，终累大德”告诉我们要防微杜渐，以坚如磐石地意志和信念追求崇高的道德境界，成就人生的辉煌。","a":"T"},{"ch":5,"t":"j","n":35,"stem":"一个人只要有丰富的道德知识，他就会具有良好的道德品质。","a":"F"},{"ch":5,"t":"j","n":36,"stem":"人类道德发展的历史进程与社会生产方式的发展进程大体一致。","a":"T"},{"ch":5,"t":"j","n":37,"stem":"某网红主播在直播间为灾区捐款，但其主要目的是为了吸引流量、赚取打赏，这种行为依然值得大力提倡和表彰。","a":"F"},{"ch":5,"t":"j","n":38,"stem":"面对“AI换脸”技术被用于制作虚假不雅视频进行敲诈勒索的现象，我们只要自己不去制作和传播就不算违背道德。","a":"F"},{"ch":5,"t":"j","n":39,"stem":"生成式人工智能（如ChatGPT）创作的内容不存在版权和伦理问题，可以随意使用并署为自己的名字。","a":"F"},{"ch":5,"t":"j","n":40,"stem":"“搭子”文化（如饭搭子、旅游搭子）的流行，说明现代社会中传统的家庭美德和亲密朋友关系已经不再重要。","a":"F"},{"ch":5,"t":"j","n":41,"stem":"面对他人陷入困境（如意外摔倒），在确保自身和环境安全的前提下伸出援手，是公民社会责任感的表现。","a":"T"},{"ch":5,"t":"j","n":42,"stem":"某青年在求职时精心“包装”简历，虚构工作经历和学历，这是为了争取机会的灵活变通，不属于诚信问题。","a":"F"},{"ch":5,"t":"j","n":43,"stem":"在学术研究中，引用他人观点而不注明出处，即使篇幅很短，也属于学术不端行为，违背了诚信原则。","a":"T"},{"ch":5,"t":"j","n":44,"stem":"弘扬传统美德就是要完全恢复古代的一切礼仪和规范，不能有任何改变。","a":"F"},{"ch":5,"t":"j","n":45,"stem":"个人品德是“小德”，只要遵守法律法规，“小德”有所欠缺也不会影响社会整体风气。","a":"F"},{"ch":5,"t":"e","n":1,"stem":"【案例材料】\n2023年夏季，受台风“杜苏芮”影响，中国京津冀地区遭遇了历史罕见的特大暴雨洪涝灾害。在本次抗洪救灾过程中，涌现出无数可歌可泣的感人事迹。\n事迹一：“逆行”的救援队伍。暴雨如注，洪水肆虐，多支民间救援队自发从全国各地驰援河北涿州、北京门头沟等重灾区。他们自带皮划艇、救援设备，不顾个人安危，在湍急的洪水中连续奋战数十小时，转移被困群众，运送紧急物资。一位来自外省的救援队员说：“没想那么多，看到消息就来了，这里的人需要帮助。”\n事迹二：“临时爸妈”的托举。在河北一处受灾群众安置点，一名几个月大的婴儿急需奶粉和尿不湿。消息发出后，附近未受灾地区的群众纷纷响应，冒着风雨将物资送达。安置点的志愿者们24小时轮班照料与家人失散的老人和儿童，被孩子们亲切地称为“临时爸妈”，给予了他们家人般的温暖。\n事迹三：“舍小家为大家”的基层干部。门头沟区某村镇党支部书记在洪水来临前，连续36小时不眠不休，组织村民向高地转移。自家的小卖部被洪水冲毁，货物全部损失，但他却说：“我是党员，是干部，乡亲们一个没少，这就是最大的胜利。”\n【根据案例，请回答以下问题】\n1、结合材料分析，上述抗洪救灾中的感人事迹分别体现了“为人民服务”道德核心的哪些具体内涵和要求？\n2、“为人民服务”并非遥不可及，它体现在日常生活的实践中。作为新时代大学生，你可以通过哪些具体行动来践行这一社会主义道德核心？","k":["事迹一体现利他性与奉献精神：各地救援队自发无偿奔赴灾区，把群众生命安全放在首位，是“为人民服务”最直接的体现。","事迹二体现广泛性与平凡性：群众捐赠物资、志愿者当“临时爸妈”，说明为人民服务面向并依靠广大群众。","事迹三体现先进性与榜样性：党员干部舍小家为大家，诠释了对先进分子“吃苦在前、享受在后”的更高要求。","大学生践行路径一：投身志愿服务（社区治理、环保、支教助学等），在奉献中实现价值。","路径二：刻苦学习本领，掌握专业知识与技能，为将来服务人民打基础。","其他可行：团结同学互助、遵守社会公德、维护公共利益、利用新媒体传播正能量。"]},{"ch":6,"t":"s","n":1,"stem":"法律作为上层建筑的重要组成部分，不是凭空出现的，而是产生于特定社会（ ）基础之上。","o":["物质生活条件","文化生活条件","政治权力","统治阶级意志"],"a":"A"},{"ch":6,"t":"s","n":2,"stem":"我国制定社会主义法律的出发点和归宿是（ ）。","o":["保障和实现人民的民主权利","建设社会主义和谐社会","建立和完善社会主义法律体系","建设社会主义法治国家"],"a":"A"},{"ch":6,"t":"s","n":3,"stem":"法律所体现的统治阶级意志，并不是统治阶级意志的全部，仅仅是上升为（ ）的那部分意志。","o":["全民意志","国家意志","党的意志","工人阶级意志"],"a":"B"},{"ch":6,"t":"s","n":4,"stem":"（ ）是中国特色社会主义法治体系的根本制度基础，是全面依法治国的根本制度保障。","o":["中国特色社会主义道路","中国特色社会主义理论体系","中国特色社会主义制度","中国特色社会主义文化"],"a":"C"},{"ch":6,"t":"s","n":5,"stem":"既是保证法律发挥作用的基本前提和要求，又是保障个人平安幸福的底线和红线的是（ ）。","o":["全体社会成员都尊重法律权威","法律本身的科学性、合理性","法律是治理国家的唯一依据","法律内容能否覆盖所有社会关系"],"a":"A"},{"ch":6,"t":"s","n":6,"stem":"在我国宪法法律规定的公民权利中，既是实现人民主权原则及其各种具体民主制度不可或缺的前提条件，又体现了人民主权原则及其各种具体民主制度必然要求的是( )。","o":["政治权利","人身权利","宗教信仰及文化权利","社会经济权利"],"a":"A"},{"ch":6,"t":"s","n":7,"stem":"公民依法享有的表达自己对国家公共生活的看法、观点、意见的权利指的是( )。","o":["民主管理权","选举权利","表达权利","监督权"],"a":"C"},{"ch":6,"t":"s","n":8,"stem":"公民参加国家政治、经济与社会生活的基础是( )。","o":["人格尊严权利","人身自由权利","政治权利","人身权利"],"a":"D"},{"ch":6,"t":"s","n":9,"stem":"既是公民赖以生存的基础，又是公民行使其他权利的物质保障的是( )。","o":["物质帮助权","劳动权","休息权","社会保障权"],"a":"B"},{"ch":6,"t":"s","n":10,"stem":"我国宪法法律赋予公民广泛的权利，这些权利一旦受到损害或侵犯，公民可以采取权利救济的手段予以补救、恢复或对损害或侵害行为予以纠正和惩罚。被视为社会正义的最后一道防线的救济方式是( )。","o":["司法救济","行政救济","自主救济","政治救济和社会救济"],"a":"A"},{"ch":6,"t":"s","n":11,"stem":"根据宪法规定，（ ）行使国家立法权，负责修改宪法、制定法律。","o":["中央军委","国家监察委员会","全国人民代表大会及其常务委员会","国务院"],"a":"C"},{"ch":6,"t":"s","n":12,"stem":"将我国关于解决台湾问题的大政方针具体化、法律化的规范性文件是（ ）。","o":["《国防教育法》","《反分裂国家法》","《国家安全法》","《国防法》"],"a":"B"},{"ch":6,"t":"s","n":13,"stem":"下面法律法规中由国务院制定的有（ ）。","o":["《食品安全法实施条例》","《民法典》","《特别行政区基本法》","《土地管理法》"],"a":"A"},{"ch":6,"t":"s","n":14,"stem":"法律和道德是不同的两种行为规范，下列关于两者之间关系的说法，正确的有（ ）。","o":["法律的调节更具有广泛性，能够渗透到道德不能调节的领域","凡是道德所反对和谴责的行为，必定是法律所制裁的行为","道德是法律形成的基础，能够为法律的制定提供依据","法律所禁止和制裁的行为，通常不是道德所反对和谴责的行为"],"a":"C"},{"ch":6,"t":"s","n":15,"stem":"国家干部遵纪守法，不欺上瞒下、以权谋私；教师平等对待每个学生，不应有智力差异和家庭贫富贵贱之分；售货员尊重顾客的平等权利，热情服务，不以貌待客，欺叟骗童。这是人们在社会生活中应当遵循的（ ）。","o":["职业道德的要求","社会公德的要求","家庭美德的要求","生态道德的要求"],"a":"A"},{"ch":6,"t":"s","n":16,"stem":"（ ）是指男女双方依照法律规定的条件和程序，确立夫妻关系的法律行为。","o":["恋爱","婚姻","结婚","离婚"],"a":"C"},{"ch":6,"t":"s","n":17,"stem":"“执法必严”的含义是指（ ）。","o":["实行严刑受罚","必须严格地执行法律的规定，维护法律的权威与尊严","对违法犯罪分子的处理必须从严","坚决打击敌对分子"],"a":"B"},{"ch":6,"t":"s","n":18,"stem":"（ ）是依法治国的主体和力量源泉。","o":["政府","执政党","人民","单位"],"a":"C"},{"ch":6,"t":"s","n":19,"stem":"2020年春节来临之际，许多农民工无法拿到自己的工资，某些农民工采取过激的行为讨要工资而触犯了法律，你认为维护权利要（ ）。","o":["忍气吞声，自认倒霉","运用法律手段，按照法定程序来维护","采用同样的方式去侵害他人的合法权利","采取任何手段自行解决"],"a":"B"},{"ch":6,"t":"s","n":20,"stem":"公民的基本权利也称（ ）","o":["宪法权利","法律权利","民主权利","法定权利"],"a":"A"},{"ch":6,"t":"s","n":21,"stem":"中华人民共和国公民在下列何种情况下，有从国家和社会获得物质帮助权（ ）。","o":["年老、疾病或者丧失劳动能力","下岗或失业","未成年","生活确有困难"],"a":"A"},{"ch":6,"t":"s","n":22,"stem":"下列校园论坛中的言论能体现公民自觉履行义务的是（ ）。","o":["“听说你父亲病了？” “这与我无关，我是他领养的。”","“又要选举了。” “让我想想怎么做才能选上我。”","“今年征兵工作开始了。” “我符合条件，明天就去报名。”","“妈妈要交学费了。” “我与你爸离婚了，向他要去。”"],"a":"C"},{"ch":6,"t":"s","n":23,"stem":"根据我国宪法和法律，下列表述正确的是（ ）。","o":["被剥夺政治权利的公民不再享有宗教信仰的自由","被剥夺政治权利的公民不再享有科学研究的自由","被剥夺政治权利的公民不再享有艺术创作的自由","被剥夺政治权利的公民不再享有出版著作的自由"],"a":"D"},{"ch":6,"t":"s","n":24,"stem":"24 对于一个国家和民族来说，下列选项中的哪一项权利被认为是首要“人权”（ ）。","o":["发展权","生存权","公民权","独立权"],"a":"B"},{"ch":6,"t":"s","n":25,"stem":"下列不属于法的特征的是（ ）。","o":["法是由国家制定或认可的","法是由原始社会的习惯演变而来的，具有历史性","法是由国家强制力保证实施的，具有强制性","法是统治阶级意志的体现，具有阶级性"],"a":"B"},{"ch":6,"t":"s","n":26,"stem":"下列选项中，既是公民的权利又是公民义务的是（ ）。","o":["财产权和著作权","监督权和休息权","选举权和被选举权","劳动权和受教育权"],"a":"D"},{"ch":6,"t":"s","n":27,"stem":"“没有无义务的权利、也没有无权利的义务”。马克思的这句话说明了（ ）。","o":["权利与义务二者是对立的","权利与义务二者是统一的","权利与义务二者是矛盾的","权利与义务二者是分离的"],"a":"B"},{"ch":6,"t":"s","n":28,"stem":"下列选项中可以作为权利和义务的根本区别的是（ ）。","o":["权利应当享有，义务可以放弃","权利是与生俱来的，义务则是法律规定的","权利对于一切人都是平等的，义务则因人而异","权利可以放弃，义务必须履行"],"a":"D"},{"ch":6,"t":"s","n":29,"stem":"人权保障的最后防线是（ ）。","o":["司法保障","立法保障","行政保护","党政干部的督促"],"a":"A"},{"ch":6,"t":"s","n":30,"stem":"当同一项社会关系同时受到多种社会规范的调整而多种社会规范又相互矛盾时，要优先考虑（ ）的适用。","o":["法律规范","道德规范","乡规民约","宗教教义"],"a":"A"},{"ch":6,"t":"s","n":31,"stem":"2014年11月1日第十二届全国人民代表大会常务委员会第十一次会议通过设立国家宪法日，从此（ ）成为国家宪法日。","o":["2月4日","12月4日","12月14日","2月14日"],"a":"B"},{"ch":6,"t":"s","n":32,"stem":"全面依法治国的首要任务是（ ）","o":["提高立法水平","依宪治国","实现司法公正","完善人民代表大会制度"],"a":"B"},{"ch":6,"t":"s","n":33,"stem":"新中国成立以来的实践表明，（ ）是治国理政不可或缺的两种方式。","o":["法治和德治","法制和德治","法制和自治","法制和人治"],"a":"A"},{"ch":6,"t":"s","n":34,"stem":"我国依法治国的主体是（ ）。","o":["人民政府","共产党","人民群众","人民代表大会"],"a":"C"},{"ch":6,"t":"s","n":35,"stem":"依法治国的根本目的是（ ）。","o":["实现人民幸福，尊重和保障人权","实现执政党的利益","维护社会稳定","快速实现小康生活"],"a":"A"},{"ch":6,"t":"s","n":36,"stem":"社会主义法治理论是依法治国的（ ）。","o":["最终目标","核心内容","指导思想","实施过程"],"a":"C"},{"ch":6,"t":"s","n":37,"stem":"依法治国是我党在总结长期治国理政经验教训基础上提出的治国（ ）。","o":["基本方略","基本内容","基本工作","基本思想"],"a":"A"},{"ch":6,"t":"s","n":38,"stem":"社会主义法治最根本的保证是（ ）。","o":["执法为民","党的领导","公平正义","人权保障"],"a":"B"},{"ch":6,"t":"s","n":39,"stem":"楼某，男，于2017年6月从广州携带1千克毒品至南宁，在南宁火车站出口被警察抓获。时为15岁。依据我国《刑法》第17条相关规定：“已满十四周岁不满十六周岁的人，犯故意杀人、故意伤害致人重伤或者死亡、强奸、抢劫、贩卖毒品、放火、爆炸、投毒罪的，应当负刑事责任。”楼某只是携带毒品而不是贩卖毒品，因此不承担刑事责任。这体现了刑法的（ ）。","o":["罪刑法定原则","罪刑相适应原则","法律面前人人平等原则","普遍管辖原则"],"a":"A"},{"ch":6,"t":"s","n":40,"stem":"下列属于知识产权法的是（ ）。","o":["保险法","票据法","个人所得税法","商标法"],"a":"D"},{"ch":6,"t":"s","n":41,"stem":"下列关于我国法律体系的说法错误的是（ ）。","o":["法律部门是构成法律体系的基本要素","一元两级多层次的立法体制决定了法律体系呈现出统一而又多层次的结构特征","宪法在法律体系中具有最高的法律效力","现有法律体系主要是在借鉴国外法制文明的基础上形成的，完全抛弃了中国传统法制文明"],"a":"D"},{"ch":6,"t":"s","n":42,"stem":"下列关于我国基本经济制度的说法中正确的是（ ）。","o":["社会主义公有制就是指劳动群众集体所有制","国家在社会主义初级阶段，坚持按劳分配为主体，多种分配方式并存的分配制度","非公有制经济已经成为社会主义市场经济的主体","在各种所有制经济发生竞争时，国家要倾向支持和保护公有制经济"],"a":"B"},{"ch":6,"t":"s","n":43,"stem":"中国共产党领导的多党合作和政治协商的重要机构是（ ）。","o":["中国人民政治协商会议","全国人民代表大会","国务院台湾事务办公室","中国民主同盟"],"a":"A"},{"ch":6,"t":"s","n":44,"stem":"在我国代表国家行使审判权的国家机关是（ ）。","o":["人民代表大会","人民检察院","各级人民政府","人民法院"],"a":"D"},{"ch":6,"t":"s","n":45,"stem":"人们依靠法律可以预先估计到他们将如何行为及行为后将导致的法律后果，这是指法的（ ）。","o":["评价作用","指引作用","预测作用","强制作用"],"a":"C"},{"ch":6,"t":"s","n":46,"stem":"行使国家立法权的是（ ）。","o":["国务院","全国人大及其常务委员会","全国人民代表大会","全国人大常务委员会"],"a":"B"},{"ch":6,"t":"s","n":47,"stem":"我国立法贯穿公正、公平、公开原则，坚持科学立法、民主立法、依法立法，表达（ ）的共同意志和诉求。","o":["各政党","人民","各阶级","全体社会成员"],"a":"B"},{"ch":6,"t":"m","n":1,"stem":"治国理政必须奉守法律至上原则。法律的至上性，具体表现为（ ）。","o":["法律的普遍适用性","法律的优先适用性","法律的不可违抗性","法律不可违背党的意志"],"a":"ABC","e":"D项：法律至上指普遍适用、优先适用、不可违抗，“法律不可违背党的意志”不是法律至上性的表现，党的领导与依法治国是统一的。"},{"ch":6,"t":"m","n":2,"stem":"程序具有独立的价值和意义，只有按照正当程序处理问题，处理结果才具有公信力和权威性。下列选项属于正当程序的基本特征的有（ ）。","o":["中立性","参与性","公开性","时限性"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":3,"stem":"法律是否具有权威，取决于（ ）等基本要素。","o":["法律在国家和社会治理体系中的地位和作用","法律本身的科学程度","法律在实践中的实施程度","法律被社会成员尊崇或信仰的程度"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":4,"stem":"关于法治思维下列说法正确的是（ ）。","o":["是一种正当性思维","是一种规范性思维","是一种可靠的逻辑思维","是一种符合规律、尊重事实的科学思维"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":5,"stem":"执政党和国家机关不仅要严格遵守法律的规定，更要带头维护法律的权威，切实保障法律的至上地位，具体举措包括（ ）。","o":["推进依法执政","提高立法质量","严格规范公正执法","提升司法公信力"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":6,"stem":"下列能够体现执法公正要求的有（ ）。","o":["坚持合法合理原则","坚持及时高效原则","坚持实体公正优于程序公正","坚持程序公正优于实体公正"],"a":"AB","e":"C项：实体公正与程序公正应当并重，不能相互“优于”；D项：同样把二者对立，错误。"},{"ch":6,"t":"m","n":7,"stem":"权利和义务的内容、种类是不同的，其中被法律规定或认可的，被称为法律权利和法律义务。其中，法律权利是各种权利中最为重要的权利。其特征具体体现在（ ）。","o":["法律权利的内容、分配和实现方式因社会制度和国家法律的不同而存在差异","法律权利的内容、种类和实现程度受社会物质生活条件的制约","法律权利受法律维护或保障，具有不可侵犯性","法律权利必须依法行使"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":8,"stem":"法治和德治，是治国理政不可或缺的两种方式，忽视其中任何一个，都将难以实现国家的长治久安。法律和道德对治理国家的作用主要体现在（ ）。","o":["法治是治国理政的基本方式，而德治能够为法治提供支撑","二者作为治国理政的重要手段，要做到以法安天下，以德润人心","将二者结合，能够进一步夯实国家治理的制度基础和思想道德基础","二者虽然发挥作用的方式不同，但其目标是一致的，即为了实现国家长治久安"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":9,"stem":"加强宪法实施和依宪治国，对中国特色社会主义法治体系、社会主义法治国家的建设具有重要意义。具体体现在（ ）。","o":["有利于巩固和发展国家根本制度，完成根本任务","有利于保证国家权力依法规范运行","有利于公民基本权利切实得到实现，公民基本义务切实得到履行","有利于坚持党的领导，巩固党的执政地位"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":10,"stem":"要坚持依宪治国、依宪执政，就要全面实施宪法。全面实施宪法的基本要求有（ ）。","o":["树立宪法意识，弘扬宪法精神","坚持依法治国和以德治国相结合","坚持党的依宪执政，自觉在宪法法律范围内活动","加强宪法实施，引导公民践行宪法、崇尚宪法、遵守宪法、捍卫宪法"],"a":"ACD","e":"B项：“依法治国和以德治国相结合”是治国方略，不属于“全面实施宪法”的基本要求。"},{"ch":6,"t":"m","n":11,"stem":"基本权利是宪法以及具有宪法性质的其他法律赋予公民的最基本的权利底线，在下列的各个选项中，不属于基本权利的选项是（ ）。","o":["宗教信仰自由","继承权","受教育权","婚姻自由权","社会文化权利与自由"],"a":"BD","e":"A项：宗教信仰自由、C项：受教育权、E项：社会文化权利均属宪法基本权利；B项继承权、D项婚姻自由权属普通法律规定的权利。"},{"ch":6,"t":"m","n":12,"stem":"法律权利是各种权利中最重要并通过法律保障途径保障实现的权利，法律权利和其他权利的最显著区别主要表现在（ ）。","o":["法律权利受社会物质生活条件的制约","法律权利因为社会制度和国家法律的不同而存在差异","法律权利深受法律的维护和保障，具有不可侵犯性","法律权利的行使必须是依法行使","法律权利由国家强制力保障其实现"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":6,"t":"m","n":13,"stem":"法律应当有权威，应当维护法律的权威，这就要求社会成员（ ）。","o":["对法律常怀敬畏之心，常思敬重之情。","以实际行动捍卫法律尊严，保障法律实施。","拥护法律规定，接受法律约束","敢于揭露违法犯罪行为","勇于帮扶弱者，克服事不关己高高挂起的消极心态"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":6,"t":"m","n":14,"stem":"关于法治思维的说法，正确的有（ ）。","o":["中国历史上重视人治，这种思想的存留并不影响法治思维的培养","大学生还年轻，培养法治思维是将来的事","法律思维与政治思维、道德思维并行不悖","法律思维是现代社会成员应当具备的一种思维，与公民的专业和职业没有关系","法治思维以法律原则和法律规则为依据来指导人们的社会行为，是一种规范性思维"],"a":"CDE","e":"A项：人治思想存留会影响法治思维培养，“并不影响”错误；B项：法治思维应从当下培养，“将来的事”错误。"},{"ch":6,"t":"m","n":15,"stem":"我国依宪执政与西方宪政存在本质区别，主要表现为（ ）。","o":["制度基础不同","领导力量不同","权力主体不同","权力行使方式不同","宪政实施程度不同"],"a":"ABCD","e":"E项：我国不实行西方宪政，“宪政实施程度”这一比较维度不存在，不属于本质区别。"},{"ch":6,"t":"m","n":16,"stem":"法律至上具体表现为法律的（ ）。","o":["普遍适用性","优先适用性","不可违抗性","任意处罚性","随机调整性"],"a":"ABC","e":"D项：“任意处罚性”违背法治；E项：“随机调整性”与法律的稳定性、确定性相反。"},{"ch":6,"t":"m","n":17,"stem":"下列关于法治和德治的说法，正确的有（ ）。","o":["德治发挥作用要以国家强制力为后盾","法治主要通过道德教化发挥作用","与德治相比，法治更为重要","德治和法治二者不可或缺","法治和德治的实现方式和实施载体不同"],"a":"DE","e":"A项：以国家强制力为后盾的是法治；B项：靠道德教化发挥作用的是德治；C项：法治与德治并无轻重之分，二者不可或缺。"},{"ch":6,"t":"m","n":18,"stem":"我国追求以德治国，重在弘扬（ ）","o":["儒家传统道德风范","社会主义核心价值观","社会主义道德","普世价值观","老子的“无为而治”观"],"a":"BC","e":"A项：以德治国不是复古儒家道德；D项：“普世价值”是西方话语；E项：“无为而治”与以德治国无关。"},{"ch":6,"t":"m","n":19,"stem":"在依法治国中，坚持人民主体地位，就意味着（ ）。","o":["维护人民利益是执政的根本出发点和落脚点","要尊重和保障人权","必须保证人民的广泛参与","要实现人民幸福","特殊情况下可以借鉴模仿西方国家少数人主导的精英法治"],"a":"ABCD","e":"E项：我国坚持人民主体地位，不搞少数人主导的“精英法治”。"},{"ch":6,"t":"m","n":20,"stem":"下列哪些属于具有中国特色的社会主义制度（ ）。","o":["三权分立","民族区域自治制度","司法独立","人民代表大会制度","基层群众自治制度"],"a":"BDE","e":"A项：三权分立是西方政治制度；C项：“司法独立”不是我国制度的表述方式，均不属中国特色社会主义制度。"},{"ch":6,"t":"m","n":21,"stem":"如何理解党的领导和依法治国的内在统一性（ ）。","o":["要坚持党总揽全局、协调统筹各方工作","党的领导要贯彻到法治建设全过程和各方面","党要加强学习，要努力改善和提高领导法治建设的水平","党治国理政必须依据宪法法律","党要依据党内法规从严治党"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":6,"t":"m","n":22,"stem":"下列关于中国特色社会主义法治理论观念的表述，正确的有（ ）","o":["法治是国家治理体系和治理能力的重要依托","中国共产党是依法治国的主体和力量源泉","在特殊情况下,个别人可以逾越法律底线","行政机关要坚持法无授权不可为","只有得到人民的内心拥护和真诚信仰，法律方有权威可言"],"a":"ADE","e":"B项：依法治国的主体和力量源泉是人民，不是中国共产党；C项：任何人不得逾越法律底线。"},{"ch":6,"t":"m","n":23,"stem":"下列关于法律体系中法律的说法正确的是（ ）。","o":["各级人大及其常委会都有权制定法律","法律的制定必须以宪法为依据","行政法规和地方性法规不得与法律相抵触","法律是中国特色社会主义法律体系的主干","法律解决的是国家发展中带有根本性、长期性的问题"],"a":"BCDE","e":"A项：只有全国人大及其常委会有权制定法律，并非“各级人大及其常委会”。"},{"ch":6,"t":"m","n":24,"stem":"司法的基本要求是（ ）","o":["正确","合法","合理","及时","高效"],"a":"ABCD","e":"E项：“高效”不是司法基本要求的四项表述（正确、合法、合理、及时）。"},{"ch":6,"t":"m","n":25,"stem":"下列属于我国宪法确立的基本政治制度是（ ）。","o":["中国共产党领导的多党合作制","中国共产党领导的政治协商制度","民族区域自治制度","基层群众自治制度"],"a":"ABCD","e":"四项均正确，本题为全选题。"},{"ch":6,"t":"m","n":26,"stem":"在我国立法体制中，民族自治地方的人民代表大会有权根据当地特点制定具有约束力的规范性法律文件，这些文件是（ ）。","o":["行政法规","地方法规","地方规章","自治条例","单行条例"],"a":"DE","e":"A、B、C项：行政法规由国务院制定，地方性法规由地方人大制定，地方政府规章由地方政府制定，均非民族自治地方人大制定。"},{"ch":6,"t":"m","n":27,"stem":"根据法律的规范作用的指向和侧重，可以将社会主义法律的规范作用分为（ ）。","o":["指引作用","评价作用","强制作用","教育作用","预测作用"],"a":"ABCDE","e":"五项均正确，本题为全选题。"},{"ch":6,"t":"m","n":28,"stem":"国家机关的立法活动必须遵循的法定程序是（ ）。","o":["法律案的提出","法律案的讨论","法律案的审","法律案的表决","法律的公布"],"a":"ACDE","e":"B项：立法法定程序为提出、审议、表决、公布，“讨论”不是规范表述，应为“审议”。"},{"ch":6,"t":"m","n":29,"stem":"我国司法机关包括（ ）。","o":["人民法院","人民检察院","司法局","公安局","监狱"],"a":"AB","e":"C、D、E项：司法局、公安局属行政机关，监狱属司法行政机关，我国司法机关是人民法院和人民检察院。"},{"ch":6,"t":"m","n":30,"stem":"社会主义法律的本质规定性具有（ ）。","o":["人民性","阶级性","科学性","思想性","先进性"],"a":"ABCE","e":"D项：社会主义法律的本质规定性体现为人民性、阶级性、科学性、先进性，“思想性”不是其表述。"},{"ch":6,"t":"m","n":31,"stem":"决定法律本质、内容和发展方向的根本因素是（ ）。","o":["生产力","生产关系","政治关系","经济关系","阶级关系"],"a":"AB","e":"C、D、E项：决定法律本质、内容和发展方向的根本因素是生产力与生产关系（经济基础），政治关系、经济关系、阶级关系不是根本因素。"},{"ch":6,"t":"j","n":1,"stem":"要实现真正的自由就要摆脱纪律、法律等的束缚。","a":"F"},{"ch":6,"t":"j","n":2,"stem":"任何公民都是享有法律权利和履行法律义务的统一体，并把自己依法履行义务作为他人依法享受权利的实现条件","a":"T"},{"ch":6,"t":"j","n":3,"stem":"法治思维是现代社会成员应当具备的一种思维，与公民的专业和职业有一定的关系。","a":"F"},{"ch":6,"t":"j","n":4,"stem":"立法活动必须遵循法定程序，就全国人民代表大会的立法程序而言，大体包括法律案的提出、法律案的审议、法律案的表决和法律的公布四个环节。","a":"T"},{"ch":6,"t":"j","n":5,"stem":"法律权利的内容、分配和实现方式因社会制度和国家法律的不同而存在差异。","a":"T"},{"ch":6,"t":"j","n":6,"stem":"法治国家要求，法律在社会生活国家生活的一切重要领域处于至高无上的地位，即法律享有崇高的威望，得到普遍的遵守和广泛的认同，法律在调控社会生活方面发挥基础和主导的作用。法律的至高无上的权威是法治国家的显著特征。","a":"T"},{"ch":6,"t":"j","n":7,"stem":"权利决不能超出社会的经济结构以及由经济结构制约的社会的文化发展。","a":"T"},{"ch":6,"t":"j","n":8,"stem":"人权只有符合法律权利保障的精神和要求，才具有正当性和合理性；法律权利只有上升为人权，才能得到有效的尊重和保障。","a":"F"},{"ch":6,"t":"j","n":9,"stem":"只有取得中华人民共和国国籍，并在我国有正当职业和居住1年以上，年满18周岁的公民，才有选举权和被选举权。","a":"F"},{"ch":6,"t":"j","n":10,"stem":"党的领导原则是我国宪法的基本原则之一。","a":"T"},{"ch":6,"t":"j","n":11,"stem":"公民的基本权利与基本义务共同反映和决定着公民在国家中的政治与法律地位，并构成普通法律规定公民权利和义务的基础与原则。","a":"T"},{"ch":6,"t":"j","n":12,"stem":"中国人民共和国公民在年老、疾病或丧失劳动能力的情况下，有从国家和社会获得物质帮助的权利。","a":"T"},{"ch":6,"t":"j","n":13,"stem":"我国兵役法规定，普通高等学校毕业生的征集年龄可以放宽至26岁。","a":"F"},{"ch":6,"t":"j","n":14,"stem":"宪法的核心价值是保障政府权力。","a":"F"},{"ch":6,"t":"j","n":15,"stem":"我国宪法规定，人民行使国家权力的机关是全国人民代表大会。","a":"F"},{"ch":6,"t":"j","n":16,"stem":"法律权威的树立主要依靠法律的外在强制力和内在说服力。","a":"T"},{"ch":6,"t":"j","n":17,"stem":"我国社会主义法律既具有鲜明的阶级性，又具有广泛的人民性，体现了阶级性与人民性的统一。","a":"T"},{"ch":6,"t":"j","n":18,"stem":"法律面前人人平等是指公民在守法、适用法律上一律平等，也包括在立法时也要平等对待每个公民。","a":"F"},{"ch":6,"t":"j","n":19,"stem":"守法，就是指依法履行义务。","a":"F"},{"ch":6,"t":"j","n":20,"stem":"所有的法律规范的实施，均须由国家强制力（国家暴力）强制实施的。","a":"F"},{"ch":6,"t":"j","n":21,"stem":"具有强制力的行为规范就是法律。","a":"F"},{"ch":6,"t":"j","n":22,"stem":"法是随着私有制、阶级和国家的产生而产生。","a":"T"},{"ch":6,"t":"j","n":23,"stem":"社会主义法律是全民意志的体现。","a":"F"},{"ch":6,"t":"j","n":24,"stem":"社会主义法是阶级性和人民性的统一，所以不调整阶级对立关系。","a":"F"},{"ch":6,"t":"j","n":25,"stem":"一个法律规范就是一个法律条文。","a":"F"},{"ch":6,"t":"j","n":26,"stem":"人民民主专政是我国的政权组织形式。","a":"F"},{"ch":6,"t":"j","n":27,"stem":"我国宪法修改案必须有全国人大全体代表的1/2多数通过。","a":"F"},{"ch":6,"t":"e","n":1,"stem":"材料一\n2023年8月28日，《中华人民共和国治安管理处罚法（修订草案）》提请十四届全国人大常委会第五次会议审议，随后全国人大常委会在人大网上公布该修订草案，并向社会公众公开征求意见。此次修订草案对多个社会治安领域的热点问题进行了规定。草案增列数种应予处罚的行为，包括考试作弊、高空抛物、违法出售或者提供公民个人信息等。同时，修订草案将治安管理工作中一些好的机制和做法通过法律形式予以确认，进一步合理设定了处罚措施和幅度。例如，被处罚人不服行政拘留处罚决定、提起行政诉讼的，或者遇有参加升学考试、近亲属病危、死亡等情形的，可以提出暂缓执行行政拘留的申请，满足法定条件的，公安机关可暂缓执行行政拘留处罚决定。\n请结合材料，运用《思想道德与法治》的相关知识，分析《治安管理处罚法》的修订对建设法治中国的意义。","k":["公开征求意见体现科学立法、民主立法原则，拓宽公民有序参与立法渠道。","有利于推进全面依法治国，完善中国特色社会主义法律体系，为法治中国建设提供法律保障。","有利于规范政府及其工作人员的执法行为，促进依法行政、建设法治政府。","有利于保障公民合法权益，增强公民法治意识，促进自觉守法。","有利于推进社会治理体系和治理能力现代化，维护社会和谐稳定。"]},{"ch":6,"t":"e","n":2,"stem":"材料二\n数字时代，算法推荐技术极大地提升了信息获取的效率和个性化体验，但“信息茧房”“大数据杀熟”、算法歧视等问题也日益引发社会担忧。为规范算法应用，中国在法治轨道上迈出了关键一步。\n2022年3月1日，国家互联网信息办公室、工业和信息化部、公安部、国家市场监督管理总局联合发布的 《互联网信息服务算法推荐管理规定》（以下简称《规定》）正式施行。这是全球范围内，针对算法推荐技术进行的较早、较为全面的专项立法之一。《规定》明确要求：保障用户的知情权和选择权，要求向用户提供不针对其个人特征的选项，或者便捷的关闭算法推荐服务的选项；不得实施大数据杀熟等违法活动，要求根据消费者的偏好、交易习惯等特征，在交易价格等交易条件上实行不合理的差别待遇；应当建立完善用于未成年人、老年人、劳动者、消费者等主体权益的保护机制；鼓励算法公开透明，并建立健全人工干预和用户自主选择机制。\n该《规定》的出台，旨在规范互联网信息服务中的算法推荐活动，弘扬社会主义核心价值观，维护国家安全和社会公共利益，保护公民、法人和其他组织的合法权益，促进互联网信息服务健康有序发展。”\n（材料出处：中华人民共和国国家互联网信息办公室官网。原文标题：《互联网信息服务算法推荐管理规定》答记者问，以及《规定》正式文本。发布日期：2022年1月4日。链接：http://www.cac.gov.cn/2022-01/04/c_1642894606364259.htm）\n问题：\n1.结合材料，分析《互联网信息服务算法推荐管理规定》的出台体现了我国社会主义法治的哪些基本原则？（至少答出三点）\n2.作为新时代的大学生，我们应如何提升自身的法治素养，积极适应并推动数字时代的法治建设？","k":["权利保障原则：保障用户知情权、选择权，特别保护未成年人、老年人、劳动者、消费者等群体。","公平正义原则：禁止“大数据杀熟”等算法价格歧视，不得实行不合理差别待遇。","权力制约原则：对算法这一新型技术权力进行法律规制，要求公开透明、可人工干预，防止滥用。","提升法治素养：学习《网络安全法》《数据安全法》《个人信息保护法》等，做尊法学法的表率。","培养法治思维：警惕“信息茧房”和算法操纵，对侵权行为依法维权，做守法用法的先锋。","参与普法宣传：向家人朋友普及数字法治常识，做法治文化的传播者。"]}]};
+</script>
+<script>
+/* ===== 思想道德与法治 · 2026 秋 题库 App ===== */
+(function () {
+  var DATA = window.__BANK__;
+  var ITEMS = DATA.items, CHS = DATA.chapters;
+
+  var TYPE = { s: '单项选择', m: '多项选择', j: '判断', e: '材料分析' };
+  var TKEY = ['A', 'B', 'C', 'D', 'E'];
+  var INT = [1, 2, 4, 7];            // 艾宾浩斯四轮间隔（天）
+  var MASTER_ST = 4;                  // 连续答对 4 轮即视为掌握
+  var TARGET = '2026-12-31';          // 完全掌握截止日
+  var KEY = 'df2026.bank.v1';
+
+  var state = {
+    cards: {}, fav: {}, daily: {}, lastDay: '',
+    filterCh: 'all', filterType: 'all', mode: 'plan',
+    queue: [], idx: 0, answer: [], submitted: false, revealed: false,
+    autoNext: false, started: today()
+  };
+
+  /* ---------- 工具 ---------- */
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function addDays(str, n) {
+    var d = new Date(str + 'T00:00:00');
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function diffDays(a, b) {
+    return Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / 86400000);
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify({ cards: state.cards, fav: state.fav, daily: state.daily, lastDay: state.lastDay, autoNext: state.autoNext, cur: curId() })); } catch (e) {}
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var o = JSON.parse(raw);
+      state.cards = o.cards || {};
+      state.fav = o.fav || {};
+      state.daily = o.daily || {};
+      state.lastDay = o.lastDay || '';
+      state.autoNext = !!o.autoNext;
+      state._restore = o.cur;
+    } catch (e) {}
+  }
+
+  /* ---------- 学习记录 ---------- */
+  function card(id) {
+    if (!state.cards[id]) state.cards[id] = { st: 0, due: '', seen: 0, ok: 0, no: 0, sk: 0, last: '' };
+    return state.cards[id];
+  }
+  function isDue(id) {
+    var c = state.cards[id];
+    return c && c.seen > 0 && c.due && c.due <= today() && c.st < MASTER_ST;
+  }
+  function isNew(id) { return !state.cards[id] || !state.cards[id].seen; }
+  function isWrong(id) {
+    var c = state.cards[id];
+    return c && c.no > 0 && c.sk < 2;
+  }
+  function mastered(id) {
+    var c = state.cards[id];
+    return c && c.st >= MASTER_ST;
+  }
+
+  function dueCount() { var n = 0; ITEMS.forEach(function (_, i) { if (isDue(i)) n++; }); return n; }
+  function newCount() { var n = 0; ITEMS.forEach(function (_, i) { if (isNew(i)) n++; }); return n; }
+
+  function planEnd() { return addDays(TARGET, -14); }
+  function newQuota() {
+    var left = newCount();
+    if (!left) return 0;
+    var days = Math.max(1, diffDays(today(), planEnd()) + 1);
+    var q = Math.ceil(left / days);
+    return Math.max(1, q);
+  }
+
+  /* ---------- 队列 ---------- */
+  function passesFilter(i) {
+    if (state.filterCh !== 'all' && ITEMS[i].ch !== +state.filterCh) return false;
+    if (state.filterType !== 'all' && ITEMS[i].t !== state.filterType) return false;
+    return true;
+  }
+  function buildQueue() {
+    var q = [];
+    if (state.mode === 'plan') {
+      var due = [], fresh = [];
+      ITEMS.forEach(function (it, i) {
+        if (!passesFilter(i)) return;
+        if (isDue(i)) due.push(i);
+        else if (isNew(i)) fresh.push(i);
+      });
+      due.sort(function (a, b) { return (state.cards[a].due || '').localeCompare(state.cards[b].due || '') || a - b; });
+      q = due.concat(fresh.slice(0, newQuota()));
+    } else if (state.mode === 'review') {
+      ITEMS.forEach(function (it, i) { if (passesFilter(i) && isDue(i)) q.push(i); });
+      q.sort(function (a, b) { return (state.cards[a].due || '').localeCompare(state.cards[b].due || '') || a - b; });
+    } else if (state.mode === 'wrong') {
+      ITEMS.forEach(function (it, i) { if (passesFilter(i) && isWrong(i)) q.push(i); });
+    } else if (state.mode === 'fav') {
+      ITEMS.forEach(function (it, i) { if (passesFilter(i) && state.fav[i]) q.push(i); });
+    } else {
+      ITEMS.forEach(function (it, i) { if (passesFilter(i)) q.push(i); });
+    }
+    state.queue = q;
+    if (!q.length) { state.idx = 0; return; }
+    if (state._restore != null) {
+      var at = q.indexOf(state._restore);
+      state.idx = at >= 0 ? at : 0;
+      state._restore = null;
+    } else if (state.idx >= q.length) state.idx = 0;
+  }
+  function curId() { return state.queue.length ? state.queue[state.idx] : null; }
+  function item() { var id = curId(); return id == null ? null : ITEMS[id]; }
+
+  /* ---------- 判分 ---------- */
+  function letters(i) { return TKEY[i]; }
+  function answerOf(it) { return it.a || ''; }
+  function judge(it, ans) {
+    if (it.t === 'm') {
+      var a = ans.slice().sort().join(''), b = answerOf(it).split('').sort().join('');
+      return a === b;
+    }
+    return ans[0] === answerOf(it);
+  }
+  function record(it, correct, id) {
+    var c = card(id);
+    c.seen++;
+    c.last = today();
+    if (correct) {
+      c.ok++; c.sk++;
+      c.st = Math.min(MASTER_ST, c.st + 1);
+      if (c.st >= MASTER_ST) { c.due = ''; }
+      else {
+        var due0 = addDays(today(), INT[Math.min(c.st - 1, INT.length - 1)]);
+        c.due = due0 > TARGET ? TARGET : due0;
+      }
+    } else {
+      c.no++; c.sk = 0;
+      c.st = Math.max(0, c.st - 2);
+      c.due = addDays(today(), 1);
+    }
+    var d = state.daily[today()] || { done: 0, ok: 0 };
+    d.done++; if (correct) d.ok++;
+    state.daily[today()] = d;
+    state.lastDay = today();
+    save();
+  }
+
+  /* ---------- 渲染：侧栏 ---------- */
+  function chName(i) { return CHS[i].replace(/^第[一二三四五六]章\s*/, '').replace(/^绪论\s*/, '绪论·'); }
+  function renderRail() {
+    var dueN = dueCount(), newN = newCount(), quota = newQuota();
+    var d0 = state.daily[today()] || (state.daily[today()] = { done: 0, ok: 0 });
+    if (!d0.goal) d0.goal = dueN + quota;
+    var doneToday = d0.done || 0;
+    var targetToday = d0.goal;
+    var pct = targetToday ? Math.min(100, Math.round(doneToday / targetToday * 100)) : 0;
+    var dash = 2 * Math.PI * 26;
+    var ell = document.getElementById('ringArc');
+    ell.setAttribute('stroke-dasharray', dash.toFixed(1));
+    ell.setAttribute('stroke-dashoffset', (dash * (1 - pct / 100)).toFixed(1));
+    document.getElementById('ringPct').textContent = pct + '%';
+
+    var masteredN = 0;
+    ITEMS.forEach(function (_, i) { if (mastered(i)) masteredN++; });
+    document.getElementById('todayNums').innerHTML =
+      '<div>今日新题 <b>' + Math.min(quota, newN) + '</b> 题　复习 <b>' + dueN + '</b> 题</div>' +
+      '<div>已掌握 <b>' + masteredN + '</b> / ' + ITEMS.length + '　已完成 <b>' + doneToday + '</b></div>';
+
+    var streak = 0;
+    for (var k = 0; k < 400; k++) {
+      var d = addDays(today(), -k);
+      if (state.daily[d] && state.daily[d].done > 0) streak++;
+      else if (k > 0) break;
+    }
+    document.getElementById('streak').innerHTML = '<span class="dot"></span>连续学习 ' + streak + ' 天 · 截止 ' + TARGET.slice(5).replace('-', '/');
+
+    var chBox = document.getElementById('chapters');
+    chBox.innerHTML = '';
+    var allBtn = document.createElement('button');
+    allBtn.className = 'nav-item' + (state.filterCh === 'all' ? ' on' : '');
+    allBtn.innerHTML = '<span>全部章节</span><span class="cnt">' + ITEMS.length + '</span>';
+    allBtn.onclick = function () { state.filterCh = 'all'; resetQueue(); };
+    chBox.appendChild(allBtn);
+    CHS.forEach(function (name, i) {
+      var total = 0, done = 0;
+      ITEMS.forEach(function (it, j) { if (it.ch === i) { total++; if (state.cards[j] && state.cards[j].seen) done++; } });
+      var b = document.createElement('button');
+      b.className = 'nav-item' + (state.filterCh === String(i) ? ' on' : '');
+      b.innerHTML = '<span>' + chName(i) + '</span><span class="cnt">' + done + '/' + total + '</span>' +
+        '<span class="mini"><i style="width:' + (total ? done / total * 100 : 0) + '%"></i></span>';
+      b.onclick = function () { state.filterCh = String(i); resetQueue(); };
+      chBox.appendChild(b);
+    });
+
+    ['all', 's', 'm', 'j', 'e'].forEach(function (t) {
+      var b = document.querySelector('[data-type="' + t + '"]');
+      if (b) b.classList.toggle('on', state.filterType === t);
+    });
+    ['plan', 'free', 'review', 'wrong', 'fav'].forEach(function (m) {
+      var b = document.querySelector('[data-mode="' + m + '"]');
+      if (b) b.classList.toggle('on', state.mode === m);
+    });
+    var mp = document.getElementById('modePill');
+    if (mp) mp.textContent = ({ plan: '今日计划', free: '自由练习', review: '到期复习', wrong: '错题重练', fav: '我的收藏' })[state.mode] + ' · ' + (state.filterType === 'all' ? '全部题型' : TYPE[state.filterType]) + ' · ' + (state.filterCh === 'all' ? '全部章节' : chName(+state.filterCh));
+    var w = 0; ITEMS.forEach(function (_, i) { if (isWrong(i)) w++; });
+    var el = document.getElementById('wrongCnt'); if (el) el.textContent = w;
+    var f = Object.keys(state.fav).filter(function (k) { return state.fav[k]; }).length;
+    var fe = document.getElementById('favCnt'); if (fe) fe.textContent = f;
+    document.getElementById('dueCnt').textContent = dueN;
+  }
+
+  function resetQueue() {
+    state.idx = 0;
+    buildQueue();
+    renderAll();
+    save();
+  }
+
+  /* ---------- 渲染：题目 ---------- */
+  function renderQuestion() {
+    var box = document.getElementById('qbox');
+    var it = item();
+    if (!it) {
+      box.innerHTML = '<div class="empty"><h2>这里暂时没有题</h2><p>' + emptyHint() + '</p>' +
+        '<button class="btn primary" onclick="App.switchMode(\'free\')">进入自由练习</button></div>';
+      renderDock();
+      return;
+    }
+    var id = curId();
+    var type = it.t;
+    var ans = state.answer;
+    var sub = state.submitted;
+    var right = sub ? judge(it, ans) : false;
+    var html = '';
+
+    html += '<div class="qmeta"><span class="chip ' + type + '">' + TYPE[type] + '</span>' +
+      '<span class="no">' + chName(it.ch) + ' · 第 ' + it.n + ' 题</span></div>';
+    html += '<div class="stem">' + esc(it.stem) + '</div>';
+
+    if (type === 'j') {
+      html += '<div class="truefalse">';
+      [['T', '正确'], ['F', '错误']].forEach(function (p) {
+        var cls = 'tf';
+        if (sub) {
+          if (p[0] === answerOf(it)) cls += ' right';
+          else if (ans[0] === p[0]) cls += ' wrong';
+        } else if (ans[0] === p[0]) cls += ' sel';
+        html += '<button class="' + cls + '" data-tf="' + p[0] + '">' + p[1] + '</button>';
+      });
+      html += '</div>';
+    } else if (type === 's' || type === 'm') {
+      html += '<div class="opts">';
+      it.o.forEach(function (o, i) {
+        var cls = 'opt';
+        var flag = '';
+        if (sub) {
+          var isAns = answerOf(it).indexOf(letters(i)) >= 0;
+          var picked = ans.indexOf(letters(i)) >= 0;
+          if (isAns && picked) { cls += ' right'; flag = '正确'; }
+          else if (!isAns && picked) { cls += ' wrong'; flag = '错选'; }
+          else if (isAns && !picked) { cls += ' missed'; flag = '漏选'; }
+        } else if (ans.indexOf(letters(i)) >= 0) cls += ' sel';
+        html += '<button class="' + cls + '" data-opt="' + letters(i) + '">' +
+          '<span class="key">' + letters(i) + '</span><span class="txt">' + esc(o) + '</span>' +
+          (flag ? '<span class="flag">' + flag + '</span>' : '') + '</button>';
+      });
+      html += '</div>';
+    }
+
+    if (sub) {
+      if (type === 'e') {
+        /* 材料题不判分 */
+      } else {
+        html += '<div class="verdict ' + (right ? 'ok' : 'no') + '"><span class="mark">' + (right ? '✓' : '✕') + '</span>' +
+          '<div class="body">' + (right ? '回答正确' : '回答错误') +
+          '　你的答案 <b>' + (ans.join('') || '—') + '</b>　参考答案 <span class="ans">' + answerOf(it) + '</span>' +
+          (type === 'm' ? '<div style="font-size:12px;margin-top:4px;color:inherit;opacity:.8">多选题需与参考答案完全一致才计分</div>' : '') +
+          '</div></div>';
+      }
+    }
+
+    if (type === 'e') {
+      html += '<div class="selfcheck"><button class="btn primary" id="btnKey">' + (state.revealed ? '收起要点' : '查看答题要点') + '</button></div>';
+      if (state.revealed) {
+        html += '<div class="keypoints"><div class="lab">答题要点（要点覆盖即可得分）</div><ul>' +
+          it.k.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+          '<div class="selfcheck"><button class="btn" data-self="1">我已答出要点</button><button class="btn" data-self="0">还需再练</button></div></div>';
+      }
+    }
+
+    if (sub && type !== 'e') {
+      var extra = '';
+      if (type === 'm' && it.e) extra = '<div class="exp"><span class="lab">错项解析</span><br>' + esc(it.e) + '</div>';
+      if (type === 's') {
+        var correctText = it.o[answerOf(it).charCodeAt(0) - 65];
+        extra = '<div class="exp"><span class="lab">正确选项</span><br>' + letters(answerOf(it).charCodeAt(0) - 65) + '. ' + esc(correctText || '') + '</div>';
+      }
+      if (type === 'j') {
+        extra = '<div class="exp"><span class="lab">依据</span><br>本题表述' + (answerOf(it) === 'T' ? '正确' : '错误') +
+          (answerOf(it) === 'F' ? '。判断题中凡出现“只要…就”“完全”“唯一”“等于”等绝对化表述，或与教材定义相悖，一般为错误。' : '，与教材表述一致。') + '</div>';
+      }
+      if (extra) html += '<div class="analysis">' + extra + '</div>';
+    }
+
+    box.innerHTML = '<div class="qcard">' + html + '</div>';
+    renderDock();
+    bindQuestion();
+
+    if (sub) {
+      var v = box.querySelector('.verdict');
+      if (v && !right && state.autoNext) setTimeout(next, 1400);
+    }
+  }
+
+  function emptyHint() {
+    if (state.mode === 'plan') return '今日计划已完成。可以去“错题重练”巩固薄弱题，或切换到自由练习继续推进。';
+    if (state.mode === 'wrong') return '当前筛选下没有待攻克的错题。答对两次的题会自动移出错题本。';
+    if (state.mode === 'fav') return '还没有收藏题目，点题目右下角的 ☆ 即可收藏。';
+    if (state.mode === 'review') return '当前没有到期需要复习的题。';
+    return '当前筛选条件下没有题目，试试切换章节或题型。';
+  }
+
+  function bindQuestion() {
+    var box = document.getElementById('qbox');
+    box.querySelectorAll('[data-opt]').forEach(function (b) {
+      b.onclick = function () { pick(b.getAttribute('data-opt')); };
+    });
+    box.querySelectorAll('[data-tf]').forEach(function (b) {
+      b.onclick = function () { pick(b.getAttribute('data-tf')); };
+    });
+    var bk = document.getElementById('btnKey');
+    if (bk) bk.onclick = function () { state.revealed = !state.revealed; renderQuestion(); };
+    box.querySelectorAll('[data-self]').forEach(function (b) {
+      b.onclick = function () {
+        var ok = b.getAttribute('data-self') === '1';
+        record(item(), ok, curId());
+        state.revealed = false;
+        state.submitted = true;
+        renderAll();
+        if (state.autoNext) setTimeout(next, 900);
+      };
+    });
+  }
+
+  function pick(key) {
+    var it = item();
+    if (!it || state.submitted) return;
+    if (it.t === 'm') {
+      var i = state.answer.indexOf(key);
+      if (i >= 0) state.answer.splice(i, 1); else state.answer.push(key);
+      renderQuestion();
+      return;
+    }
+    state.answer = [key];
+    state.submitted = true;
+    record(it, judge(it, state.answer), curId());
+    renderAll();
+    if (state.autoNext) setTimeout(next, 1000);
+  }
+
+  function submit() {
+    var it = item();
+    if (!it || state.submitted) return;
+    if (!state.answer.length) { toast('请先选择选项'); return; }
+    state.submitted = true;
+    record(it, judge(it, state.answer), curId());
+    renderAll();
+    if (state.autoNext) setTimeout(next, 1200);
+  }
+
+  function next() {
+    if (state.idx + 1 < state.queue.length) {
+      state.idx++;
+      resetAnswer();
+      renderAll();
+    } else {
+      toast('本轮已完成，可查看答题卡或切换模式');
+    }
+  }
+  function prev() {
+    if (state.idx > 0) { state.idx--; resetAnswer(); renderAll(); }
+  }
+  function resetAnswer() { state.answer = []; state.submitted = false; state.revealed = false; }
+  function goto(n) {
+    var id = state.queue[n];
+    if (id == null) return;
+    state.idx = n; resetAnswer(); renderAll();
+  }
+
+  /* ---------- 渲染：底部 ---------- */
+  function renderDock() {
+    var total = state.queue.length;
+    var done = 0;
+    state.queue.forEach(function (id) { if (state.cards[id] && state.cards[id].seen) done++; });
+    document.getElementById('dockProg').innerHTML = '本轮进度 <b>' + (total ? state.idx + 1 : 0) + '</b> / ' + total +
+      '　已作答 ' + done + '<div class="bar"><i style="width:' + (total ? done / total * 100 : 0) + '%"></i></div>';
+    var sub = document.getElementById('btnSubmit');
+    var it = item();
+    sub.style.display = it && it.t === 'm' && !state.submitted && it.t !== 'e' ? '' : 'none';
+    var st = document.getElementById('btnSelf');
+    st.style.display = it && it.t === 'e' ? '' : 'none';
+    document.getElementById('btnPrev').disabled = state.idx === 0;
+    document.getElementById('btnNext').textContent = state.idx + 1 >= state.queue.length ? '完成' : '下一题';
+    var fav = document.getElementById('btnFav');
+    fav.classList.toggle('on', !!(it && state.fav[curId()]));
+    fav.textContent = it && state.fav[curId()] ? '★' : '☆';
+  }
+
+  /* ---------- 渲染：答题卡 ---------- */
+  function renderSheet() {
+    var box = document.getElementById('sheetGrid');
+    box.innerHTML = '';
+    var html = '';
+    state.queue.forEach(function (id, i) {
+      var c = state.cards[id];
+      var cls = '';
+      if (c && c.seen) cls = (c.sk === 0 && c.no > 0) ? 'bad' : 'done';
+      if (i === state.idx) cls += ' cur';
+      html += '<button class="' + cls + '" data-goto="' + i + '">' + (i + 1) + '</button>';
+    });
+    box.innerHTML = html;
+    box.querySelectorAll('[data-goto]').forEach(function (b) {
+      b.onclick = function () { goto(+b.getAttribute('data-goto')); closeSheet(); };
+    });
+  }
+
+  /* ---------- 视图：统计 ---------- */
+  function renderStats() {
+    var seen = 0, ok = 0, no = 0, mN = 0, s0 = 0;
+    var dist = [0, 0, 0, 0, 0];
+    ITEMS.forEach(function (_, i) {
+      var c = state.cards[i];
+      if (c && c.seen) { seen++; ok += c.ok; no += c.no; dist[Math.min(c.st, MASTER_ST)]++; if (c.st >= MASTER_ST) mN++; }
+      else s0++;
+    });
+    var acc = ok + no ? Math.round(ok / (ok + no) * 100) : 0;
+    var daysLeft = diffDays(today(), TARGET);
+    var need = ITEMS.length - mN;
+    var perDay = daysLeft > 0 ? Math.ceil(need / daysLeft) : need;
+
+    var h = '<div class="cards">' +
+      cardHtml('已学习', seen + ' / ' + ITEMS.length, '覆盖率 ' + Math.round(seen / ITEMS.length * 100) + '%') +
+      cardHtml('完全掌握', mN, '连对 4 轮 / 4 轮') +
+      cardHtml('累计正确率', acc + '%', ok + ' 对 · ' + no + ' 错') +
+      cardHtml('距 12/31', daysLeft + ' 天', '每天需掌握 ' + perDay + ' 题') +
+      '</div>';
+
+    h += '<div class="panel"><h3>掌握阶段分布（艾宾浩斯 4 轮）</h3><div class="stages">';
+    ['未学', '答对1轮', '答对2轮', '答对3轮', '已掌握'].forEach(function (t, i) {
+      h += '<div class="stage-chip"><b>' + dist[i] + '</b><span>' + t + '</span></div>';
+    });
+    h += '</div><div class="note" style="margin-top:14px">复习间隔为 1 → 2 → 4 → 7 天，连对 4 轮即视为掌握（约 14 天）。答对升一轮并顺延下次；答错退回两轮、次日重练，答错即重新开始累计连对。</div></div>';
+
+    h += '<div class="panel"><h3>各章进度</h3>';
+    CHS.forEach(function (name, ci) {
+      var total = 0, d = 0, mm = 0;
+      ITEMS.forEach(function (it, i) { if (it.ch === ci) { total++; if (state.cards[i] && state.cards[i].seen) d++; if (mastered(i)) mm++; } });
+      h += '<div class="rowbar"><span>' + chName(ci) + '</span><span class="t"><i style="width:' + (total ? d / total * 100 : 0) + '%"></i></span><span class="n">' + d + '/' + total + '</span></div>';
+    });
+    h += '</div>';
+
+    var up = [0, 0, 0, 0, 0, 0, 0];
+    ITEMS.forEach(function (_, i) {
+      var c = state.cards[i];
+      if (c && c.seen && c.st < MASTER_ST && c.due) {
+        var dd = diffDays(today(), c.due);
+        if (dd >= 0 && dd < 7) up[dd]++;
+      }
+    });
+    h += '<div class="panel"><h3>未来 7 天到期复习</h3>';
+    for (var i = 0; i < 7; i++) {
+      var dstr = addDays(today(), i);
+      h += '<div class="rowbar"><span>' + (i === 0 ? '今天' : dstr.slice(5)) + '</span><span class="t"><i style="width:' + Math.min(100, up[i] / 60 * 100) + '%"></i></span><span class="n">' + up[i] + ' 题</span></div>';
+    }
+    h += '</div>';
+
+    h += '<div class="panel"><h3>本周学习安排建议</h3><table class="plan-table"><tr><th>日期</th><th>新题</th><th>复习</th><th>累计覆盖</th></tr>';
+    var cover = seen, proj = cover;
+    for (var k = 0; k < 7; k++) {
+      var day = addDays(today(), k);
+      proj = Math.min(ITEMS.length, proj + Math.min(newQuota(), ITEMS.length - proj));
+      h += '<tr><td>' + day.slice(5) + '</td><td class="n">' + Math.min(newQuota(), Math.max(0, ITEMS.length - cover)) + '</td><td class="n">≈' + Math.round(up[k] || 0) + '</td><td class="n">' + proj + '</td></tr>';
+    }
+    h += '</table><div class="note" style="margin-top:12px">计划按“每天新题 = 剩余未学题 ÷ 剩余天数（预留考前 7 天纯复习）”自动计算。今天的新题配额为 <b>' + newQuota() + '</b> 题。</div></div>';
+
+    document.getElementById('statsBox').innerHTML = h;
+  }
+  function cardHtml(k, v, s) {
+    return '<div class="stat"><div class="k">' + k + '</div><div class="v">' + v + '</div><div class="s">' + s + '</div></div>';
+  }
+
+  /* ---------- 主渲染 ---------- */
+  function renderAll() {
+    renderRail();
+    if (location.hash === '#stats') { renderStats(); return; }
+    renderQuestion();
+    renderSheet();
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('on'); }, 2000);
+  }
+
+  /* ---------- 抽屉 ---------- */
+  function openSheet() {
+    document.getElementById('sheet').classList.add('on');
+    document.getElementById('sheetMask').classList.add('on');
+    document.getElementById('rail').classList.remove('on');
+  }
+  function closeSheet() {
+    document.getElementById('sheet').classList.remove('on');
+    document.getElementById('sheetMask').classList.remove('on');
+  }
+
+  /* ---------- 导出 ---------- */
+  function exportData() {
+    var blob = new Blob([JSON.stringify({ cards: state.cards, fav: state.fav, daily: state.daily }, null, 1)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '德法题库学习进度.json';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 3000);
+  }
+  function importData(text) {
+    try {
+      var o = JSON.parse(text);
+      if (!o.cards) throw 0;
+      state.cards = o.cards; state.fav = o.fav || {}; state.daily = o.daily || {};
+      save(); resetQueue(); toast('进度已导入');
+    } catch (e) { toast('文件格式不对'); }
+  }
+  function resetAll() {
+    if (!confirm('将清空全部作答记录、错题与收藏，确定？')) return;
+    state.cards = {}; state.fav = {}; state.daily = {}; state.lastDay = '';
+    save(); resetQueue(); toast('已重置');
+  }
+
+  /* ---------- 对外 ---------- */
+  window.App = {
+    switchMode: function (m) { state.mode = m; state._restore = null; state.idx = 0; buildQueue(); renderAll(); },
+    filterType: function (t) { state.filterType = t; resetQueue(); },
+    toggleFav: function () {
+      var id = curId(); if (id == null) return;
+      state.fav[id] = !state.fav[id];
+      save(); renderAll(); toast(state.fav[id] ? '已收藏' : '已取消收藏');
+    },
+    submit: submit, next: next, prev: prev, openSheet: openSheet, closeSheet: closeSheet,
+    toggleAuto: function () { state.autoNext = !state.autoNext; save(); document.getElementById('btnAuto').classList.toggle('on', state.autoNext); toast(state.autoNext ? '自动下一题：开' : '自动下一题：关'); },
+    exportData: exportData, resetAll: resetAll,
+    showStats: function () { location.hash = '#stats'; },
+    goPractice: function () { location.hash = ''; },
+    toggleRail: function () { document.getElementById('rail').classList.toggle('on'); },
+    showKey: function () { state.revealed = !state.revealed; renderQuestion(); }
+  };
+
+  /* ---------- 键盘 ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    var it = item(); if (!it) return;
+    var k = e.key.toUpperCase();
+    if (/^[1-5]$/.test(k)) {
+      var idx = +k - 1;
+      if (it.t === 's' || it.t === 'm') { if (it.o[idx]) pick(letters(idx)); }
+      else if (it.t === 'j') { pick(idx === 0 ? 'T' : 'F'); }
+      e.preventDefault();
+    } else if (/^[A-E]$/.test(k) && (it.t === 's' || it.t === 'm')) {
+      if (it.o[TKEY.indexOf(k)]) pick(k);
+    } else if (e.key === 'Enter') {
+      if (it.t === 'm' && !state.submitted) submit(); else next();
+    } else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
+    else if (k === 'F') App.toggleFav();
+  });
+
+  window.addEventListener('hashchange', function () {
+    var stats = location.hash === '#stats';
+    document.getElementById('practiceView').style.display = stats ? 'none' : '';
+    document.getElementById('statsView').style.display = stats ? '' : 'none';
+    renderAll();
+  });
+
+  /* ---------- 启动 ---------- */
+  load();
+  buildQueue();
+  document.getElementById('btnAuto').classList.toggle('on', state.autoNext);
+  renderAll();
+})();
+
+</script>
+</body>
+</html>
